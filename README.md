@@ -1,15 +1,12 @@
 # AI code
 
 <p align="center">
-  <img src="https://media.githubusercontent.com/media/cline/cline/main/assets/docs/demo.gif" width="100%" />
+  <img src="assets\docs\demo2.gif" width="100%" />
 </p>
 
 <div align="center">
 <table>
 <tbody>
-<td align="center">
-<a href="https://marketplace.visualstudio.com/items?itemName=tianguaduizhang.claude-dev-china" target="_blank"><strong>在VS Marketplace下载</strong></a>
-</td>
 <td align="center">
 <a href="https://github.com/Ciciella/AIcoder/discussions/1"><strong>功能请求</strong></a>
 </td>
@@ -19,7 +16,7 @@
 
 认识AI code，一个可以使用你的**CLI**和**编辑器**的AI助手。
 
-得益于[Claude 3.5 Sonnet的代理编码能力](https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf)，AI code可以逐步处理复杂的软件开发任务。通过允许他创建和编辑文件、探索大型项目以及执行终端命令（在你授权后），他可以以超越代码补全或技术支持的方式协助你。虽然自主AI脚本传统上在沙盒环境中运行，但此扩展提供了一个人机交互的GUI来批准每个文件更改和终端命令，提供了一种安全且可访问的方式来探索代理AI的潜力。
+AI code可以逐步处理复杂的软件开发任务。通过允许他创建和编辑文件、探索大型项目以及执行终端命令（在你授权后），他可以以超越代码补全或技术支持的方式协助你。虽然自主AI脚本传统上在沙盒环境中运行，但此扩展提供了一个人机交互的GUI来批准每个文件更改和终端命令，提供了一种安全且可访问的方式来探索代理AI的潜力。
 
 1. 输入你的任务并添加图像，将模型转换为功能性应用程序或通过截图修复错误。
 2. AI code首先通过分析你的文件结构和源代码ASTs、运行正则表达式搜索以及读取相关文件来了解现有项目。通过仔细管理添加到上下文中的信息，AI code可以在不压倒上下文窗口的情况下为大型复杂项目提供有价值的帮助。
@@ -34,12 +31,14 @@
 
 ---
 
-<img align="right" width="340" src="https://github.com/user-attachments/assets/3cf21e04-7ce9-4d22-a7b9-ba2c595e88a4">
-
 ### API提供商
 国产模型和openAI兼容的api key 均可使用
 
-<!-- <img width="340" src="./assets/docs/使用介绍.png"> -->
+<img width="340" src="./assets/docs/使用介绍.png">
+
+### 支持模型列表：
+
+<img width="340" src="./assets/docs/模型介绍.png">
 
 
 ### 使用任何API和模型
@@ -50,9 +49,9 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 
 <!-- 透明像素以在浮动图像后创建换行 -->
 
-<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+<!-- <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="left" width="370" src="https://github.com/user-attachments/assets/81be79a8-1fdb-4028-9129-5fe055e01e76">
+<img align="left" width="370" src="https://github.com/user-attachments/assets/81be79a8-1fdb-4028-9129-5fe055e01e76"> -->
 
 ### 在终端中运行命令
 
@@ -62,9 +61,9 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 
 <!-- 透明像素以在浮动图像后创建换行 -->
 
-<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+<!-- <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="right" width="400" src="https://github.com/user-attachments/assets/c5977833-d9b8-491e-90f9-05f9cd38c588">
+<img align="right" width="400" src="https://github.com/user-attachments/assets/c5977833-d9b8-491e-90f9-05f9cd38c588"> -->
 
 ### 创建和编辑文件
 
@@ -74,9 +73,9 @@ AI code所做的所有更改都记录在你文件的时间轴中，提供了一�
 
 <!-- 透明像素以在浮动图像后创建换行 -->
 
-<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+<!-- <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="left" width="350" src="https://github.com/user-attachments/assets/50019dba-a63d-41f0-ab0f-fd35ebcdd4c5">
+<img align="left" width="350" src="https://github.com/user-attachments/assets/50019dba-a63d-41f0-ab0f-fd35ebcdd4c5"> -->
 
 ### 分析图像和浏览器截图
 
@@ -88,7 +87,9 @@ AI code还可以使用无头浏览器检查任何网站，例如localhost，允�
 
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="right" width="360" src="https://github.com/user-attachments/assets/7fdf41e6-281a-4b4b-ac19-020b838b6970">
+
+
+<img align="right" width="360" src="assets/docs/功能介绍.png">
 
 ### 添加上下文
 

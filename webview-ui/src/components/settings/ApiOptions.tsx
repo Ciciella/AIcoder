@@ -968,9 +968,8 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 									marginTop: "5px",
 									color: "var(--vscode-descriptionForeground)",
 								}}>
-								VS Code 语言模型 API 允许您运行由其他 VS Code 扩展（包括但不限于 GitHub
-								Copilot）提供的模型。最简单的入门方法是从 VS Marketplace 安装 Copilot 扩展并启用 Claude 3.5
-								Sonnet。
+								通过其他 VS Code 扩展（包括但不限于 GitHub Copilot）提供的模型运行模型。最简单的入门方法是从 VS
+								Marketplace 安装 Copilot 扩展并启用 Claude 3.7 Sonnet。
 							</p>
 						)}
 

@@ -796,19 +796,7 @@ const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryVie
 							<FormattedMessage id="chatView.whatCanIDo" defaultMessage="What can I do for you?" />
 						</h2>
 						<p>
-							<FormattedMessage id="chatView.thanksTo" defaultMessage="Thanks to" />{" "}
-							<VSCodeLink
-								href="https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf"
-								style={{ display: "inline" }}>
-								<FormattedMessage
-									id="chatView.agenticCodingCapabilities"
-									defaultMessage="Claude 3.5 Sonnet's agentic coding capabilities"
-								/>
-							</VSCodeLink>{" "}
-							<FormattedMessage
-								id="chatView.complexTasks"
-								defaultMessage="I can handle complex software development tasks step-by-step. With tools that let me create & edit files, explore complex projects, use the browser, and execute terminal commands (after you grant permission), I can assist you in ways that go beyond code completion or tech support. I can even use MCP to create new tools and extend my own capabilities."
-							/>
+							感谢Claude 3.7 Sonnet的自主编码能力，我可以一步一步地处理复杂的软件开发任务。通过使用可以创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令（在您授予权限后）的工具，我可以以超越代码完成或技术支持的方式为您提供帮助。我甚至可以使用MCP创建新工具并扩展我自己的能力。
 						</p>
 					</div>
 					{taskHistory.length > 0 && <HistoryPreview showHistoryView={showHistoryView} />}

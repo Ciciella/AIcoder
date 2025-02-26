@@ -80,8 +80,19 @@ export interface ModelInfo {
 // Anthropic
 // https://docs.anthropic.com/en/docs/about-claude/models // prices updated 2025-01-02
 export type AnthropicModelId = keyof typeof anthropicModels
-export const anthropicDefaultModelId: AnthropicModelId = "claude-3-5-sonnet-20241022"
+export const anthropicDefaultModelId: AnthropicModelId = "claude-3-7-sonnet-20250219"
 export const anthropicModels = {
+	"claude-3-7-sonnet-20250219": {
+		maxTokens: 8192,
+		contextWindow: 200_000,
+		supportsImages: true,
+		supportsComputerUse: true,
+		supportsPromptCache: true,
+		inputPrice: 3.0,
+		outputPrice: 15.0,
+		cacheWritesPrice: 3.75,
+		cacheReadsPrice: 0.3,
+	},
 	"claude-3-5-sonnet-20241022": {
 		maxTokens: 8192,
 		contextWindow: 200_000,
@@ -130,6 +141,17 @@ export const anthropicModels = {
 export type BedrockModelId = keyof typeof bedrockModels
 export const bedrockDefaultModelId: BedrockModelId = "anthropic.claude-3-5-sonnet-20241022-v2:0"
 export const bedrockModels = {
+	"anthropic.claude-3-7-sonnet-20250219-v1:0": {
+		maxTokens: 8192,
+		contextWindow: 200_000,
+		supportsImages: true,
+		supportsComputerUse: true,
+		supportsPromptCache: true,
+		inputPrice: 3.0,
+		outputPrice: 15.0,
+		cacheWritesPrice: 3.75,
+		cacheReadsPrice: 0.3,
+	},
 	"anthropic.claude-3-5-sonnet-20241022-v2:0": {
 		maxTokens: 8192,
 		contextWindow: 200_000,
@@ -183,7 +205,7 @@ export const bedrockModels = {
 
 // OpenRouter
 // https://openrouter.ai/models?order=newest&supported_parameters=tools
-export const openRouterDefaultModelId = "anthropic/claude-3.5-sonnet" // will always exist in openRouterModels
+export const openRouterDefaultModelId = "anthropic/claude-3.7-sonnet" // will always exist in openRouterModels
 export const openRouterDefaultModelInfo: ModelInfo = {
 	maxTokens: 8192,
 	contextWindow: 200_000,
@@ -195,7 +217,7 @@ export const openRouterDefaultModelInfo: ModelInfo = {
 	cacheWritesPrice: 3.75,
 	cacheReadsPrice: 0.3,
 	description:
-		"新的Claude 3.5 Sonnet提供了优于Opus的能力，以更快的速度和相同的Sonnet价格。Sonnet特别擅长于：\n\n- 编码：新的Sonnet在SWE-Bench Verified上得分约为49%，高于之前的最佳得分，并且无需任何复杂的提示结构\n- 数据科学：增强了人类数据科学专业知识；在使用多种工具获取见解的同时，导航非结构化数据\n- 视觉处理：擅长解释图表、图形和图像，准确地转录文本以获取超越文本本身的见解\n- 代理任务：卓越的工具使用，使其在代理任务（即需要与其他系统交互的复杂多步骤问题解决任务）中表现出色\n\n#多模态",
+		"Claude 3.7 Sonnet 是一个先进的大型语言模型，具有改进的推理、编码和解决问题的能力。它引入了一种混合推理方法，允许用户在快速响应和逐步处理复杂任务之间进行选择。该模型在编码方面表现出显著的改进，特别是在前端开发和全栈更新方面，并且在自主导航多步骤流程的代理工作流中表现出色。\n\nClaude 3.7 Sonnet 在标准模式下与其前身保持性能一致，同时提供扩展推理模式，以提高数学、编码和指令执行任务的准确性。\n\n更多信息请阅读[博客文章](https://www.anthropic.com/news/claude-3-7-sonnet)",
 }
 
 // Vertex AI
@@ -203,6 +225,15 @@ export const openRouterDefaultModelInfo: ModelInfo = {
 export type VertexModelId = keyof typeof vertexModels
 export const vertexDefaultModelId: VertexModelId = "claude-3-5-sonnet-v2@20241022"
 export const vertexModels = {
+	"claude-3-7-sonnet@20250219": {
+		maxTokens: 8192,
+		contextWindow: 200_000,
+		supportsImages: true,
+		supportsComputerUse: true,
+		supportsPromptCache: false,
+		inputPrice: 3.0,
+		outputPrice: 15.0,
+	},
 	"claude-3-5-sonnet-v2@20241022": {
 		maxTokens: 8192,
 		contextWindow: 200_000,

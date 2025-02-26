@@ -2,7 +2,7 @@
 	"name": "claude-dev-china",
 	"displayName": "AI Code: Cline, Chat, Deepseek, 中文版",
 	"description": "在您的IDE中自动编码代理，能够在您的许可下创建/编辑文件、执行命令等等。支持deepseek模型",
-	"version": "3.4.5",
+	"version": "3.4.9",
 	"icon": "assets/icons/icon.png",
 	"galleryBanner": {
 		"color": "#617A91",
@@ -276,6 +276,7 @@
 		"os-name": "^6.0.0",
 		"p-wait-for": "^5.0.2",
 		"pdf-parse": "^1.1.1",
+		"posthog-node": "^4.7.0",
 		"puppeteer-chromium-resolver": "^23.0.0",
 		"puppeteer-core": "^23.4.0",
 		"serialize-error": "^11.0.3",

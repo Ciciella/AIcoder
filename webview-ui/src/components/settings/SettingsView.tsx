@@ -1,10 +1,10 @@
-import { VSCodeButton, VSCodeLink, VSCodeTextArea } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeButton, VSCodeCheckbox, VSCodeLink, VSCodeTextArea } from "@vscode/webview-ui-toolkit/react"
 import { memo, useEffect, useState } from "react"
 import { useExtensionState } from "../../context/ExtensionStateContext"
 import { validateApiConfiguration, validateModelId } from "../../utils/validate"
 import { vscode } from "../../utils/vscode"
-import ApiOptions from "./ApiOptions"
 import SettingsButton from "../common/SettingsButton"
+import ApiOptions from "./ApiOptions"
 import { FormattedMessage, useIntl } from "react-intl"
 const { IS_DEV } = process.env
 
@@ -14,7 +14,15 @@ type SettingsViewProps = {
 
 const SettingsView = ({ onDone }: SettingsViewProps) => {
 	const intl = useIntl()
-	const { apiConfiguration, version, customInstructions, setCustomInstructions, openRouterModels } = useExtensionState()
+	const {
+		apiConfiguration,
+		version,
+		customInstructions,
+		setCustomInstructions,
+		openRouterModels,
+		telemetrySetting,
+		setTelemetrySetting,
+	} = useExtensionState()
 	const [apiErrorMessage, setApiErrorMessage] = useState<string | undefined>(undefined)
 	const [modelIdErrorMessage, setModelIdErrorMessage] = useState<string | undefined>(undefined)
 
@@ -30,6 +38,10 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 			vscode.postMessage({
 				type: "customInstructions",
 				text: customInstructions,
+			})
+			vscode.postMessage({
+				type: "telemetrySetting",
+				text: telemetrySetting,
 			})
 			onDone()
 		}
@@ -126,6 +138,32 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							id="settings.instructionsInfo"
 							defaultMessage="These instructions are added to the end of the system prompt sent with every request."
 						/>
+					</p>
+				</div>
+
+				<div style={{ marginBottom: 5 }}>
+					<VSCodeCheckbox
+						style={{ marginBottom: "5px" }}
+						checked={telemetrySetting === "enabled"}
+						onChange={(e: any) => {
+							const checked = e.target.checked === true
+							setTelemetrySetting(checked ? "enabled" : "disabled")
+						}}>
+						允许匿名错误和使用报告
+					</VSCodeCheckbox>
+					<p
+						style={{
+							fontSize: "12px",
+							marginTop: "5px",
+							color: "var(--vscode-descriptionForeground)",
+						}}>
+						通过发送匿名使用数据和错误报告来帮助改进 Cline。不会发送任何代码、提示或个人信息。请参阅我们的{" "}
+						<VSCodeLink
+							href="https://github.com/cline/cline/blob/main/docs/PRIVACY.md"
+							style={{ fontSize: "inherit" }}>
+							隐私政策
+						</VSCodeLink>{" "}
+						了解更多详情。
 					</p>
 				</div>
 

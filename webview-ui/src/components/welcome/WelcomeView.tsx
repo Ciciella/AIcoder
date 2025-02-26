@@ -1,11 +1,11 @@
-import { VSCodeButton, VSCodeLink, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
-import { useEffect, useState, useCallback } from "react"
+import { VSCodeButton, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
+import { useCallback, useEffect, useState } from "react"
+import { useEvent } from "react-use"
+import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 import { useExtensionState } from "../../context/ExtensionStateContext"
 import { validateApiConfiguration } from "../../utils/validate"
 import { vscode } from "../../utils/vscode"
 import ApiOptions from "../settings/ApiOptions"
-import { useEvent } from "react-use"
-import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 import { FormattedMessage } from "react-intl"
 
 const WelcomeView = () => {
@@ -61,28 +61,13 @@ const WelcomeView = () => {
 					<FormattedMessage id="welcome.title" defaultMessage="Hi, I'm AI Code" />
 				</h2>
 				<p>
-					<FormattedMessage
-						id="welcome.capabilities"
-						defaultMessage="I can do all kinds of tasks thanks to the latest breakthroughs in"
-					/>{" "}
-					<VSCodeLink
-						href="https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model_Card_Claude_3_Addendum.pdf"
-						style={{ display: "inline" }}>
-						<FormattedMessage
-							id="welcome.capabilities.link"
-							defaultMessage="Claude 3.5 Sonnet's agentic coding capabilities"
-						/>
-					</VSCodeLink>{" "}
-					<FormattedMessage
-						id="welcome.tools"
-						defaultMessage="以及使用工具来创建和编辑文件，探索复杂的项目，使用浏览器和执行终端命令（当然，需要您的许可）。我甚至可以使用MCP来创建新的工具并扩展我自己的工具功能。"
-					/>
+					感谢Claude 3.7 Sonnet的自主编码能力突破，我可以执行各种任务，并且可以使用创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令的工具（当然，需要您的许可）。我甚至可以使用MCP创建新工具并扩展我自己的能力。
 				</p>
 
 				<b>
 					<FormattedMessage
 						id="welcome.apiProvider"
-						defaultMessage="To get started, this extension needs an API provider for Claude 3.5 Sonnet."
+						defaultMessage="To get started, this extension needs an API provider for Claude 3.7 Sonnet."
 					/>
 				</b>
 

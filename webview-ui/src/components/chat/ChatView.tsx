@@ -27,6 +27,7 @@ import ChatRow from "./ChatRow"
 import ChatTextArea from "./ChatTextArea"
 import TaskHeader from "./TaskHeader"
 import { FormattedMessage, useIntl } from "react-intl"
+// import TelemetryBanner from "../common/TelemetryBanner"
 
 interface ChatViewProps {
 	isHidden: boolean
@@ -38,7 +39,7 @@ interface ChatViewProps {
 export const MAX_IMAGES_PER_MESSAGE = 20 // Anthropic limits to 20 images
 
 const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryView }: ChatViewProps) => {
-	const { version, clineMessages: messages, taskHistory, apiConfiguration } = useExtensionState()
+	const { version, clineMessages: messages, taskHistory, apiConfiguration, telemetrySetting } = useExtensionState()
 
 	//const task = messages.length > 0 ? (messages[0].say === "task" ? messages[0] : undefined) : undefined) : undefined
 	const task = useMemo(() => messages.at(0), [messages]) // leaving this less safe version here since if the first message is not a task, then the extension is in a bad state and needs to be debugged (see AI code.abort)
@@ -790,13 +791,17 @@ const ChatView = ({ isHidden, showAnnouncement, hideAnnouncement, showHistoryVie
 						flexDirection: "column",
 						paddingBottom: "10px",
 					}}>
+					{/* 遥测代码 */}
+					{/* {telemetrySetting === "unset" && <TelemetryBanner />} */}
+
 					{showAnnouncement && <Announcement version={version} hideAnnouncement={hideAnnouncement} />}
 					<div style={{ padding: "0 20px", flexShrink: 0 }}>
 						<h2>
 							<FormattedMessage id="chatView.whatCanIDo" defaultMessage="What can I do for you?" />
 						</h2>
 						<p>
-							感谢Claude 3.7 Sonnet的自主编码能力，我可以一步一步地处理复杂的软件开发任务。通过使用可以创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令（在您授予权限后）的工具，我可以以超越代码完成或技术支持的方式为您提供帮助。我甚至可以使用MCP创建新工具并扩展我自己的能力。
+							感谢Claude 3.7
+							Sonnet的自主编码能力，我可以一步一步地处理复杂的软件开发任务。通过使用可以创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令（在您授予权限后）的工具，我可以以超越代码完成或技术支持的方式为您提供帮助。我甚至可以使用MCP创建新工具并扩展我自己的能力。
 						</p>
 					</div>
 					{taskHistory.length > 0 && <HistoryPreview showHistoryView={showHistoryView} />}

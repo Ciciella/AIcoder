@@ -61,7 +61,8 @@ const WelcomeView = () => {
 					<FormattedMessage id="welcome.title" defaultMessage="Hi, I'm AI Code" />
 				</h2>
 				<p>
-					感谢Claude 3.7 Sonnet的自主编码能力突破，我可以执行各种任务，并且可以使用创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令的工具（当然，需要您的许可）。我甚至可以使用MCP创建新工具并扩展我自己的能力。
+					感谢Claude 3.7
+					Sonnet的自主编码能力突破，我可以执行各种任务，并且可以使用创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令的工具（当然，需要您的许可）。我甚至可以使用MCP创建新工具并扩展我自己的能力。
 				</p>
 
 				<b>

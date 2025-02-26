@@ -141,7 +141,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					</p>
 				</div>
 
-				<div style={{ marginBottom: 5 }}>
+				{/* <div style={{ marginBottom: 5 }}>
 					<VSCodeCheckbox
 						style={{ marginBottom: "5px" }}
 						checked={telemetrySetting === "enabled"}
@@ -165,7 +165,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 						</VSCodeLink>{" "}
 						了解更多详情。
 					</p>
-				</div>
+				</div> */}
 
 				{IS_DEV && (
 					<>

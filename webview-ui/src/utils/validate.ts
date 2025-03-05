@@ -38,6 +38,11 @@ export function validateApiConfiguration(apiConfiguration?: ApiConfiguration): s
 					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
+			case "xai":
+				if (!apiConfiguration.xaiApiKey) {
+					return "You must provide a valid API key or choose a different provider."
+				}
+				break
 			case "qwen":
 				if (!apiConfiguration.qwenApiKey) {
 					return "You must provide a valid API key or choose a different provider."
@@ -76,6 +81,11 @@ export function validateApiConfiguration(apiConfiguration?: ApiConfiguration): s
 			case "vscode-lm":
 				if (!apiConfiguration.vsCodeLmModelSelector) {
 					return "您必须提供有效的模型选择器。"
+				}
+				break
+			case "asksage":
+				if (!apiConfiguration.asksageApiKey) {
+					return "You must provide a valid API key or choose a different provider."
 				}
 				break
 		}

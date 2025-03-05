@@ -1,5 +1,25 @@
 # 更新日志
 
+## [3.5.1]
+
+-   添加 MCP 服务器的超时选项
+-   为 Vertex 提供商添加 Gemini Flash 模型（感谢 @jpaodev！）
+-   为 AWS Bedrock 提供商添加提示缓存支持（感谢 @buger！）
+-   添加 AskSage 提供商（感谢 @swhite24！）
+
+## [3.5.0]
+
+-   为 Claude 3.7 Sonnet 添加“启用扩展思维”选项，并能够为计划和执行模式设置不同的预算
+-   添加对富 MCP 响应的支持，包括自动图像预览、网站缩略图和 WolframAlpha 可视化
+-   在高级设置中添加语言偏好选项
+-   添加 xAI 提供商集成，支持所有 Grok 模型（感谢 @andrewmonostate！）
+-   修复 Linux XDG 指向错误的文档文件夹路径的问题（感谢 @jonatkinson！）
+
+## [3.4.10]
+
+-   添加对 GPT-4.5 预览模型的支持
+
+
 ## [3.4.9]
 
 -   添加对 Claude 3.7 Sonnet 的支持

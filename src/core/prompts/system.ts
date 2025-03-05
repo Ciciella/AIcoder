@@ -11,8 +11,6 @@ export const SYSTEM_PROMPT = async (
 	browserSettings: BrowserSettings,
 ) => `You are  AI Code, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.
 
-默认使用中文回复。
-
 ====
 
 TOOL USE
@@ -981,8 +979,12 @@ export function addUserInstructions(
 	settingsCustomInstructions?: string,
 	clineRulesFileInstructions?: string,
 	clineIgnoreInstructions?: string,
+	preferredLanguageInstructions?: string,
 ) {
 	let customInstructions = ""
+	if (preferredLanguageInstructions) {
+		customInstructions += preferredLanguageInstructions + "\n\n"
+	}
 	if (settingsCustomInstructions) {
 		customInstructions += settingsCustomInstructions + "\n\n"
 	}

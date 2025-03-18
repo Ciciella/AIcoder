@@ -153,8 +153,8 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					marginBottom: "13px",
 					paddingRight: 17,
 				}}>
-				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>Settings</h3>
-				<VSCodeButton onClick={() => handleSubmit(false)}>Done</VSCodeButton>
+				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>设置</h3>
+				<VSCodeButton onClick={() => handleSubmit(false)}>完成</VSCodeButton>
 			</div>
 			<div
 				style={{
@@ -183,10 +183,10 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 								borderBottom: "1px solid var(--vscode-panel-border)",
 							}}>
 							<TabButton isActive={chatSettings.mode === "plan"} onClick={() => handleTabChange("plan")}>
-								Plan Mode
+								计划模式
 							</TabButton>
 							<TabButton isActive={chatSettings.mode === "act"} onClick={() => handleTabChange("act")}>
-								Act Mode
+								执行模式
 							</TabButton>
 						</div>
 
@@ -215,9 +215,9 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 						style={{ width: "100%" }}
 						resize="vertical"
 						rows={4}
-						placeholder={'e.g. "Run unit tests at the end", "Use TypeScript with async/await", "Speak in Spanish"'}
+						placeholder={'例如："最后运行单元测试"、"使用 TypeScript 和 async/await"、"用西班牙语交流"'}
 						onInput={(e: any) => setCustomInstructions(e.target?.value ?? "")}>
-						<span style={{ fontWeight: "500" }}>Custom Instructions</span>
+						<span style={{ fontWeight: "500" }}>自定义指令</span>
 					</VSCodeTextArea>
 					<p
 						style={{
@@ -225,7 +225,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							marginTop: "5px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						These instructions are added to the end of the system prompt sent with every request.
+						这些指令会被添加到每个请求的系统提示末尾。
 					</p>
 				</div>
 
@@ -237,7 +237,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							const checked = e.target.checked === true
 							setPlanActSeparateModelsSetting(checked)
 						}}>
-						Use different models for Plan and Act modes
+						为计划模式和执行模式使用不同的模型
 					</VSCodeCheckbox>
 					<p
 						style={{
@@ -245,8 +245,8 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							marginTop: "5px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Switching between Plan and Act mode will persist the API and model used in the previous mode. This may be
-						helpful e.g. when using a strong reasoning model to architect a plan for a cheaper coding model to act on.
+						在计划模式和执行模式之间切换时，将保持上一个模式使用的 API
+						和模型。这可能很有用，例如使用强大的推理模型来规划架构，然后让更便宜的编码模型来执行。
 					</p>
 				</div>
 
@@ -258,32 +258,31 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							const checked = e.target.checked === true
 							setTelemetrySetting(checked ? "enabled" : "disabled")
 						}}>
-						Allow anonymous error and usage reporting
+						允许匿名错误和使用情况报告
 					</VSCodeCheckbox>
-					<p
+					{/* <p
 						style={{
 							fontSize: "12px",
 							marginTop: "5px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Help improve Cline by sending anonymous usage data and error reports. No code, prompts, or personal
-						information are ever sent. See our{" "}
+						通过发送匿名使用数据和错误报告来帮助改进 AI Code。永远不会发送代码、提示或个人信息。查看我们的{" "}
 						<VSCodeLink href="https://docs.cline.bot/more-info/telemetry" style={{ fontSize: "inherit" }}>
-							telemetry overview
+							遥测概述
 						</VSCodeLink>{" "}
-						and{" "}
+						和{" "}
 						<VSCodeLink href="https://cline.bot/privacy" style={{ fontSize: "inherit" }}>
-							privacy policy
+							隐私政策
 						</VSCodeLink>{" "}
-						for more details.
-					</p>
+						了解更多详情。
+					</p> */}
 				</div>
 
 				{IS_DEV && (
 					<>
-						<div style={{ marginTop: "10px", marginBottom: "4px" }}>Debug</div>
+						<div style={{ marginTop: "10px", marginBottom: "4px" }}>调试</div>
 						<VSCodeButton onClick={handleResetState} style={{ marginTop: "5px", width: "auto" }}>
-							Reset State
+							重置状态
 						</VSCodeButton>
 						<p
 							style={{
@@ -291,7 +290,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 								marginTop: "5px",
 								color: "var(--vscode-descriptionForeground)",
 							}}>
-							This will reset all global state and secret storage in the extension.
+							这将重置扩展中的所有全局状态和密钥存储。
 						</p>
 					</>
 				)}
@@ -309,7 +308,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							margin: "0 0 16px 0",
 						}}>
 						<i className="codicon codicon-settings-gear" />
-						Advanced Settings
+						高级设置
 					</SettingsButton>
 				</div>
 				<div
@@ -320,17 +319,18 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 						lineHeight: "1.2",
 						padding: "0 8px 15px 0",
 					}}>
-					<p
+					{/* <p
 						style={{
 							wordWrap: "break-word",
 							margin: 0,
 							padding: 0,
 						}}>
-						If you have any questions or feedback, feel free to open an issue at{" "}
+						如果您有任何问题或反馈，欢迎在{" "}
 						<VSCodeLink href="https://github.com/cline/cline" style={{ display: "inline" }}>
 							https://github.com/cline/cline
-						</VSCodeLink>
-					</p>
+						</VSCodeLink>{" "}
+						提出 issue
+					</p> */}
 					<p
 						style={{
 							fontStyle: "italic",

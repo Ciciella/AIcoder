@@ -154,9 +154,9 @@ const App = () => {
 				</VSCodeButton>
 			</div> */}
 			<ExtensionStateContextProvider>
-			<FirebaseAuthProvider>
+				<FirebaseAuthProvider>
 					<AppContent />
-			</FirebaseAuthProvider>
+				</FirebaseAuthProvider>
 			</ExtensionStateContextProvider>
 		</IntlProvider>
 	)

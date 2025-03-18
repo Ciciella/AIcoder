@@ -30,8 +30,8 @@ const AccountView = ({ onDone }: AccountViewProps) => {
 					marginBottom: "17px",
 					paddingRight: 17,
 				}}>
-				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>Cline Account</h3>
-				<VSCodeButton onClick={onDone}>Done</VSCodeButton>
+				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>Cline 账户</h3>
+				<VSCodeButton onClick={onDone}>完成</VSCodeButton>
 			</div>
 			<div
 				style={{
@@ -81,7 +81,7 @@ export const ClineAccountView = () => {
 						{user.photoURL ? (
 							<img
 								src={user.photoURL}
-								alt="Profile"
+								alt="头像"
 								style={{
 									width: 38,
 									height: 38,
@@ -141,7 +141,7 @@ export const ClineAccountView = () => {
 										marginBottom: 0,
 										marginRight: -12,
 									}}>
-									Account
+									账户管理
 								</VSCodeButtonLink>
 								<VSCodeButton
 									appearance="secondary"
@@ -154,7 +154,7 @@ export const ClineAccountView = () => {
 										marginBottom: 0,
 										marginRight: -12,
 									}}>
-									Log out
+									退出登录
 								</VSCodeButton>
 							</div>
 						</div>
@@ -163,7 +163,7 @@ export const ClineAccountView = () => {
 			) : (
 				<div style={{}}>
 					<VSCodeButton onClick={handleLogin} style={{ marginTop: 0 }}>
-						Sign Up with Cline
+						使用 Cline 注册
 					</VSCodeButton>
 				</div>
 			)}

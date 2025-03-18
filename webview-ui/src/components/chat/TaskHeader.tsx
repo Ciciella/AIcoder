@@ -405,8 +405,8 @@ const TaskHeader: React.FC<TaskHeaderProps> = ({
 											flexWrap: "wrap",
 										}}>
 										<span style={{ fontWeight: "bold" }}>
-										<FormattedMessage id="taskHeader.cache" defaultMessage="Cache:" />
-									</span>
+											<FormattedMessage id="taskHeader.cache" defaultMessage="Cache:" />
+										</span>
 										<span
 											style={{
 												display: "flex",

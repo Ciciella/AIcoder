@@ -2,35 +2,35 @@
 
 ## [3.7.0]
 
--   Cline now displays selectable options when asking questions or presenting a plan, saving you from having to type out responses!
--   Add support for a `.clinerules/` directory to load multiple files at once (thanks @ryo-ma!)
--   Prevent Cline from reading extremely large files into context that would overload context window
--   Improve checkpoints loading performance and display warning for large projects not suited for checkpoints
--   Add SambaNova API provider (thanks @saad-noodleseed!)
--   Add VPC endpoint option for AWS Bedrock profiles (thanks @minorunara!)
--   Add DeepSeek-R1 to AWS Bedrock (thanks @watany-dev!)
+-   Cline 现在在提问或展示计划时显示可选择的选项，省去了你输入响应的麻烦！
+-   添加对 `.clinerules/` 目录的支持，以便一次加载多个文件（感谢 @ryo-ma！）
+-   防止 Cline 将极大的文件读入上下文，以免超出上下文窗口
+-   改进检查点加载性能，并为不适合检查点的大型项目显示警告
+-   添加 SambaNova API 提供商（感谢 @saad-noodleseed！）
+-   为 AWS Bedrock 配置文件添加 VPC 端点选项（感谢 @minorunara！）
+-   将 DeepSeek-R1 添加到 AWS Bedrock（感谢 @watany-dev！）
 
 ## [3.6.5]
 
--   Add 'Delete all Task History' button to History view
--   Add toggle to disable model switching between Plan/Act modes in Settings (new users default to disabled)
--   Add temperature option to OpenAI Compatible
--   Add Kotlin support to tree-sitter parser (thanks @fumiya-kume!)
+-   在历史视图中添加“删除所有任务历史”按钮
+-   在设置中添加切换开关以禁用计划/执行模式之间的模型切换（新用户默认禁用）
+-   为 OpenAI 兼容性添加温度选项
+-   为 tree-sitter 解析器添加 Kotlin 支持（感谢 @fumiya-kume！）
 
 ## [3.6.3]
 
--   Improve QwQ support for Alibaba (thanks @meglinge!) and OpenRouter
--   Improve diff edit prompting to prevent immediately reverting to write_to_file when a model uses search patterns that don't match anything in the file
--   Fix bug where new checkpoints system would revert file changes when switching between tasks
--   Fix issue with incorrect token count for some OpenAI compatible providers
+-   改进对阿里巴巴（感谢 @meglinge！）和 OpenRouter 的 QwQ 支持
+-   改进差异编辑提示，以防止在模型使用不匹配文件的搜索模式时立即恢复到 write_to_file
+-   修复新检查点系统在任务切换时会恢复文件更改的错误
+-   修复某些 OpenAI 兼容提供商的错误令牌计数问题
 
 ## [3.6.0]
 
--   Add Cline API as a provider option, allowing new users to sign up and get started with Cline for free
--   Optimize checkpoints with branch-per-task strategy, reducing storage required and first task load times
--   Fix problem with Plan/Act toggle keyboard shortcut not working in Windows (thanks @yt3trees!)
--   Add new Gemini models to GCP Vertex (thanks @shohei-ihaya!) and Claude models AskSage (thanks @swhite24!)
--   Improve OpenRouter/Cline error reporting
+-   添加 Cline API 作为提供商选项，允许新用户注册并免费开始使用 Cline
+-   通过每任务分支策略优化检查点，减少所需存储和首次任务加载时间
+-   修复计划/执行切换键盘快捷键在 Windows 上不起作用的问题（感谢 @yt3trees！）
+-   为 GCP Vertex 添加新的 Gemini 模型（感谢 @shohei-ihaya！）和 Claude 模型 AskSage（感谢 @swhite24！）
+-   改进 OpenRouter/Cline 错误报告
 
 ## [3.5.1]
 

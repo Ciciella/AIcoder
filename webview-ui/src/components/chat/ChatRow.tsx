@@ -299,27 +299,37 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					(() => {
 						if (apiReqCancelReason != null) {
 							return apiReqCancelReason === "user_cancelled" ? (
-								<span style={{ color: normalColor, fontWeight: "bold" }}><FormattedMessage id="chatRow.apiRequestCancelled" defaultMessage="API Request Cancelled" /></span>
+								<span style={{ color: normalColor, fontWeight: "bold" }}>
+									<FormattedMessage id="chatRow.apiRequestCancelled" defaultMessage="API Request Cancelled" />
+								</span>
 							) : (
-								<span style={{ color: errorColor, fontWeight: "bold" }}><FormattedMessage id="chatRow.apiStreamingFailed" defaultMessage="API Streaming Failed" /></span>
+								<span style={{ color: errorColor, fontWeight: "bold" }}>
+									<FormattedMessage id="chatRow.apiStreamingFailed" defaultMessage="API Streaming Failed" />
+								</span>
 							)
 						}
 
 						if (cost != null) {
-							return <span style={{ color: normalColor, fontWeight: "bold" }}>
-							<FormattedMessage id="chatRow.apiRequest" defaultMessage="API Request" />
-						</span>
+							return (
+								<span style={{ color: normalColor, fontWeight: "bold" }}>
+									<FormattedMessage id="chatRow.apiRequest" defaultMessage="API Request" />
+								</span>
+							)
 						}
 
 						if (apiRequestFailedMessage) {
-							return <span style={{ color: errorColor, fontWeight: "bold" }}>
-							<FormattedMessage id="chatRow.apiRequestFailed" defaultMessage="API Request Failed" />
-						</span>
+							return (
+								<span style={{ color: errorColor, fontWeight: "bold" }}>
+									<FormattedMessage id="chatRow.apiRequestFailed" defaultMessage="API Request Failed" />
+								</span>
+							)
 						}
 
-						return <span style={{ color: normalColor, fontWeight: "bold" }}>
-							<FormattedMessage id="chatRow.apiRequestInProgress" defaultMessage="API Request..." />
-						</span>
+						return (
+							<span style={{ color: normalColor, fontWeight: "bold" }}>
+								<FormattedMessage id="chatRow.apiRequestInProgress" defaultMessage="API Request..." />
+							</span>
+						)
 					})(),
 				]
 			case "followup":
@@ -630,7 +640,7 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 									padding: `2px 8px ${isExpanded ? 0 : 8}px 8px`,
 								}}>
 								<span className={`codicon codicon-chevron-${isExpanded ? "down" : "right"}`}></span>
-								<span style={{ fontSize: "0.8em" }}>Command Output</span>
+								<span style={{ fontSize: "0.8em" }}>命令输出</span>
 							</div>
 							{isExpanded && <CodeBlock source={`${"```"}shell\n${output}\n${"```"}`} />}
 						</div>
@@ -712,7 +722,7 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 											fontSize: "12px",
 											textTransform: "uppercase",
 										}}>
-										Arguments
+										参数
 									</div>
 									<CodeAccordian
 										code={useMcpServer.arguments}
@@ -847,7 +857,7 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 										fontSize: "12px",
 										textTransform: "uppercase",
 									}}>
-									Response
+									响应
 								</div>
 								<CodeAccordian
 									code={message.text}
@@ -881,7 +891,7 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 									{isExpanded ? (
 										<div style={{ marginTop: -3 }}>
 											<span style={{ fontWeight: "bold", display: "block", marginBottom: "4px" }}>
-												Thinking
+												思考中
 												<span
 													className="codicon codicon-chevron-down"
 													style={{
@@ -998,9 +1008,9 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 											fontSize: 14,
 											color: "var(--vscode-descriptionForeground)",
 										}}></i>
-									<span style={{ fontWeight: 500 }}>Diff Edit Mismatch</span>
+									<span style={{ fontWeight: 500 }}>差异编辑不匹配</span>
 								</div>
-								<div>The model used search patterns that don't match anything in the file. Retrying...</div>
+								<div>模型使用的搜索模式与文件中的内容不匹配。正在重试...</div>
 							</div>
 						</>
 					)

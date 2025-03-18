@@ -40,16 +40,21 @@ export function validateApiConfiguration(apiConfiguration?: ApiConfiguration): s
 				break
 			case "xai":
 				if (!apiConfiguration.xaiApiKey) {
-					return "You must provide a valid API key or choose a different provider."
+					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
 			case "qwen":
 				if (!apiConfiguration.qwenApiKey) {
-					return "You must provide a valid API key or choose a different provider."
+					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
 			case "mistral":
 				if (!apiConfiguration.mistralApiKey) {
+					return "您必须提供有效的API密钥或选择不同的提供商。"
+				}
+				break
+			case "cline":
+				if (!apiConfiguration.clineApiKey) {
 					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
@@ -60,12 +65,12 @@ export function validateApiConfiguration(apiConfiguration?: ApiConfiguration): s
 				break
 			case "requesty":
 				if (!apiConfiguration.requestyApiKey || !apiConfiguration.requestyModelId) {
-					return "You must provide a valid API key or choose a different provider."
+					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
 			case "together":
 				if (!apiConfiguration.togetherApiKey || !apiConfiguration.togetherModelId) {
-					return "You must provide a valid API key or choose a different provider."
+					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
 			case "ollama":
@@ -85,7 +90,12 @@ export function validateApiConfiguration(apiConfiguration?: ApiConfiguration): s
 				break
 			case "asksage":
 				if (!apiConfiguration.asksageApiKey) {
-					return "You must provide a valid API key or choose a different provider."
+					return "您必须提供有效的API密钥或选择不同的提供商。"
+				}
+				break
+			case "sambanova":
+				if (!apiConfiguration.sambanovaApiKey) {
+					return "您必须提供有效的API密钥或选择不同的提供商。"
 				}
 				break
 		}
@@ -100,6 +110,7 @@ export function validateModelId(
 	if (apiConfiguration) {
 		switch (apiConfiguration.apiProvider) {
 			case "openrouter":
+			case "cline":
 				const modelId = apiConfiguration.openRouterModelId || openRouterDefaultModelId // 如果用户没有更改模型ID，默认情况下它将是未定义的
 				if (!modelId) {
 					return "您必须提供一个模型ID。"

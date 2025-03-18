@@ -742,6 +742,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			const unknownModel = "unknown"
 			if (!apiConfiguration) return unknownModel
 			switch (selectedProvider) {
+				case "cline":
+					return `${selectedProvider}:${selectedModelId}`
 				case "openai":
 					return `openai-compat:${selectedModelId}`
 				case "vscode-lm":
@@ -1130,6 +1132,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 						</ModelContainer>
 					</ButtonGroup>
 					<Tooltip
+						style={{ zIndex: 1000 }}
 						visible={shownTooltipMode !== null}
 						tipText={`在${shownTooltipMode === "act" ? "行动" : "计划"}模式下，AI Code将会${shownTooltipMode === "act" ? "立即完成任务" : "收集信息以制定计划"}`}
 						hintText={`切换 w/ ${metaKeyChar}+Shift+A`}>

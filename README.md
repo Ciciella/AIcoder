@@ -56,6 +56,12 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 
 扩展还会跟踪整个任务循环和单个请求的总令牌和API使用成本，让你在每一步都了解支出。
 
+### 社区讨论：
+
+<div align="center">
+<img width="400" src="assets/docs/004.png">
+</div>
+
 
 ### 赞赏支持
 
@@ -68,7 +74,7 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 <table>
 <tr>
 <td align="center">
-  <img src="assets/docs/001.jpg" width="400" />
+  <img src="assets/docs/001.png" width="400" />
 </td>
 <td align="center">
   <img src="assets/docs/002.png" width="400" />
@@ -82,6 +88,8 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 ### 致谢
 
 我们的项目基于<a href="https://github.com/cline/cline">cline</a>开源技术构建。
+
+
 
 
 # Cline – OpenRouter 排名第一

@@ -22,13 +22,13 @@ import { CheckpointControls, CheckpointOverlay } from "../common/CheckpointContr
 import CodeAccordian, { cleanPathPrefix } from "../common/CodeAccordian"
 import CodeBlock, { CODE_BLOCK_BG_COLOR } from "../common/CodeBlock"
 import MarkdownBlock from "../common/MarkdownBlock"
-import SuccessButton from "../common/SuccessButton"
 import Thumbnails from "../common/Thumbnails"
 import McpResourceRow from "../mcp/McpResourceRow"
 import McpToolRow from "../mcp/McpToolRow"
 import CreditLimitError from "./CreditLimitError"
 import { OptionsButtons } from "./OptionsButtons"
 import { highlightMentions } from "./TaskHeader"
+import SuccessButton from "../common/SuccessButton"
 import { FormattedMessage } from "react-intl"
 
 const ChatRowContainer = styled.div`
@@ -1092,8 +1092,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 											})
 										}}
 										style={{
-											width: "100%",
 											cursor: seeNewChangesDisabled ? "wait" : "pointer",
+											width: "100%",
 										}}>
 										<i className="codicon codicon-new-file" style={{ marginRight: 6 }} />
 										查看新更改

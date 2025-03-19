@@ -1,5 +1,10 @@
 # 更新日志
 
+## [3.7.1]
+
+-   Fix issue with 'See more' button in task header not showing when starting new tasks
+-   Fix issue with checkpoints using local git commit hooks
+
 ## [3.7.0]
 
 -   Cline 现在在提问或展示计划时显示可选择的选项，省去了你输入响应的麻烦！

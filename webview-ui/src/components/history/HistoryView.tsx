@@ -477,7 +477,7 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 							setDeleteAllDisabled(true)
 							vscode.postMessage({ type: "clearAllTaskHistory" })
 						}}>
-						Delete All History{totalTasksSize !== null ? ` (${formatSize(totalTasksSize)})` : ""}
+						删除所有历史记录{totalTasksSize !== null ? ` (${formatSize(totalTasksSize)})` : ""}
 					</DangerButton>
 				</div>
 			</div>

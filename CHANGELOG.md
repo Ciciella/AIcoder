@@ -1,9 +1,8 @@
 # 更新日志
 
-## [3.7.1]
-
--   Fix issue with 'See more' button in task header not showing when starting new tasks
--   Fix issue with checkpoints using local git commit hooks
+## [3.7.2]
+-   修复任务标题中的“查看更多”按钮在开始新任务时不显示的问题
+-   修复使用本地 git 提交钩子的检查点问题
 
 ## [3.7.0]
 

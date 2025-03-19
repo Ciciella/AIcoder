@@ -46,9 +46,6 @@ AI Code 是一个基于 [Cline](https://github.com/cline/cline) 的中文汉化�
 
 <img width="340" src="https://gitee.com/nulifendou99/ai-code/raw/master/assets/docs/shiyongjieshao.png">
 
-### 支持模型列表：
-
-<img width="340" src="https://gitee.com/nulifendou99/ai-code/raw/master/assets/docs/moxingjieshao.png">
 
 ### 使用任何API和模型
 
@@ -56,10 +53,26 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 
 扩展还会跟踪整个任务循环和单个请求的总令牌和API使用成本，让你在每一步都了解支出。
 
+### 相关链接：
+
+SiliconCloud 邀请奖励，2000 万 Tokens 送不停！
+<br/>
+邀请链接<a href="https://cloud.siliconflow.cn/i/9ro7nu8I"> https://cloud.siliconflow.cn/i/9ro7nu8I</a>
+
+1. 邀请好友赚 2000 万 Tokens：每成功邀请一位新用户通过手机号码注册，您将获得 2000 万 Tokens；
+2. 注册即送 2000 万 Tokens：受邀好友作为新用户完成 SiliconCloud 账号注册，立刻获得 2000万 Tokens。
+ 
+
+
+### 社交媒体
+
+B站: <a href="https://space.bilibili.com/102578527?spm_id_from=333.1007.0.0">七分超超</a>
+
+
 ### 社区讨论：
 
 <div align="center">
-<img width="400" src="assets/docs/004.png">
+<img width="400" src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/004.png">
 </div>
 
 
@@ -68,16 +81,16 @@ AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azu
 感谢您对 AI Code 的支持！如果您觉得这个项目对您有帮助，欢迎赞赏支持我们继续改进。
 
 <div align="center">
-  <img src="assets/docs/003.png" width="400" />
+  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/003.png" width="400" />
 </div>
 
 <table>
 <tr>
 <td align="center">
-  <img src="assets/docs/001.png" width="400" />
+  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/001.png" width="400" />
 </td>
 <td align="center">
-  <img src="assets/docs/002.png" width="400" />
+  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/002.png" width="400" />
 </td>
 </tr>
 </table>

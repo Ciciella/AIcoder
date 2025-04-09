@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const sidebarProvider = new ClineProvider(context, outputChannel)
 
-	vscode.commands.executeCommand("setContext", "cline.isDevMode", IS_DEV && IS_DEV === "true")
+	vscode.commands.executeCommand("setContext", "aiCode.isDevMode", IS_DEV && IS_DEV === "true")
 
 	context.subscriptions.push(
 		vscode.window.registerWebviewViewProvider(ClineProvider.sideBarId, sidebarProvider, {
@@ -127,7 +127,7 @@ export function activate(context: vscode.ExtensionContext) {
 	)
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand("cline.openDocumentation", () => {
+		vscode.commands.registerCommand("aiCode.openDocumentation", () => {
 			vscode.env.openExternal(vscode.Uri.parse("https://docs.cline.bot/"))
 		}),
 	)
@@ -211,7 +211,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand("cline.addToChat", async (range?: vscode.Range, diagnostics?: vscode.Diagnostic[]) => {
+		vscode.commands.registerCommand("aiCode.addToChat", async (range?: vscode.Range, diagnostics?: vscode.Diagnostic[]) => {
 			const editor = vscode.window.activeTextEditor
 			if (!editor) {
 				return
@@ -241,7 +241,7 @@ export function activate(context: vscode.ExtensionContext) {
 	)
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand("cline.addTerminalOutputToChat", async () => {
+		vscode.commands.registerCommand("aiCode.addTerminalOutputToChat", async () => {
 			const terminal = vscode.window.activeTerminal
 			if (!terminal) {
 				return
@@ -312,15 +312,15 @@ export function activate(context: vscode.ExtensionContext) {
 
 					const addAction = new vscode.CodeAction("Add to Cline", vscode.CodeActionKind.QuickFix)
 					addAction.command = {
-						command: "cline.addToChat",
-						title: "Add to Cline",
+						command: "aiCode.addToChat",
+						title: "添加到AI Code",
 						arguments: [expandedRange, context.diagnostics],
 					}
 
 					const fixAction = new vscode.CodeAction("Fix with Cline", vscode.CodeActionKind.QuickFix)
 					fixAction.command = {
-						command: "cline.fixWithCline",
-						title: "Fix with Cline",
+						command: "aiCode.fixWithCline",
+						title: "使用 AI Code 修复",
 						arguments: [expandedRange, context.diagnostics],
 					}
 
@@ -340,7 +340,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Register the command handler
 	context.subscriptions.push(
-		vscode.commands.registerCommand("cline.fixWithCline", async (range: vscode.Range, diagnostics: any[]) => {
+		vscode.commands.registerCommand("aiCode.fixWithCline", async (range: vscode.Range, diagnostics: any[]) => {
 			const editor = vscode.window.activeTextEditor
 			if (!editor) {
 				return

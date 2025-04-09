@@ -11,7 +11,7 @@ import { ClineMessage } from "../../shared/ExtensionMessage"
  */
 export function registerTaskCommands(context: vscode.ExtensionContext, provider: ClineProvider): vscode.Disposable[] {
 	return [
-		vscode.commands.registerCommand("cline.dev.createTestTasks", async () => {
+		vscode.commands.registerCommand("aiCode.dev.createTestTasks", async () => {
 			const count = await vscode.window.showInputBox({
 				title: "Test Tasks",
 				prompt: "How many test tasks to create?",

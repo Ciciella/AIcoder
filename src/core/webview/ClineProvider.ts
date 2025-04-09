@@ -266,7 +266,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 						text: JSON.stringify(await getTheme()),
 					})
 				}
-				if (e && e.affectsConfiguration("cline.mcpMarketplace.enabled")) {
+				if (e && e.affectsConfiguration("aiCode.mcpMarketplace.enabled")) {
 					// Update state when marketplace tab setting changes
 					await this.postStateToWebview()
 				}
@@ -760,7 +760,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 
 							// 2. Enable MCP settings if disabled
 							// Enable MCP mode if disabled
-							const mcpConfig = vscode.workspace.getConfiguration("cline.mcp")
+							const mcpConfig = vscode.workspace.getConfiguration("aiCode.mcp")
 							if (mcpConfig.get<string>("mode") !== "full") {
 								await mcpConfig.update("mode", "full", true)
 							}
@@ -2224,7 +2224,7 @@ Here is the project's README to help you get started:\n\n${mcpDetails.readmeCont
 		}
 
 		const o3MiniReasoningEffort = vscode.workspace
-			.getConfiguration("cline.modelSettings.o3Mini")
+			.getConfiguration("aiCode.modelSettings.o3Mini")
 			.get("reasoningEffort", "medium")
 
 		const mcpMarketplaceEnabled = vscode.workspace.getConfiguration("cline").get<boolean>("mcpMarketplace.enabled", true)

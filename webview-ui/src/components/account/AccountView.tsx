@@ -35,7 +35,7 @@ export const ClineAccountView = () => {
 	const [usageData, setUsageData] = useState<UsageTransaction[]>([])
 	const [paymentsData, setPaymentsData] = useState<PaymentTransaction[]>([])
 
-	// Listen for balance and transaction data updates from the extension
+	// 监听来自扩展的余额和交易数据更新
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
 			const message = event.data
@@ -51,7 +51,7 @@ export const ClineAccountView = () => {
 
 		window.addEventListener("message", handleMessage)
 
-		// Fetch all account data when component mounts
+		// 组件挂载时获取所有账户数据
 		if (user) {
 			setIsLoading(true)
 			vscode.postMessage({ type: "fetchUserCreditsData" })
@@ -67,9 +67,9 @@ export const ClineAccountView = () => {
 	}
 
 	const handleLogout = () => {
-		// First notify extension to clear API keys and state
+		// 首先通知扩展清除 API 密钥和状态
 		vscode.postMessage({ type: "accountLogoutClicked" })
-		// Then sign out of Firebase
+		// 然后退出 Firebase
 		handleSignOut()
 	}
 	return (
@@ -79,7 +79,7 @@ export const ClineAccountView = () => {
 					<div className="flex flex-col w-full">
 						<div className="flex items-center mb-6 flex-wrap gap-y-4">
 							{user.photoURL ? (
-								<img src={user.photoURL} alt="Profile" className="size-16 rounded-full mr-4" />
+								<img src={user.photoURL} alt="个人头像" className="size-16 rounded-full mr-4" />
 							) : (
 								<div className="size-16 rounded-full bg-[var(--vscode-button-background)] flex items-center justify-center text-2xl text-[var(--vscode-button-foreground)] mr-4">
 									{user.displayName?.[0] || user.email?.[0] || "?"}
@@ -103,22 +103,22 @@ export const ClineAccountView = () => {
 					<div className="w-full flex gap-2 flex-col min-[225px]:flex-row">
 						<div className="w-full min-[225px]:w-1/2">
 							<VSCodeButtonLink href="https://app.cline.bot/credits" appearance="primary" className="w-full">
-								Dashboard
+								仪表盘
 							</VSCodeButtonLink>
 						</div>
 						<VSCodeButton appearance="secondary" onClick={handleLogout} className="w-full min-[225px]:w-1/2">
-							Log out
+							退出登录
 						</VSCodeButton>
 					</div>
 
 					<VSCodeDivider className="w-full my-6" />
 
 					<div className="w-full flex flex-col items-center">
-						<div className="text-sm text-[var(--vscode-descriptionForeground)] mb-3">CURRENT BALANCE</div>
+						<div className="text-sm text-[var(--vscode-descriptionForeground)] mb-3">当前余额</div>
 
 						<div className="text-4xl font-bold text-[var(--vscode-foreground)] mb-6 flex items-center gap-2">
 							{isLoading ? (
-								<div className="text-[var(--vscode-descriptionForeground)]">Loading...</div>
+								<div className="text-[var(--vscode-descriptionForeground)]">加载中...</div>
 							) : (
 								<>
 									<span>$</span>
@@ -135,7 +135,7 @@ export const ClineAccountView = () => {
 
 						<div className="w-full">
 							<VSCodeButtonLink href="https://app.cline.bot/credits/#buy" className="w-full">
-								Add Credits
+								添加额度
 							</VSCodeButtonLink>
 						</div>
 					</div>
@@ -150,18 +150,15 @@ export const ClineAccountView = () => {
 				<div className="flex flex-col items-center pr-3 max-w-[400px]">
 					<ClineLogoWhite className="size-16 mb-4" />
 
-					<p style={{}}>
-						Sign up for an account to get access to the latest models, billing dashboard to view usage and credits,
-						and more upcoming features.
-					</p>
+					<p style={{}}>注册账户以获取最新模型的访问权限、查看使用情况和额度的计费仪表盘，以及更多即将推出的功能。</p>
 
 					<VSCodeButton onClick={handleLogin} className="w-full mb-4">
-						Sign up with Cline
+						使用 Cline 注册
 					</VSCodeButton>
 
 					<p className="text-[var(--vscode-descriptionForeground)] text-xs text-center m-0">
-						By continuing, you agree to the <VSCodeLink href="https://cline.bot/tos">Terms of Service</VSCodeLink> and{" "}
-						<VSCodeLink href="https://cline.bot/privacy">Privacy Policy.</VSCodeLink>
+						继续使用即表示您同意<VSCodeLink href="https://cline.bot/tos">服务条款</VSCodeLink>和
+						<VSCodeLink href="https://cline.bot/privacy">隐私政策</VSCodeLink>。
 					</p>
 				</div>
 			)}

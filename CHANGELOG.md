@@ -2,38 +2,38 @@
 
 ## [3.8.4]
 
--   Add Sambanova Deepseek-V3-0324
--   Add cost calculation support for LiteLLM provider
--   Fix bug where Cline would use plan_mode_response bug without response parameter
+-   添加 Sambanova Deepseek-V3-0324
+-   为 LiteLLM 提供商添加成本计算支持
+-   修复 Cline 在没有响应参数的情况下使用 plan_mode_response 的错误
 
 ## [3.8.3]
 
--   Add support for SambaNova QwQ-32B model
--   Add OpenAI "dynamic" model chatgpt-4o-latest
--   Add Amazon Nova models to AWS Bedrock
--   Improve file handling for NextJS folder naming (fixes issues with parentheses in folder names)
--   Add Gemini 2.5 Pro to Google AI Studio available models
--   Handle "input too large" errors for Anthropic
--   Fix "See more" not showing up for tasks after task un-fold
--   Fix gpt-4.5-preview's supportsPromptCache value to true
+-   添加对 SambaNova QwQ-32B 模型的支持
+-   添加 OpenAI "dynamic" 模型 chatgpt-4o-latest
+-   将 Amazon Nova 模型添加到 AWS Bedrock
+-   改进 NextJS 文件夹命名的文件处理（修复文件夹名称中括号的问题）
+-   将 Gemini 2.5 Pro 添加到 Google AI Studio 可用模型中
+-   处理 Anthropic 的“输入过大”错误
+-   修复任务展开后“查看更多”不显示的问题
+-   修复 gpt-4.5-preview 的 supportsPromptCache 值为 true
 
 ## [3.8.2]
 
--   Fix bug where switching to plan/act would result in VS Code LM/OpenRouter model being reset
+-   修复切换到计划/执行模式时 VS Code LM/OpenRouter 模型被重置的错误
 
 ## [3.8.0]
 
--   Add 'Add to Cline' as an option when you right-click in a file or the terminal, making it easier to add context to your current task
--   Add 'Fix with Cline' code action - when you see a lightbulb icon in your editor, you can now select 'Fix with Cline' to send the code and associated errors for Cline to fix. (Cursor users can also use the 'Quick Fix (CMD + .)' menu to see this option)
--   Add Account view to display billing and usage history for Cline account users. You can now keep track of credits used and transaction history right in the extension!
--   Add 'Sort underling provider routing' setting to Cline/OpenRouter allowing you to sort provider used by throughput, price, latency, or the default (combination of price and uptime)
--   Improve rich MCP display with dynamic image loading and support for GIFs
--   Add 'Documentation' menu item to easily access Cline's docs
--   Add OpenRouter's new usage_details feature for more reliable cost reporting
--   Display total space Cline takes on disk next to 'Delete all Tasks' button in History view
--   Fix 'Context Window Exceeded' error for OpenRouter/Cline Accounts (additional support coming soon)
--   Fix bug where OpenRouter model ID would be set to invalid value
--   Add button to delete MCP servers in a failure state
+-   添加“添加到 Cline”选项，当你在文件或终端中右键单击时，可以更轻松地将上下文添加到当前任务
+-   添加“使用 Cline 修复”代码操作 - 当你在编辑器中看到灯泡图标时，现在可以选择“使用 Cline 修复”来发送代码和相关错误以供 Cline 修复。（光标用户也可以使用“快速修复（CMD + .）”菜单查看此选项）
+-   添加账户视图以显示 Cline 账户用户的账单和使用历史。你现在可以在扩展中跟踪使用的积分和交易历史！
+-   添加“排序下属提供商路由”设置到 Cline/OpenRouter，允许你按吞吐量、价格、延迟或默认（价格和正常运行时间的组合）对提供商进行排序
+-   改进丰富的 MCP 显示，支持动态图像加载和 GIF
+-   添加“文档”菜单项以便轻松访问 Cline 的文档
+-   添加 OpenRouter 的新 usage_details 功能，以便更可靠的成本报告
+-   在历史视图中“删除所有任务”按钮旁显示 Cline 占用的总空间
+-   修复 OpenRouter/Cline 账户的“上下文窗口超出”错误（即将提供更多支持）
+-   修复 OpenRouter 模型 ID 被设置为无效值的错误
+-   添加按钮以删除处于故障状态的 MCP 服务器
 
 ## [3.7.2]
 -   修复任务标题中的“查看更多”按钮在开始新任务时不显示的问题

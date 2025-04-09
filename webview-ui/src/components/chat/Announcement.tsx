@@ -36,20 +36,12 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 			</h3>
 			<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>
 				<li>
-					<b>Add to Cline:</b> Right-click selected text in any file or terminal to quickly add context to your current
-					task! Plus, when you see a lightbulb icon, select 'Fix with Cline' to have Cline fix errors in your code.
+					<b>添加到AI Code：</b>{" "}
+					右键单击任何文件或终端中的选定文本，以快速为当前任务添加上下文！此外，当您看到灯泡图标时，选择“使用AI
+					Code修复”以让AI Code修复代码中的错误。
 				</li>
 				<li>
-					<b>Billing Dashboard:</b> Track your remaining credits and transaction history right in the extension with a{" "}
-					<span className="codicon codicon-account" style={{ fontSize: 11 }}></span> Cline account!
-				</li>
-				<li>
-					<b>Faster Inference:</b> Cline/OpenRouter users can sort underlying providers used by throughput, price, and
-					latency. Sorting by throughput will output faster generations (at a higher cost).
-				</li>
-				<li>
-					<b>Enhanced MCP Support:</b> Dynamic image loading with GIF support, and a new delete button to clean up
-					failed servers.
+					<b>增强的MCP支持：</b> 动态图像加载支持GIF，并新增删除按钮以清理失败的服务器。
 				</li>
 			</ul>
 			{/*<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>

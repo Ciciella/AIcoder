@@ -76,7 +76,7 @@
 			},
 			{
 				"command": "aiCode.mcpButtonClicked",
-				"title": "MCP Servers",
+				"title": "MCP 服务器",
 				"icon": "$(extensions)"
 			},
 			{
@@ -91,12 +91,7 @@
 			},
 			{
 				"command": "aiCode.accountButtonClicked",
-				"title": "Account",
-				"icon": "$(account)"
-			},
-			{
-				"command": "aiCode.settingsButtonClicked",
-				"title": "Account",
+				"title": "账户",
 				"icon": "$(account)"
 			},
 			{
@@ -110,30 +105,30 @@
 				"category": "AI Code"
 			},
 			{
-				"command": "cline.dev.createTestTasks",
-				"title": "Create Test Tasks",
-				"category": "Cline",
-				"when": "cline.isDevMode"
+				"command": "aiCode.dev.createTestTasks",
+				"title": "创建测试任务",
+				"category": "AI Code",
+				"when": "aiCode.isDevMode"
 			},
 			{
-				"command": "cline.openDocumentation",
-				"title": "Documentation",
+				"command": "aiCode.openDocumentation",
+				"title": "打开文档",
 				"icon": "$(book)"
 			},
 			{
-				"command": "cline.addToChat",
-				"title": "Add to Cline",
-				"category": "Cline"
+				"command": "aiCode.addToChat",
+				"title": "添加到 AI Code",
+				"category": "AI Code"
 			},
 			{
-				"command": "cline.addTerminalOutputToChat",
-				"title": "Add to Cline",
-				"category": "Cline"
+				"command": "aiCode.addTerminalOutputToChat",
+				"title": "添加到 AI Code",
+				"category": "AI Code"
 			},
 			{
-				"command": "cline.fixWithCline",
-				"title": "Fix with Cline",
-				"category": "Cline"
+				"command": "aiCode.fixWithCline",
+				"title": "使用 AI Code 修复",
+				"category": "AI Code"
 			}
 		],
 		"menus": {
@@ -164,26 +159,26 @@
 					"when": "view == ai-code-dev.SidebarProvider"
 				},
 				{
-					"command": "cline.accountButtonClicked",
+					"command": "aiCode.accountButtonClicked",
 					"group": "navigation@6",
-					"when": "view == claude-dev.SidebarProvider"
+					"when": "view == ai-code-dev.SidebarProvider"
 				},
 				{
-					"command": "cline.settingsButtonClicked",
+					"command": "aiCode.settingsButtonClicked",
 					"group": "navigation@7",
-					"when": "view == claude-dev.SidebarProvider"
+					"when": "view == ai-code-dev.SidebarProvider"
 				}
 			],
 			"editor/context": [
 				{
-					"command": "cline.addToChat",
+					"command": "aiCode.addToChat",
 					"group": "navigation",
 					"when": "editorHasSelection"
 				}
 			],
 			"terminal/context": [
 				{
-					"command": "cline.addTerminalOutputToChat",
+					"command": "aiCode.addTerminalOutputToChat",
 					"group": "navigation"
 				}
 			]

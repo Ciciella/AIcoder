@@ -156,12 +156,12 @@
 				{
 					"command": "aiCode.openDocumentation",
 					"group": "navigation@5",
-					"when": "view == ai-code-dev.SidebarProvider"
+					"when": "view == ai-code-dev.SidebarProvider && false"
 				},
 				{
 					"command": "aiCode.accountButtonClicked",
 					"group": "navigation@6",
-					"when": "view == ai-code-dev.SidebarProvider"
+					"when": "view == ai-code-dev.SidebarProvider && false"
 				},
 				{
 					"command": "aiCode.settingsButtonClicked",

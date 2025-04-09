@@ -2,12 +2,8 @@
 	"name": "claude-dev-china",
 	"displayName": "AI Code: Cline, Chat, Deepseek, 中文版",
 	"description": "在您的IDE中自动编码代理，能够在您的许可下创建/编辑文件、执行命令等等。支持deepseek模型",
-	"version": "3.7.2",
+	"version": "3.8.4",
 	"icon": "assets/icons/icon.png",
-	"galleryBanner": {
-		"color": "#617A91",
-		"theme": "dark"
-	},
 	"engines": {
 		"vscode": "^1.84.0"
 	},
@@ -80,7 +76,7 @@
 			},
 			{
 				"command": "aiCode.mcpButtonClicked",
-				"title": "MCP服务器",
+				"title": "MCP Servers",
 				"icon": "$(extensions)"
 			},
 			{
@@ -94,6 +90,16 @@
 				"icon": "$(link-external)"
 			},
 			{
+				"command": "aiCode.accountButtonClicked",
+				"title": "Account",
+				"icon": "$(account)"
+			},
+			{
+				"command": "aiCode.settingsButtonClicked",
+				"title": "Account",
+				"icon": "$(account)"
+			},
+			{
 				"command": "aiCode.settingsButtonClicked",
 				"title": "设置",
 				"icon": "$(settings-gear)"
@@ -102,6 +108,32 @@
 				"command": "aiCode.openInNewTab",
 				"title": "在新标签页中打开",
 				"category": "AI Code"
+			},
+			{
+				"command": "cline.dev.createTestTasks",
+				"title": "Create Test Tasks",
+				"category": "Cline",
+				"when": "cline.isDevMode"
+			},
+			{
+				"command": "cline.openDocumentation",
+				"title": "Documentation",
+				"icon": "$(book)"
+			},
+			{
+				"command": "cline.addToChat",
+				"title": "Add to Cline",
+				"category": "Cline"
+			},
+			{
+				"command": "cline.addTerminalOutputToChat",
+				"title": "Add to Cline",
+				"category": "Cline"
+			},
+			{
+				"command": "cline.fixWithCline",
+				"title": "Fix with Cline",
+				"category": "Cline"
 			}
 		],
 		"menus": {
@@ -127,9 +159,32 @@
 					"when": "view == ai-code-dev.SidebarProvider"
 				},
 				{
-					"command": "aiCode.settingsButtonClicked",
+					"command": "aiCode.openDocumentation",
 					"group": "navigation@5",
 					"when": "view == ai-code-dev.SidebarProvider"
+				},
+				{
+					"command": "cline.accountButtonClicked",
+					"group": "navigation@6",
+					"when": "view == claude-dev.SidebarProvider"
+				},
+				{
+					"command": "cline.settingsButtonClicked",
+					"group": "navigation@7",
+					"when": "view == claude-dev.SidebarProvider"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "cline.addToChat",
+					"group": "navigation",
+					"when": "editorHasSelection"
+				}
+			],
+			"terminal/context": [
+				{
+					"command": "cline.addTerminalOutputToChat",
+					"group": "navigation"
 				}
 			]
 		},
@@ -238,6 +293,8 @@
 		"format": "prettier . --check",
 		"format:fix": "prettier . --write",
 		"test": "vscode-test",
+		"test:ci": "node scripts/test-ci.js",
+		"test:coverage": "vscode-test --coverage",
 		"install:all": "npm install && cd webview-ui && npm install",
 		"dev:webview": "cd webview-ui && npm run dev",
 		"build:webview": "cd webview-ui && npm run build",
@@ -280,6 +337,12 @@
 		"@google/generative-ai": "^0.18.0",
 		"@mistralai/mistralai": "^1.5.0",
 		"@modelcontextprotocol/sdk": "^1.7.0",
+		"@opentelemetry/api": "^1.4.1",
+		"@opentelemetry/exporter-trace-otlp-http": "^0.39.1",
+		"@opentelemetry/resources": "^1.30.1",
+		"@opentelemetry/sdk-node": "^0.39.1",
+		"@opentelemetry/sdk-trace-node": "^1.30.1",
+		"@opentelemetry/semantic-conventions": "^1.30.0",
 		"@types/clone-deep": "^4.0.4",
 		"@types/get-folder-size": "^3.0.4",
 		"@types/pdf-parse": "^1.1.4",
@@ -290,7 +353,6 @@
 		"chokidar": "^4.0.1",
 		"clone-deep": "^4.0.1",
 		"default-shell": "^2.2.0",
-		"delay": "^6.0.0",
 		"diff": "^5.2.0",
 		"execa": "^9.5.2",
 		"fast-deep-equal": "^3.1.3",

@@ -13,10 +13,10 @@ import { DEFAULT_MCP_TIMEOUT_SECONDS, McpServer } from "../../../../src/shared/m
 import { useExtensionState } from "../../context/ExtensionStateContext"
 import { getMcpServerDisplayName } from "../../utils/mcp"
 import { vscode } from "../../utils/vscode"
-import DangerButton from "../common/DangerButton"
 import McpMarketplaceView from "./marketplace/McpMarketplaceView"
 import McpResourceRow from "./McpResourceRow"
 import McpToolRow from "./McpToolRow"
+import DangerButton from "../common/DangerButton"
 
 type McpViewProps = {
 	onDone: () => void
@@ -381,6 +381,13 @@ const ServerRow = ({ server }: { server: McpServer }) => {
 						}}>
 						{server.status === "connecting" ? "重试中..." : "重试连接"}
 					</VSCodeButton>
+
+					<DangerButton
+						style={{ width: "calc(100% - 20px)", margin: "0 10px 10px 10px" }}
+						disabled={isDeleting}
+						onClick={handleDelete}>
+						{isDeleting ? "Deleting..." : "Delete Server"}
+					</DangerButton>
 				</div>
 			) : (
 				isExpanded && (
@@ -472,12 +479,9 @@ const ServerRow = ({ server }: { server: McpServer }) => {
 						</VSCodeButton>
 
 						<DangerButton
-							onClick={handleDelete}
+							style={{ width: "calc(100% - 14px)", margin: "5px 7px 3px 7px" }}
 							disabled={isDeleting}
-							style={{
-								width: "calc(100% - 14px)",
-								margin: "5px 7px 3px 7px",
-							}}>
+							onClick={handleDelete}>
 							{isDeleting ? "删除中..." : "删除服务器"}
 						</DangerButton>
 					</div>

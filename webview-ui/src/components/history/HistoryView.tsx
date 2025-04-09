@@ -7,9 +7,9 @@ import Fuse, { FuseResult } from "fuse.js"
 import { formatLargeNumber } from "../../utils/format"
 import { FormattedMessage } from "react-intl"
 import { formatSize } from "../../utils/size"
-import DangerButton from "../common/DangerButton"
 import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 import { useEvent } from "react-use"
+import DangerButton from "../common/DangerButton"
 
 type HistoryViewProps = {
 	onDone: () => void
@@ -19,27 +19,22 @@ type SortOption = "newest" | "oldest" | "mostExpensive" | "mostTokens" | "mostRe
 
 const HistoryView = ({ onDone }: HistoryViewProps) => {
 	const { taskHistory, totalTasksSize } = useExtensionState()
-
-	const requestTotalTasksSize = useCallback(() => {
-		vscode.postMessage({ type: "requestTotalTasksSize" })
-	}, [])
+	const [searchQuery, setSearchQuery] = useState("")
+	const [sortOption, setSortOption] = useState<SortOption>("newest")
+	const [lastNonRelevantSort, setLastNonRelevantSort] = useState<SortOption | null>("newest")
+	const [deleteAllDisabled, setDeleteAllDisabled] = useState(false)
 
 	const handleMessage = useCallback((event: MessageEvent<ExtensionMessage>) => {
 		if (event.data.type === "relinquishControl") {
 			setDeleteAllDisabled(false)
 		}
 	}, [])
+	useEvent("message", handleMessage)
 
 	// Request total tasks size when component mounts
 	useEffect(() => {
-		requestTotalTasksSize()
-	}, [requestTotalTasksSize])
-	const [searchQuery, setSearchQuery] = useState("")
-	const [sortOption, setSortOption] = useState<SortOption>("newest")
-	const [lastNonRelevantSort, setLastNonRelevantSort] = useState<SortOption | null>("newest")
-	const [deleteAllDisabled, setDeleteAllDisabled] = useState(false)
-
-	useEvent("message", handleMessage)
+		vscode.postMessage({ type: "requestTotalTasksSize" })
+	}, [])
 
 	useEffect(() => {
 		if (searchQuery && sortOption !== "mostRelevant" && !lastNonRelevantSort) {

@@ -36,28 +36,22 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 			</h3>
 			<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>
 				<li>
-					<b>引入MCP市场：</b> 直接从扩展中发现和安装最佳MCP服务器，定期添加新服务器！开始使用，请转到
-					<span className="codicon codicon-extensions" style={{ marginRight: "4px", fontSize: 10 }}></span>
-					<VSCodeLink
-						onClick={() => {
-							vscode.postMessage({ type: "showMcpView" })
-						}}>
-						MCP Servers tab
-					</VSCodeLink>
-					.
+					<b>Add to Cline:</b> Right-click selected text in any file or terminal to quickly add context to your current
+					task! Plus, when you see a lightbulb icon, select 'Fix with Cline' to have Cline fix errors in your code.
 				</li>
 				<li>
-					<b>在计划模式中使用Mermaid图表！</b> AI
-					Code现在可以使用流程图、序列图、实体关系图等可视化其计划。当他使用mermaid解释其方法时，您将在聊天中看到一个可以点击展开的图表。
+					<b>Billing Dashboard:</b> Track your remaining credits and transaction history right in the extension with a{" "}
+					<span className="codicon codicon-account" style={{ fontSize: 11 }}></span> Cline account!
 				</li>
 				<li>
-					使用 <code>@terminal</code> 引用终端内容，使用 <code>@git</code> 引用工作更改和提交！
+					<b>Faster Inference:</b> Cline/OpenRouter users can sort underlying providers used by throughput, price, and
+					latency. Sorting by throughput will output faster generations (at a higher cost).
 				</li>
-				<li>编辑和命令后的新检查点视觉指示器，并在每个任务开始时自动检查点。</li>
+				<li>
+					<b>Enhanced MCP Support:</b> Dynamic image loading with GIF support, and a new delete button to clean up
+					failed servers.
+				</li>
 			</ul>
-			{/* <VSCodeLink href="https://x.com/sdrzn/status/1892262424881090721" style={{ display: "inline" }}>
-				在此查看更改的演示！
-			</VSCodeLink> */}
 			{/*<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>
 				 <li>
 					OpenRouter now supports prompt caching! They also have much higher rate limits than other providers,

@@ -310,14 +310,14 @@ export function activate(context: vscode.ExtensionContext) {
 						document.lineAt(Math.min(document.lineCount - 1, range.end.line + 3)).text.length,
 					)
 
-					const addAction = new vscode.CodeAction("Add to Cline", vscode.CodeActionKind.QuickFix)
+					const addAction = new vscode.CodeAction("添加到 AI Code", vscode.CodeActionKind.QuickFix)
 					addAction.command = {
 						command: "aiCode.addToChat",
 						title: "添加到AI Code",
 						arguments: [expandedRange, context.diagnostics],
 					}
 
-					const fixAction = new vscode.CodeAction("Fix with Cline", vscode.CodeActionKind.QuickFix)
+					const fixAction = new vscode.CodeAction("使用 AI Code 修复", vscode.CodeActionKind.QuickFix)
 					fixAction.command = {
 						command: "aiCode.fixWithCline",
 						title: "使用 AI Code 修复",

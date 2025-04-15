@@ -1,5 +1,13 @@
 # 更新日志
 
+## [3.8.5]
+
+- 修复添加到 AI Code 和 快速修复
+
+<img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E5%BF%AB%E6%8D%B7%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81.png" alt="添加到 AI Code" width="400" align="left">
+
+<img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E6%8F%90%E7%A4%BA%E4%BF%AE%E5%A4%8D%E9%80%89%E9%A1%B9.png" alt="快速修复" width="400" align="left">
+
 ## [3.8.4]
 
 -   添加 Sambanova Deepseek-V3-0324

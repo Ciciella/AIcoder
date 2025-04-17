@@ -8,6 +8,99 @@
 
 <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E6%8F%90%E7%A4%BA%E4%BF%AE%E5%A4%8D%E9%80%89%E9%A1%B9.png" alt="快速修复" width="400" align="left">
 
+## [3.12.3]
+
+-   Add copy button to MermaidBlock component (Thanks @cacosub7!)
+-   Add the ability to fetch from global cline rules files
+-   Add icon to indicate when a file outside of the users workspace is edited
+
+## [3.12.2]
+
+-   Add gpt-4.1
+
+## [3.12.1]
+
+-   Use visual checkpoint indicator to make it clear when checkpoints are created
+-   Big shoutout to @samuel871211 for numerous code quality improvements, refactoring contributions, and webview performance improvements!
+-   Use improved context manager
+
+## [3.12.0]
+
+-   Add favorite toggles for models when using the Cline & OpenRouter providers
+-   Add auto-approve options for edits/reads outside of the workspace
+-   Improve diff editing animation for large files
+-   Add indicator showing number of diff edits when Cline edits a file
+-   Add streaming support and reasoning effort option to xAI's Grok 3 Mini
+-   Add settings button to MCP popover to easily modify installed servers
+-   Fix bug where browser tool actions would show unparsed results in the chat view
+-   Fix issue with new checkpoints popover hiding too quickly
+-   Fix duplicate checkpoints bug
+-   Improve Ollama provider with retry mechanism, timeout handling, and improved error handling (thanks suvarchal!)
+
+## [3.11.0]
+
+-   Redesign checkpoint UI to declutter chat view by using a subtle indicator line that expands to a popover on hover, with a new date indicator for when it was created
+-   Add support for xAI's provider's Grok 3 models
+-   Add more robust error tracking for users opted in to telemetry (thank you for helping us make Cline better!)
+
+## [3.10.1]
+
+-   Add CMD+' keyboard shortcut to add selected text to Cline
+-   Cline now auto focuses the text field when using 'Add to Cline' shortcut
+-   Add new 'Create New Task' tool to let Cline start a new task autonomously!
+-   Fix Mermaid diagram issues
+-   Fix Gemini provider cost calculation to take new tiered pricing structure into account
+
+## [3.10.0]
+
+-   Add setting to let browser tool use local Chrome via remote debugging, enabling session-based browsing. Replaces sessionless Chromium, unlocking debugging and productivity workflows tied to your real browser state.
+-   Add new auto-approve option to approve _ALL_ commands (use at your own risk!)
+-   Add modal in the chat area to more easily enable or disable MCP servers
+-   Add drag and drop of file/folders into cline chat (Thanks eljapi!)
+-   Add prompt caching for LiteLLM + Claude (Thanks sammcj!)
+-   Add Improved context management
+-   Fix MCP auto approve toggle issues being out of sync with settings
+
+## [3.9.2]
+
+-   Add recommended models for Cline provider
+-   Add ability to detect when user edits files manually so Cline knows to re-read, leading to reduced diff edit errors
+-   Add improvements to file mention searching for faster searching
+-   Add scoring logic to file mentions to sort and exlcude results based on relevance
+-   Add Support for Bytedance Doubao (Thanks Tunixer!)
+-   Fix to prevent duplicate BOM (Thanks bamps53!)
+
+## [3.9.1]
+
+-   Add Gemini 2.5 Pro Preview 03-25 to Google Provider
+
+## [3.9.0]
+
+-   Add Enable extended thinking for LiteLLM provider (Thanks @jorgegarciarey!)
+-   Add a tab for configuring local MCP Servers
+-   Fix issue with DeepSeek API provider token counting + context management
+-   Fix issues with checkpoints hanging under certain conditions
+
+## [3.8.6]
+
+-   Add UI for adding remote servers
+-   Add Mentions Feature Guide and update related documentation
+-   Fix bug where menu would open in sidebar and open tab
+-   Fix issue with Cline accounts not showing user info in popout tabs
+-   Fix bug where menu buttons wouldn't open view in sidebar
+
+## [3.8.5]
+
+-   Add support for remote MCP Servers using SSE
+-   Add gemini-2.5-pro-exp-03-25 to Vertex AI (thanks @arri-cc!)
+-   Add access to history, mcp, and new task buttons in popout view
+-   Add task feedback telemetry (thumbs up/down on task completion)
+-   Add toggle disabled for remote servers
+-   Move the MCP Restart and Delete buttons and add an auto-approve all toggle
+-   Update Requestly UX for model selection (thanks @arafatkatze!)
+-   Add escape for html content for gemini when running commands
+-   Improve search and replace edit failure behaviors
+
 ## [3.8.4]
 
 -   添加 Sambanova Deepseek-V3-0324
@@ -204,11 +297,11 @@
 
 ## [3.1.0]
 
-- 添加检查点：每当 AI Code 使用工具时，工作区的快照会自动创建
-  - 比较更改：悬停在任何工具使用上以查看快照和当前工作区状态之间的差异
-  - 恢复选项：选择仅恢复任务状态、仅恢复工作区文件或两者都恢复
-- 新的“查看新更改”按钮在任务完成后出现，提供所有工作区更改的概述
-- 任务标题现在显示磁盘空间使用情况，并带有删除按钮以帮助管理快照存储
+-   Added checkpoints: Snapshots of workspace are automatically created whenever Cline uses a tool
+-   Compare changes: Hover over any tool use to see a diff between the snapshot and current workspace state
+-   Restore options: Choose to restore just the task state, just the workspace files, or both
+-   New 'See new changes' button appears after task completion, providing an overview of all workspace changes
+-   Task header now shows disk space usage with a delete button to help manage snapshot storage
 
 ## [3.0.12]
 
@@ -387,10 +480,10 @@
 ## [1.8.0]
 
 - 您现在可以使用 '@' 在 textarea 中添加上下文！
-    - @url: 粘贴一个 URL 以供扩展获取并转换为 markdown，当您想给 Claude 最新的文档时非常有用！
-    - @problems: 添加工作区错误和警告，以便 Claude 可以修复它们，不再需要来回调试
-    - @file: 添加文件的内容，这样您就不必浪费 API 请求来批准读取文件（+ 输入以搜索文件）
-    - @folder: 一次添加文件夹的所有文件，以进一步加快工作流程
+- @url: 粘贴一个 URL 以供扩展获取并转换为 markdown，当您想给 Claude 最新的文档时非常有用！
+- @problems: 添加工作区错误和警告，以便 Claude 可以修复它们，不再需要来回调试
+- @file: 添加文件的内容，这样您就不必浪费 API 请求来批准读取文件（+ 输入以搜索文件）
+- @folder: 一次添加文件夹的所有文件，以进一步加快工作流程
 
 ## [1.7.0]
 

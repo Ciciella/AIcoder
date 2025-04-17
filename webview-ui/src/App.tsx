@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { useEvent } from "react-use"
-import { ExtensionMessage } from "../../src/shared/ExtensionMessage"
+import { ExtensionMessage } from "@shared/ExtensionMessage"
 import ChatView from "./components/chat/ChatView"
 import HistoryView from "./components/history/HistoryView"
 import SettingsView from "./components/settings/SettingsView"
@@ -9,7 +9,8 @@ import AccountView from "./components/account/AccountView"
 import { ExtensionStateContextProvider, useExtensionState } from "./context/ExtensionStateContext"
 import { FirebaseAuthProvider } from "./context/FirebaseAuthContext"
 import { vscode } from "./utils/vscode"
-import McpView from "./components/mcp/McpView"
+import McpView from "./components/mcp/configuration/McpConfigurationView"
+import { McpViewTab } from "@shared/mcp"
 import enMessages from "./locales/en.json"
 import zhCNMessages from "./locales/zh-CN.json"
 import { IntlProvider } from "react-intl"
@@ -37,10 +38,12 @@ const messages: MessagesType = {
 const AppContent = () => {
 	const { didHydrateState, showWelcome, shouldShowAnnouncement, telemetrySetting, vscMachineId } = useExtensionState()
 	const [showSettings, setShowSettings] = useState(false)
+	const hideSettings = useCallback(() => setShowSettings(false), [])
 	const [showHistory, setShowHistory] = useState(false)
 	const [showMcp, setShowMcp] = useState(false)
 	const [showAccount, setShowAccount] = useState(false)
 	const [showAnnouncement, setShowAnnouncement] = useState(false)
+	const [mcpTab, setMcpTab] = useState<McpViewTab | undefined>(undefined)
 
 	const handleMessage = useCallback((e: MessageEvent) => {
 		const message: ExtensionMessage = e.data
@@ -62,6 +65,9 @@ const AppContent = () => {
 					case "mcpButtonClicked":
 						setShowSettings(false)
 						setShowHistory(false)
+						if (message.tab) {
+							setMcpTab(message.tab)
+						}
 						setShowMcp(true)
 						setShowAccount(false)
 						break
@@ -110,9 +116,9 @@ const AppContent = () => {
 				<WelcomeView />
 			) : (
 				<>
-					{showSettings && <SettingsView onDone={() => setShowSettings(false)} />}
+					{showSettings && <SettingsView onDone={hideSettings} />}
 					{showHistory && <HistoryView onDone={() => setShowHistory(false)} />}
-					{showMcp && <McpView onDone={() => setShowMcp(false)} />}
+					{showMcp && <McpView initialTab={mcpTab} onDone={() => setShowMcp(false)} />}
 					{showAccount && <AccountView onDone={() => setShowAccount(false)} />}
 					{/* Do not conditionally load ChatView, it's expensive and there's state we don't want to lose (user input, disableInput, askResponse promise, etc.) */}
 					<ChatView

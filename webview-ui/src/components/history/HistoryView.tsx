@@ -1,15 +1,15 @@
 import { VSCodeButton, VSCodeTextField, VSCodeRadioGroup, VSCodeRadio } from "@vscode/webview-ui-toolkit/react"
-import { useExtensionState } from "../../context/ExtensionStateContext"
-import { vscode } from "../../utils/vscode"
+import { useExtensionState } from "@/context/ExtensionStateContext"
+import { vscode } from "@/utils/vscode"
 import { Virtuoso } from "react-virtuoso"
 import { memo, useMemo, useState, useEffect, useCallback } from "react"
 import Fuse, { FuseResult } from "fuse.js"
-import { formatLargeNumber } from "../../utils/format"
+import { formatLargeNumber } from "@/utils/format"
 import { FormattedMessage } from "react-intl"
-import { formatSize } from "../../utils/size"
-import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
+import { formatSize } from "@/utils/format"
+import { ExtensionMessage } from "@shared/ExtensionMessage"
 import { useEvent } from "react-use"
-import DangerButton from "../common/DangerButton"
+import DangerButton from "@/components/common/DangerButton"
 
 type HistoryViewProps = {
 	onDone: () => void
@@ -46,15 +46,15 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 		}
 	}, [searchQuery, sortOption, lastNonRelevantSort])
 
-	const handleHistorySelect = (id: string) => {
+	const handleHistorySelect = useCallback((id: string) => {
 		vscode.postMessage({ type: "showTaskWithId", text: id })
-	}
+	}, [])
 
-	const handleDeleteHistoryItem = (id: string) => {
+	const handleDeleteHistoryItem = useCallback((id: string) => {
 		vscode.postMessage({ type: "deleteTaskWithId", text: id })
-	}
+	}, [])
 
-	const formatDate = (timestamp: number, useCustomFormat = "en-US") => {
+	const formatDate = useCallback((timestamp: number, useCustomFormat = "en-US") => {
 		const date = new Date(timestamp)
 		return date
 			?.toLocaleString(useCustomFormat, {
@@ -67,7 +67,7 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 			.replace(", ", " ")
 			.replace(" at", ",")
 			.toUpperCase()
-	}
+	}, [])
 
 	const presentableTasks = useMemo(() => {
 		return taskHistory.filter((item) => item.ts && item.task)
@@ -86,7 +86,7 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 	}, [presentableTasks])
 
 	const taskHistorySearchResults = useMemo(() => {
-		let results = searchQuery ? highlight(fuse.search(searchQuery)) : presentableTasks
+		const results = searchQuery ? highlight(fuse.search(searchQuery)) : presentableTasks
 
 		results.sort((a, b) => {
 			switch (sortOption) {

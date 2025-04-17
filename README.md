@@ -16,10 +16,6 @@
 
 ## 简介
 
-AI Code 是一个基于 [Cline](https://github.com/cline/cline) 的中文汉化版本，专注于优化中文输入场景下的编程助手体验。通过精心优化的中文提示词和本地化界面，让 AI 助手更好地理解中文用户的编程需求。
-
-### 主要特点
-
 1. **中文优化**：针对中文输入场景优化提示词，提升国产大模型（如 DeepSeek）的响应质量
 2. **界面本地化**：提供符合中文用户习惯的 UI 界面
 3. **轻量级支持**：优先支持轻量化 LLM（如 DeepSeek-R1-Distill-Qwen-7B/14B），提升推理速度
@@ -52,16 +48,6 @@ AI Code 是一个基于 [Cline](https://github.com/cline/cline) 的中文汉化�
 AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azure和GCP Vertex等API提供商。你还可以配置任何兼容OpenAI的API，或通过Ollama使用本地模型。如果你使用OpenRouter，扩展会获取他们的最新模型列表，让你在新模型可用时立即使用。
 
 扩展还会跟踪整个任务循环和单个请求的总令牌和API使用成本，让你在每一步都了解支出。
-
-### 相关链接：
-
-SiliconCloud 邀请奖励，2000 万 Tokens 送不停！
-<br/>
-邀请链接<a href="https://cloud.siliconflow.cn/i/9ro7nu8I"> https://cloud.siliconflow.cn/i/9ro7nu8I</a>
-
-1. 邀请好友赚 2000 万 Tokens：每成功邀请一位新用户通过手机号码注册，您将获得 2000 万 Tokens；
-2. 注册即送 2000 万 Tokens：受邀好友作为新用户完成 SiliconCloud 账号注册，立刻获得 2000万 Tokens。
- 
 
 
 ### 社交媒体

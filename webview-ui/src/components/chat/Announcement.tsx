@@ -1,13 +1,32 @@
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
-import { memo } from "react"
-import { FormattedMessage } from "react-intl"
-import { getAsVar, VSC_DESCRIPTION_FOREGROUND, VSC_INACTIVE_SELECTION_BACKGROUND } from "../../utils/vscStyles"
-import { vscode } from "../../utils/vscode"
+import { CSSProperties, memo } from "react"
+import { getAsVar, VSC_DESCRIPTION_FOREGROUND, VSC_INACTIVE_SELECTION_BACKGROUND } from "@/utils/vscStyles"
 
 interface AnnouncementProps {
 	version: string
 	hideAnnouncement: () => void
 }
+
+const containerStyle: CSSProperties = {
+	backgroundColor: getAsVar(VSC_INACTIVE_SELECTION_BACKGROUND),
+	borderRadius: "3px",
+	padding: "12px 16px",
+	margin: "5px 15px 5px 15px",
+	position: "relative",
+	flexShrink: 0,
+}
+const closeIconStyle: CSSProperties = { position: "absolute", top: "8px", right: "8px" }
+const h3TitleStyle: CSSProperties = { margin: "0 0 8px" }
+const ulStyle: CSSProperties = { margin: "0 0 8px", paddingLeft: "12px" }
+const accountIconStyle: CSSProperties = { fontSize: 11 }
+const hrStyle: CSSProperties = {
+	height: "1px",
+	background: getAsVar(VSC_DESCRIPTION_FOREGROUND),
+	opacity: 0.1,
+	margin: "8px 0",
+}
+const linkContainerStyle: CSSProperties = { margin: "0" }
+const linkStyle: CSSProperties = { display: "inline" }
 
 /*
 You must update the latestAnnouncementId in ClineProvider for new announcements to show to users. This new id will be compared with whats in state for the 'last announcement shown', and if it's different then the announcement will render. As soon as an announcement is shown, the id will be updated in state. This ensures that announcements are not shown more than once, even if the user doesn't close it themselves.
@@ -15,33 +34,38 @@ You must update the latestAnnouncementId in ClineProvider for new announcements 
 const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 	const minorVersion = version.split(".").slice(0, 2).join(".") // 2.0.0 -> 2.0
 	return (
-		<div
-			style={{
-				backgroundColor: getAsVar(VSC_INACTIVE_SELECTION_BACKGROUND),
-				borderRadius: "3px",
-				padding: "12px 16px",
-				margin: "5px 15px 5px 15px",
-				position: "relative",
-				flexShrink: 0,
-			}}>
-			<VSCodeButton appearance="icon" onClick={hideAnnouncement} style={{ position: "absolute", top: "8px", right: "8px" }}>
+		<div style={containerStyle}>
+			<VSCodeButton appearance="icon" onClick={hideAnnouncement} style={closeIconStyle}>
 				<span className="codicon codicon-close"></span>
 			</VSCodeButton>
-			<h3 style={{ margin: "0 0 8px" }}>
-				<FormattedMessage
-					id="announcement.newVersion"
-					defaultMessage="🎉 New in v{minorVersion}"
-					values={{ minorVersion }}
-				/>
+			<h3 style={h3TitleStyle}>
+				🎉{"  "}New in v{minorVersion}
 			</h3>
-			<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>
+			<ul style={ulStyle}>
 				<li>
-					<b>添加到AI Code：</b>{" "}
-					右键单击任何文件或终端中的选定文本，以快速为当前任务添加上下文！此外，当您看到灯泡图标时，选择“使用AI
-					Code修复”以让AI Code修复代码中的错误。
+					<b>Model Favorites:</b> You can now mark your favorite models when using Cline & OpenRouter providers for
+					quick access!
 				</li>
 				<li>
-					<b>增强的MCP支持：</b> 动态图像加载支持GIF，并新增删除按钮以清理失败的服务器。
+					<b>Faster Diff Editing:</b> Improved animation performance for large files, plus a new indicator in chat
+					showing the number of edits Cline makes.
+				</li>
+				<li>
+					<b>New Auto-Approve Options:</b> Turn off Cline's ability to read and edit files outside your workspace.
+				</li>
+			</ul>
+			<h4 style={{ margin: "5px 0 5px" }}>Previous Updates:</h4>
+
+			<ul style={ulStyle}>
+				<li>
+					<b>Browser Tool Upgrades:</b> Use your local Chrome browser for session-based browsing, enabling debugging and
+					productivity workflows tied to your actual browser state.
+				</li>
+				<li>
+					<b>Auto-Approve Commands:</b> New option to automatically approve <b>ALL</b> commands (use at your own risk!)
+				</li>
+				<li>
+					<b>Easily Toggle MCP's:</b> New popover in the chat area to easily enable/disable MCP servers.
 				</li>
 			</ul>
 			{/*<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>
@@ -91,28 +115,21 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 					environments)
 				</li>
 			</ul>*/}
-			<div
-				style={{
-					height: "1px",
-					background: getAsVar(VSC_DESCRIPTION_FOREGROUND),
-					opacity: 0.1,
-					margin: "8px 0",
-				}}
-			/>
-			{/* <p style={{ margin: "0" }}>
+			<div style={hrStyle} />
+			<p style={linkContainerStyle}>
 				Join us on{" "}
-				<VSCodeLink style={{ display: "inline" }} href="https://x.com/cline">
+				<VSCodeLink style={linkStyle} href="https://x.com/cline">
 					X,
 				</VSCodeLink>{" "}
-				<VSCodeLink style={{ display: "inline" }} href="https://discord.gg/cline">
+				<VSCodeLink style={linkStyle} href="https://discord.gg/cline">
 					discord,
 				</VSCodeLink>{" "}
 				or{" "}
-				<VSCodeLink style={{ display: "inline" }} href="https://www.reddit.com/r/cline/">
+				<VSCodeLink style={linkStyle} href="https://www.reddit.com/r/cline/">
 					r/cline
 				</VSCodeLink>
-				获取更多更新！
-			</p> */}
+				for more updates!
+			</p>
 		</div>
 	)
 }

@@ -4,8 +4,8 @@ import * as vscode from "vscode"
 /**
  * 安全地将值转换为普通对象。
  */
-function asObjectSafe(value: any): object {
-	// 处理 null/undefined
+export function asObjectSafe(value: any): object {
+	// Handle null/undefined
 	if (!value) {
 		return {}
 	}
@@ -145,7 +145,9 @@ export function convertToVsCodeLmMessages(
 	return vsCodeLmMessages
 }
 
-export function convertToAnthropicRole(vsCodeLmMessageRole: vscode.LanguageModelChatMessageRole): string | null {
+export function convertToAnthropicRole(
+	vsCodeLmMessageRole: vscode.LanguageModelChatMessageRole,
+): Anthropic.Messages.MessageParam["role"] | null {
 	switch (vsCodeLmMessageRole) {
 		case vscode.LanguageModelChatMessageRole.Assistant:
 			return "assistant"
@@ -156,10 +158,8 @@ export function convertToAnthropicRole(vsCodeLmMessageRole: vscode.LanguageModel
 	}
 }
 
-export async function convertToAnthropicMessage(
-	vsCodeLmMessage: vscode.LanguageModelChatMessage,
-): Promise<Anthropic.Messages.Message> {
-	const anthropicRole: string | null = convertToAnthropicRole(vsCodeLmMessage.role)
+export function convertToAnthropicMessage(vsCodeLmMessage: vscode.LanguageModelChatMessage): Anthropic.Messages.Message {
+	const anthropicRole = convertToAnthropicRole(vsCodeLmMessage.role)
 	if (anthropicRole !== "assistant") {
 		throw new Error("AI Code <Language Model API>: 仅支持助手消息。")
 	}

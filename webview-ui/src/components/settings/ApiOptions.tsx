@@ -32,6 +32,8 @@ import {
 	openAiNativeModels,
 	openRouterDefaultModelId,
 	openRouterDefaultModelInfo,
+	requestyDefaultModelId,
+	requestyDefaultModelInfo,
 	mainlandQwenModels,
 	internationalQwenModels,
 	mainlandQwenDefaultModelId,
@@ -45,14 +47,18 @@ import {
 	xaiModels,
 	sambanovaModels,
 	sambanovaDefaultModelId,
-} from "../../../../src/shared/api"
-import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
-import { useExtensionState } from "../../context/ExtensionStateContext"
-import { vscode } from "../../utils/vscode"
-import { getAsVar, VSC_DESCRIPTION_FOREGROUND } from "../../utils/vscStyles"
-import VSCodeButtonLink from "../common/VSCodeButtonLink"
+	doubaoModels,
+	doubaoDefaultModelId,
+	liteLlmModelInfoSaneDefaults,
+} from "@shared/api"
+import { ExtensionMessage } from "@shared/ExtensionMessage"
+import { useExtensionState } from "@/context/ExtensionStateContext"
+import { vscode } from "@/utils/vscode"
+import { getAsVar, VSC_DESCRIPTION_FOREGROUND } from "@/utils/vscStyles"
+import VSCodeButtonLink from "@/components/common/VSCodeButtonLink"
 import OpenRouterModelPicker, { ModelDescriptionMarkdown, OPENROUTER_MODEL_PICKER_Z_INDEX } from "./OpenRouterModelPicker"
 import { ClineAccountInfoCard } from "./ClineAccountInfoCard"
+import RequestyModelPicker from "./RequestyModelPicker"
 
 interface ApiOptionsProps {
 	showModelOptions: boolean
@@ -96,12 +102,28 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 	const [modelConfigurationSelected, setModelConfigurationSelected] = useState(false)
 	const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 	const [providerSortingSelected, setProviderSortingSelected] = useState(!!apiConfiguration?.openRouterProviderSorting)
+	const [reasoningEffortSelected, setReasoningEffortSelected] = useState(!!apiConfiguration?.reasoningEffort)
 
 	const handleInputChange = (field: keyof ApiConfiguration) => (event: any) => {
+		const newValue = event.target.value
+
+		// Update local state
 		setApiConfiguration({
 			...apiConfiguration,
-			[field]: event.target.value,
+			[field]: newValue,
 		})
+
+		// If the field is the provider, save it immediately
+		// Neccesary for favorite model selection to work without undoing provider changes
+		if (field === "apiProvider") {
+			vscode.postMessage({
+				type: "apiConfiguration",
+				apiConfiguration: {
+					...apiConfiguration,
+					apiProvider: newValue,
+				},
+			})
+		}
 	}
 
 	const { selectedProvider, selectedModelId, selectedModelInfo } = useMemo(() => {
@@ -205,12 +227,13 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 					<VSCodeOption value="vscode-lm">VS Code LM API</VSCodeOption>
 					<VSCodeOption value="requesty">Requesty</VSCodeOption>
 					<VSCodeOption value="together">Together</VSCodeOption>
-					<VSCodeOption value="qwen">阿里通义千问</VSCodeOption>
+					<VSCodeOption value="qwen">Alibaba Qwen</VSCodeOption>
+					<VSCodeOption value="doubao">Bytedance Doubao</VSCodeOption>
 					<VSCodeOption value="lmstudio">LM Studio</VSCodeOption>
 					<VSCodeOption value="ollama">Ollama</VSCodeOption>
 					<VSCodeOption value="litellm">LiteLLM</VSCodeOption>
 					<VSCodeOption value="asksage">AskSage</VSCodeOption>
-					<VSCodeOption value="xai">X AI</VSCodeOption>
+					<VSCodeOption value="xai">xAI</VSCodeOption>
 					<VSCodeOption value="sambanova">SambaNova</VSCodeOption>
 				</VSCodeDropdown>
 			</DropdownContainer>
@@ -418,6 +441,37 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 									fontSize: "inherit",
 								}}>
 								您可以在此处注册获取千问 API 密钥。
+							</VSCodeLink>
+						)}
+					</p>
+				</div>
+			)}
+
+			{selectedProvider === "doubao" && (
+				<div>
+					<VSCodeTextField
+						value={apiConfiguration?.doubaoApiKey || ""}
+						style={{ width: "100%" }}
+						type="password"
+						onInput={handleInputChange("doubaoApiKey")}
+						placeholder="输入 API 密钥...">
+						<span style={{ fontWeight: 500 }}>豆包 API 密钥</span>
+					</VSCodeTextField>
+					<p
+						style={{
+							fontSize: "12px",
+							marginTop: 3,
+							color: "var(--vscode-descriptionForeground)",
+						}}>
+						此密钥仅存储在本地，仅用于从此扩展发送 API 请求。
+						{!apiConfiguration?.doubaoApiKey && (
+							<VSCodeLink
+								href="https://console.volcengine.com/home"
+								style={{
+									display: "inline",
+									fontSize: "inherit",
+								}}>
+								您可以在此处注册获取豆包 API 密钥。
 							</VSCodeLink>
 						)}
 					</p>
@@ -633,7 +687,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 											awsBedrockUsePromptCache: isChecked,
 										})
 									}}>
-									使用提示词缓存（测试版）
+									使用提示词缓存
 								</VSCodeCheckbox>
 							</>
 						)}
@@ -730,7 +784,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 						此密钥仅存储在本地，仅用于从此扩展发送 API 请求。
 						{!apiConfiguration?.geminiApiKey && (
 							<VSCodeLink
-								href="https://ai.google.dev/"
+								href="https://aistudio.google.com/apikey"
 								style={{
 									display: "inline",
 									fontSize: "inherit",
@@ -817,7 +871,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 								checked={!!apiConfiguration?.openAiModelInfo?.supportsImages}
 								onChange={(e: any) => {
 									const isChecked = e.target.checked === true
-									let modelInfo = apiConfiguration?.openAiModelInfo
+									const modelInfo = apiConfiguration?.openAiModelInfo
 										? apiConfiguration.openAiModelInfo
 										: { ...openAiModelInfoSaneDefaults }
 									modelInfo.supportsImages = isChecked
@@ -868,7 +922,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 									}
 									style={{ flex: 1 }}
 									onInput={(input: any) => {
-										let modelInfo = apiConfiguration?.openAiModelInfo
+										const modelInfo = apiConfiguration?.openAiModelInfo
 											? apiConfiguration.openAiModelInfo
 											: { ...openAiModelInfoSaneDefaults }
 										modelInfo.contextWindow = Number(input.target.value)
@@ -887,7 +941,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 									}
 									style={{ flex: 1 }}
 									onInput={(input: any) => {
-										let modelInfo = apiConfiguration?.openAiModelInfo
+										const modelInfo = apiConfiguration?.openAiModelInfo
 											? apiConfiguration.openAiModelInfo
 											: { ...openAiModelInfoSaneDefaults }
 										modelInfo.maxTokens = input.target.value
@@ -908,7 +962,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 									}
 									style={{ flex: 1 }}
 									onInput={(input: any) => {
-										let modelInfo = apiConfiguration?.openAiModelInfo
+										const modelInfo = apiConfiguration?.openAiModelInfo
 											? apiConfiguration.openAiModelInfo
 											: { ...openAiModelInfoSaneDefaults }
 										modelInfo.inputPrice = input.target.value
@@ -927,7 +981,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 									}
 									style={{ flex: 1 }}
 									onInput={(input: any) => {
-										let modelInfo = apiConfiguration?.openAiModelInfo
+										const modelInfo = apiConfiguration?.openAiModelInfo
 											? apiConfiguration.openAiModelInfo
 											: { ...openAiModelInfoSaneDefaults }
 										modelInfo.outputPrice = input.target.value
@@ -947,7 +1001,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 											: openAiModelInfoSaneDefaults.temperature?.toString()
 									}
 									onInput={(input: any) => {
-										let modelInfo = apiConfiguration?.openAiModelInfo
+										const modelInfo = apiConfiguration?.openAiModelInfo
 											? apiConfiguration.openAiModelInfo
 											: { ...openAiModelInfoSaneDefaults }
 
@@ -997,24 +1051,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 						placeholder="输入 API 密钥...">
 						<span style={{ fontWeight: 500 }}>API 密钥</span>
 					</VSCodeTextField>
-					<VSCodeTextField
-						value={apiConfiguration?.requestyModelId || ""}
-						style={{ width: "100%" }}
-						onInput={handleInputChange("requestyModelId")}
-						placeholder={"输入模型 ID..."}>
-						<span style={{ fontWeight: 500 }}>模型 ID</span>
-					</VSCodeTextField>
-					<p
-						style={{
-							fontSize: "12px",
-							marginTop: 3,
-							color: "var(--vscode-descriptionForeground)",
-						}}>
-						<span style={{ color: "var(--vscode-errorForeground)" }}>
-							(<span style={{ fontWeight: 500 }}>注意：</span> AI Code 使用复杂的提示词，最适合与 Claude
-							模型配合使用。功能较弱的模型可能无法按预期工作。)
-						</span>
-					</p>
+					{!apiConfiguration?.requestyApiKey && <a href="https://app.requesty.ai/manage-api">获取 API 密钥</a>}
 				</div>
 			)}
 
@@ -1206,7 +1243,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 							marginTop: "5px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						LiteLLM 提供了一个统一的接口来访问各种 LLM 提供商的模型。查看他们的{" "}
+						LiteLLM 提供了一个统一的接口来访问各种 LLM 提供商的模型。请参阅他们的
 						<VSCodeLink href="https://docs.litellm.ai/docs/" style={{ display: "inline", fontSize: "inherit" }}>
 							快速入门指南
 						</VSCodeLink>{" "}
@@ -1439,6 +1476,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 								createDropdown(
 									apiConfiguration?.qwenApiLine === "china" ? mainlandQwenModels : internationalQwenModels,
 								)}
+							{selectedProvider === "doubao" && createDropdown(doubaoModels)}
 							{selectedProvider === "mistral" && createDropdown(mistralModels)}
 							{selectedProvider === "asksage" && createDropdown(askSageModels)}
 							{selectedProvider === "xai" && createDropdown(xaiModels)}
@@ -1449,6 +1487,58 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 							(selectedProvider === "bedrock" && selectedModelId === "anthropic.claude-3-7-sonnet-20250219-v1:0") ||
 							(selectedProvider === "vertex" && selectedModelId === "claude-3-7-sonnet@20250219")) && (
 							<ThinkingBudgetSlider apiConfiguration={apiConfiguration} setApiConfiguration={setApiConfiguration} />
+						)}
+
+						{selectedProvider === "xai" && selectedModelId.includes("3-mini") && (
+							<>
+								<VSCodeCheckbox
+									style={{ marginTop: 0 }}
+									checked={reasoningEffortSelected}
+									onChange={(e: any) => {
+										const isChecked = e.target.checked === true
+										setReasoningEffortSelected(isChecked)
+										if (!isChecked) {
+											setApiConfiguration({
+												...apiConfiguration,
+												reasoningEffort: "",
+											})
+										}
+									}}>
+									Modify reasoning effort
+								</VSCodeCheckbox>
+
+								{reasoningEffortSelected && (
+									<div>
+										<label htmlFor="reasoning-effort-dropdown">
+											<span style={{}}>Reasoning Effort</span>
+										</label>
+										<DropdownContainer className="dropdown-container" zIndex={DROPDOWN_Z_INDEX - 100}>
+											<VSCodeDropdown
+												id="reasoning-effort-dropdown"
+												style={{ width: "100%", marginTop: 3 }}
+												value={apiConfiguration?.reasoningEffort || "high"}
+												onChange={(e: any) => {
+													setApiConfiguration({
+														...apiConfiguration,
+														reasoningEffort: e.target.value,
+													})
+												}}>
+												<VSCodeOption value="low">low</VSCodeOption>
+												<VSCodeOption value="high">high</VSCodeOption>
+											</VSCodeDropdown>
+										</DropdownContainer>
+										<p
+											style={{
+												fontSize: "12px",
+												marginTop: 3,
+												marginBottom: 0,
+												color: "var(--vscode-descriptionForeground)",
+											}}>
+											High effort may produce more thorough analysis but takes longer and uses more tokens.
+										</p>
+									</div>
+								)}
+							</>
 						)}
 
 						<ModelInfoView
@@ -1464,6 +1554,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 			{(selectedProvider === "openrouter" || selectedProvider === "cline") && showModelOptions && (
 				<OpenRouterModelPicker isPopup={isPopup} />
 			)}
+			{selectedProvider === "requesty" && showModelOptions && <RequestyModelPicker isPopup={isPopup} />}
 
 			{modelIdErrorMessage && (
 				<p
@@ -1492,6 +1583,21 @@ export const formatPrice = (price: number) => {
 	}).format(price)
 }
 
+// Returns an array of formatted tier strings
+const formatTiers = (tiers: ModelInfo["inputPriceTiers"]): string[] => {
+	if (!tiers || tiers.length === 0) {
+		return []
+	}
+	return tiers.map((tier, index, arr) => {
+		const prevLimit = index > 0 ? arr[index - 1].tokenLimit : 0
+		const limitText =
+			tier.tokenLimit === Infinity
+				? `> ${prevLimit.toLocaleString()}` // Assumes sorted and Infinity is last
+				: `<= ${tier.tokenLimit.toLocaleString()}`
+		return `${formatPrice(tier.price)}/million tokens (${limitText} tokens)`
+	})
+}
+
 export const ModelInfoView = ({
 	selectedModelId,
 	modelInfo,
@@ -1506,6 +1612,42 @@ export const ModelInfoView = ({
 	isPopup?: boolean
 }) => {
 	const isGemini = Object.keys(geminiModels).includes(selectedModelId)
+
+	// Create elements for tiered pricing separately
+	const inputPriceElement = modelInfo.inputPriceTiers ? (
+		<Fragment key="inputPriceTiers">
+			<span style={{ fontWeight: 500 }}>Input price:</span>
+			<br />
+			{formatTiers(modelInfo.inputPriceTiers).map((tierString, i, arr) => (
+				<Fragment key={`inputTierFrag${i}`}>
+					<span style={{ paddingLeft: "15px" }}>{tierString}</span>
+					{i < arr.length - 1 && <br />}
+				</Fragment>
+			))}
+		</Fragment>
+	) : modelInfo.inputPrice !== undefined && modelInfo.inputPrice > 0 ? (
+		<span key="inputPrice">
+			<span style={{ fontWeight: 500 }}>Input price:</span> {formatPrice(modelInfo.inputPrice)}/million tokens
+		</span>
+	) : null
+
+	const outputPriceElement = modelInfo.outputPriceTiers ? (
+		<Fragment key="outputPriceTiers">
+			<span style={{ fontWeight: 500 }}>Output price:</span>
+			<span style={{ fontStyle: "italic" }}> (based on input tokens)</span>
+			<br />
+			{formatTiers(modelInfo.outputPriceTiers).map((tierString, i, arr) => (
+				<Fragment key={`outputTierFrag${i}`}>
+					<span style={{ paddingLeft: "15px" }}>{tierString}</span>
+					{i < arr.length - 1 && <br />}
+				</Fragment>
+			))}
+		</Fragment>
+	) : modelInfo.outputPrice !== undefined && modelInfo.outputPrice > 0 ? (
+		<span key="outputPrice">
+			<span style={{ fontWeight: 500 }}>Output price:</span> {formatPrice(modelInfo.outputPrice)}/million tokens
+		</span>
+	) : null
 
 	const infoItems = [
 		modelInfo.description && (
@@ -1542,11 +1684,7 @@ export const ModelInfoView = ({
 				<span style={{ fontWeight: 500 }}>最大输出：</span> {modelInfo.maxTokens?.toLocaleString()} 令牌
 			</span>
 		),
-		modelInfo.inputPrice !== undefined && modelInfo.inputPrice > 0 && (
-			<span key="inputPrice">
-				<span style={{ fontWeight: 500 }}>输入价格：</span> {formatPrice(modelInfo.inputPrice)}/100万令牌
-			</span>
-		),
+		inputPriceElement, // Add the generated input price block
 		modelInfo.supportsPromptCache && modelInfo.cacheWritesPrice && (
 			<span key="cacheWritesPrice">
 				<span style={{ fontWeight: 500 }}>缓存写入价格：</span> {formatPrice(modelInfo.cacheWritesPrice || 0)}
@@ -1558,11 +1696,7 @@ export const ModelInfoView = ({
 				<span style={{ fontWeight: 500 }}>缓存读取价格：</span> {formatPrice(modelInfo.cacheReadsPrice || 0)}/100万 令牌
 			</span>
 		),
-		modelInfo.outputPrice !== undefined && modelInfo.outputPrice > 0 && (
-			<span key="outputPrice">
-				<span style={{ fontWeight: 500 }}>输出价格：</span> {formatPrice(modelInfo.outputPrice)}/100万令牌
-			</span>
-		),
+		outputPriceElement, // Add the generated output price block
 		isGemini && (
 			<span key="geminiInfo" style={{ fontStyle: "italic" }}>
 				* 每分钟免费 {selectedModelId && selectedModelId.includes("flash") ? "15" : "2"}{" "}
@@ -1661,6 +1795,8 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 			const qwenDefaultId =
 				apiConfiguration?.qwenApiLine === "china" ? mainlandQwenDefaultModelId : internationalQwenDefaultModelId
 			return getProviderData(qwenModels, qwenDefaultId)
+		case "doubao":
+			return getProviderData(doubaoModels, doubaoDefaultModelId)
 		case "mistral":
 			return getProviderData(mistralModels, mistralDefaultModelId)
 		case "asksage":
@@ -1670,6 +1806,12 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 				selectedProvider: provider,
 				selectedModelId: apiConfiguration?.openRouterModelId || openRouterDefaultModelId,
 				selectedModelInfo: apiConfiguration?.openRouterModelInfo || openRouterDefaultModelInfo,
+			}
+		case "requesty":
+			return {
+				selectedProvider: provider,
+				selectedModelId: apiConfiguration?.requestyModelId || requestyDefaultModelId,
+				selectedModelInfo: apiConfiguration?.requestyModelInfo || requestyDefaultModelInfo,
 			}
 		case "cline":
 			return {
@@ -1710,7 +1852,7 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 			return {
 				selectedProvider: provider,
 				selectedModelId: apiConfiguration?.liteLlmModelId || "",
-				selectedModelInfo: openAiModelInfoSaneDefaults,
+				selectedModelInfo: liteLlmModelInfoSaneDefaults,
 			}
 		case "xai":
 			return getProviderData(xaiModels, xaiDefaultModelId)

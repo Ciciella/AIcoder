@@ -137,5 +137,5 @@ export function mergeJson(
 }
 
 function getExtensionUri(): vscode.Uri {
-	return vscode.extensions.getExtension("saoudrizwan.ai-code-dev")!.extensionUri
+	return vscode.extensions.getExtension("tianguaduizhang.ai-code-dev")!.extensionUri
 }

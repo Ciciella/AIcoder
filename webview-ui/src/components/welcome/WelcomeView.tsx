@@ -1,14 +1,12 @@
-import { VSCodeButton, VSCodeDivider, VSCodeLink, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
-import { useCallback, useEffect, useState } from "react"
-import { useEvent } from "react-use"
-import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
-import { useExtensionState } from "../../context/ExtensionStateContext"
-import { validateApiConfiguration } from "../../utils/validate"
-import { vscode } from "../../utils/vscode"
-import ApiOptions from "../settings/ApiOptions"
-import ClineLogoWhite from "../../assets/ClineLogoWhite"
+import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
+import { useEffect, useState, memo } from "react"
+import { useExtensionState } from "@/context/ExtensionStateContext"
+import { validateApiConfiguration } from "@/utils/validate"
+import { vscode } from "@/utils/vscode"
+import ApiOptions from "@/components/settings/ApiOptions"
+import ClineLogoWhite from "@/assets/ClineLogoWhite"
 
-const WelcomeView = () => {
+const WelcomeView = memo(() => {
 	const { apiConfiguration } = useExtensionState()
 	const [apiErrorMessage, setApiErrorMessage] = useState<string | undefined>(undefined)
 	const [showApiOptions, setShowApiOptions] = useState(false)
@@ -28,41 +26,26 @@ const WelcomeView = () => {
 	}, [apiConfiguration])
 
 	return (
-		<div
-			style={{
-				position: "fixed",
-				top: 0,
-				left: 0,
-				right: 0,
-				bottom: 0,
-				padding: "0 0px",
-				display: "flex",
-				flexDirection: "column",
-			}}>
-			<div
-				style={{
-					height: "100%",
-					padding: "0 20px",
-					overflow: "auto",
-				}}>
+		<div className="fixed inset-0 p-0 flex flex-col">
+			<div className="h-full px-5 overflow-auto">
 				<h2>你好，我是 AI Code</h2>
-				{/* <div style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
+				{/* <div className="flex justify-center my-5">
 					<ClineLogoWhite className="size-16" />
 				</div> */}
 				<p>
 					多亏了{" "}
-					<VSCodeLink href="https://www.anthropic.com/claude/sonnet" style={{ display: "inline" }}>
+					<VSCodeLink href="https://www.anthropic.com/claude/sonnet" className="inline">
 						Claude 3.7 Sonnet
 					</VSCodeLink>
 					的智能编码能力和各种工具的加持，我可以完成各种任务。我可以创建和编辑文件、探索复杂项目、使用浏览器、执行终端命令
 					<i>（当然需要你的许可）</i>。我甚至可以使用 MCP 创建新工具来扩展自己的能力。
 				</p>
 
-				<p style={{ color: "var(--vscode-descriptionForeground)" }}>
+				<p className="text-[var(--vscode-descriptionForeground)]">
 					注册一个免费账号开始使用，或者使用你自己的 API 密钥来访问 Claude 3.7 Sonnet 等模型。
 				</p>
 
-				<VSCodeButton appearance="primary" onClick={handleLogin} style={{ width: "100%", marginTop: 4 }}>
+				<VSCodeButton appearance="primary" onClick={handleLogin} className="w-full mt-1">
 					免费开始使用
 				</VSCodeButton>
 
@@ -70,16 +53,16 @@ const WelcomeView = () => {
 					<VSCodeButton
 						appearance="secondary"
 						onClick={() => setShowApiOptions(!showApiOptions)}
-						style={{ marginTop: 10, width: "100%" }}>
+						className="mt-2.5 w-full">
 						使用自己的 API 密钥
 					</VSCodeButton>
 				)}
 
-				<div style={{ marginTop: "18px" }}>
+				<div className="mt-4.5">
 					{showApiOptions && (
 						<div>
 							<ApiOptions showModelOptions={false} />
-							<VSCodeButton onClick={handleSubmit} disabled={disableLetsGoButton} style={{ marginTop: "3px" }}>
+							<VSCodeButton onClick={handleSubmit} disabled={disableLetsGoButton} className="mt-0.75">
 								开始使用！
 							</VSCodeButton>
 						</div>
@@ -88,6 +71,6 @@ const WelcomeView = () => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default WelcomeView

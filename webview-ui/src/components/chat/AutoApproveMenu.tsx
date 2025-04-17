@@ -1,14 +1,23 @@
 import { VSCodeCheckbox, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import styled from "styled-components"
-import { useExtensionState } from "../../context/ExtensionStateContext"
-import { AutoApprovalSettings } from "../../../../src/shared/AutoApprovalSettings"
-import { vscode } from "../../utils/vscode"
-import { getAsVar, VSC_FOREGROUND, VSC_TITLEBAR_INACTIVE_FOREGROUND, VSC_DESCRIPTION_FOREGROUND } from "../../utils/vscStyles"
+import { useExtensionState } from "@/context/ExtensionStateContext"
+import { AutoApprovalSettings } from "@shared/AutoApprovalSettings"
+import { vscode } from "@/utils/vscode"
+import { getAsVar, VSC_FOREGROUND, VSC_TITLEBAR_INACTIVE_FOREGROUND, VSC_DESCRIPTION_FOREGROUND } from "@/utils/vscStyles"
 
 interface AutoApproveMenuProps {
 	style?: React.CSSProperties
 }
+
+const SubOptionAnimateIn = styled.div<{ show: boolean }>`
+	max-height: ${(props) => (props.show ? "100px" : "0")};
+	opacity: ${(props) => (props.show ? "1" : "0")};
+	overflow: hidden;
+	transition:
+		max-height 0.2s ease-in-out,
+		opacity 0.2s ease-in-out;
+`
 
 const ACTION_METADATA: {
 	id: keyof AutoApprovalSettings["actions"]
@@ -18,33 +27,51 @@ const ACTION_METADATA: {
 }[] = [
 	{
 		id: "readFiles",
-		label: "读取文件和目录",
-		shortName: "读取",
-		description: "允许访问并读取您计算机上的任何文件。",
+		label: "读取项目文件",
+		shortName: "读取本地",
+		description: "允许AI Code读取您工作区内的文件。",
+	},
+	{
+		id: "readFilesExternally",
+		label: "读取所有文件",
+		shortName: "读取(所有)",
+		description: "允许AI Code读取您计算机上的任何文件。",
 	},
 	{
 		id: "editFiles",
-		label: "编辑文件",
+		label: "编辑项目文件",
 		shortName: "编辑",
-		description: "允许修改您计算机上的任何文件。",
+		description: "允许AI Code修改您工作区内的文件。",
 	},
 	{
-		id: "executeCommands",
+		id: "editFilesExternally",
+		label: "编辑所有文件",
+		shortName: "编辑(所有)",
+		description: "允许AI Code修改您计算机上的任何文件。",
+	},
+	{
+		id: "executeSafeCommands",
 		label: "执行安全命令",
-		shortName: "命令",
-		description: "允许执行安全的终端命令。如果模型判断某个命令可能具有破坏性，仍将需要审批。",
+		shortName: "安全命令",
+		description: "允许AI Code执行安全的终端命令。如果模型确定命令可能具有破坏性，仍将需要批准。",
+	},
+	{
+		id: "executeAllCommands",
+		label: "执行所有命令",
+		shortName: "所有命令",
+		description: "允许AI Code执行所有终端命令。使用风险自负。",
 	},
 	{
 		id: "useBrowser",
 		label: "使用浏览器",
 		shortName: "浏览器",
-		description: "允许在无头浏览器中启动并与任何网站进行交互。",
+		description: "允许AI Code在浏览器中启动并与任何网站交互。",
 	},
 	{
 		id: "useMcp",
 		label: "使用 MCP 服务器",
 		shortName: "MCP",
-		description: "允许使用配置的 MCP 服务器，这些服务器可能会修改文件系统或与 API 交互。",
+		description: "允许AI Code使用配置的MCP服务器，这些服务器可能会修改文件系统或与API交互。",
 	},
 ]
 
@@ -52,12 +79,78 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 	const { autoApprovalSettings } = useExtensionState()
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [isHoveringCollapsibleSection, setIsHoveringCollapsibleSection] = useState(false)
-
 	// Careful not to use partials to mutate since spread operator only does shallow copy
 
 	const enabledActions = ACTION_METADATA.filter((action) => autoApprovalSettings.actions[action.id])
-	const enabledActionsList = enabledActions.map((action) => action.shortName).join(", ")
-	const hasEnabledActions = enabledActions.length > 0
+	const enabledActionsList = useMemo(() => {
+		// When nested auto-approve options are used, display the more permissive one (file reads, edits, and commands)
+		const readFilesEnabled = enabledActions.some((action) => action.id === "readFiles")
+		const readFilesExternallyEnabled = enabledActions.some((action) => action.id === "readFilesExternally")
+
+		const editFilesEnabled = enabledActions.some((action) => action.id === "editFiles")
+		const editFilesExternallyEnabled = enabledActions.some((action) => action.id === "editFilesExternally") ?? false
+
+		const safeCommandsEnabled = enabledActions.some((action) => action.id === "executeSafeCommands")
+		const allCommandsEnabled = enabledActions.some((action) => action.id === "executeAllCommands") ?? false
+		// Filter out the potentially nested options so we don't display them twice
+		const otherActions = enabledActions
+			.filter(
+				(action) =>
+					action.id !== "readFiles" &&
+					action.id !== "readFilesExternally" &&
+					action.id !== "editFiles" &&
+					action.id !== "editFilesExternally" &&
+					action.id !== "executeSafeCommands" &&
+					action.id !== "executeAllCommands",
+			)
+			.map((action) => action.shortName)
+
+		const labels = []
+
+		// Handle read editing labels
+		if ((readFilesExternallyEnabled ?? false) && readFilesEnabled) {
+			labels.push("Read (All)")
+		} else if (readFilesEnabled) {
+			labels.push("Read")
+		}
+
+		// Handle file editing labels
+		if ((editFilesExternallyEnabled ?? false) && editFilesEnabled) {
+			labels.push("Edit (All)")
+		} else if (editFilesEnabled) {
+			labels.push("Edit")
+		}
+
+		// Handle command execution labels
+		if ((allCommandsEnabled ?? false) && safeCommandsEnabled) {
+			labels.push("All Commands")
+		} else if (safeCommandsEnabled) {
+			labels.push("Safe Commands")
+		}
+
+		// Add remaining actions
+		return [...labels, ...otherActions].join(", ")
+	}, [enabledActions])
+
+	// This value is used to determine if the auto-approve menu should show 'Auto-approve: None'
+	// Note: we should use better logic to determine the state where no auto approve actions are in effect, regardless of the state of sub-auto-approve options
+	const hasEnabledActions = useMemo(() => {
+		let enabledActionsCount = enabledActions.length
+
+		if (!autoApprovalSettings.actions.readFiles && autoApprovalSettings.actions.readFilesExternally) {
+			enabledActionsCount--
+		}
+
+		if (!autoApprovalSettings.actions.editFiles && autoApprovalSettings.actions.editFilesExternally) {
+			enabledActionsCount--
+		}
+
+		if (!autoApprovalSettings.actions.executeSafeCommands && autoApprovalSettings.actions.executeAllCommands) {
+			enabledActionsCount--
+		}
+
+		return enabledActionsCount > 0
+	}, [enabledActions, autoApprovalSettings.actions])
 
 	const updateEnabled = useCallback(
 		(enabled: boolean) => {
@@ -197,7 +290,7 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 							overflow: "hidden",
 							textOverflow: "ellipsis",
 						}}>
-						{enabledActions.length === 0 ? "无" : enabledActionsList}
+						{!hasEnabledActions ? "无" : enabledActionsList}
 					</span>
 					<span
 						className={`codicon codicon-chevron-${isExpanded ? "down" : "right"}`}
@@ -218,26 +311,71 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 						}}>
 						自动审批允许 AI Code 在不需要请求许可的情况下执行以下操作。请谨慎使用，并确保您了解相关风险。
 					</div>
-					{ACTION_METADATA.map((action) => (
-						<div key={action.id} style={{ margin: "6px 0" }}>
-							<VSCodeCheckbox
-								checked={autoApprovalSettings.actions[action.id]}
-								onChange={(e) => {
-									const checked = (e.target as HTMLInputElement).checked
-									updateAction(action.id, checked)
-								}}>
-								{action.label}
-							</VSCodeCheckbox>
+					{ACTION_METADATA.map((action) => {
+						// Handle readFilesExternally, editFilesExternally, and executeAllCommands as animated sub-options
+						if (
+							action.id === "executeAllCommands" ||
+							action.id === "editFilesExternally" ||
+							action.id === "readFilesExternally"
+						) {
+							const parentAction =
+								action.id === "executeAllCommands"
+									? "executeSafeCommands"
+									: action.id === "readFilesExternally"
+										? "readFiles"
+										: "editFiles"
+							return (
+								<SubOptionAnimateIn key={action.id} show={autoApprovalSettings.actions[parentAction] ?? false}>
+									<div
+										style={{
+											margin: "3px 0",
+											marginLeft: "28px",
+										}}>
+										<VSCodeCheckbox
+											checked={autoApprovalSettings.actions[action.id]}
+											onChange={(e) => {
+												const checked = (e.target as HTMLInputElement).checked
+												updateAction(action.id, checked)
+											}}>
+											{action.label}
+										</VSCodeCheckbox>
+										<div
+											style={{
+												marginLeft: "28px",
+												color: getAsVar(VSC_DESCRIPTION_FOREGROUND),
+												fontSize: "12px",
+											}}>
+											{action.description}
+										</div>
+									</div>
+								</SubOptionAnimateIn>
+							)
+						}
+						return (
 							<div
+								key={action.id}
 								style={{
-									marginLeft: "28px",
-									color: getAsVar(VSC_DESCRIPTION_FOREGROUND),
-									fontSize: "12px",
+									margin: "6px 0",
 								}}>
-								{action.description}
+								<VSCodeCheckbox
+									checked={autoApprovalSettings.actions[action.id]}
+									onChange={(e) => {
+										const checked = (e.target as HTMLInputElement).checked
+										updateAction(action.id, checked)
+									}}>
+									{action.label}
+								</VSCodeCheckbox>
+								<div
+									style={{
+										marginLeft: "28px",
+										color: getAsVar(VSC_DESCRIPTION_FOREGROUND),
+										fontSize: "12px",
+									}}>
+									{action.description}
+								</div>
 							</div>
-						</div>
-					))}
+						)
+					})}
 					<div
 						style={{
 							height: "0.5px",

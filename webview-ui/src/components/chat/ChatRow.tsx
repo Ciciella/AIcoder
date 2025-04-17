@@ -12,24 +12,26 @@ import {
 	ClineSayTool,
 	COMPLETION_RESULT_CHANGES_FLAG,
 	ExtensionMessage,
-} from "../../../../src/shared/ExtensionMessage"
-import { COMMAND_OUTPUT_STRING, COMMAND_REQ_APP_STRING } from "../../../../src/shared/combineCommandSequences"
-import { useExtensionState } from "../../context/ExtensionStateContext"
-import { findMatchingResourceOrTemplate, getMcpServerDisplayName } from "../../utils/mcp"
-import { vscode } from "../../utils/vscode"
-import { CheckmarkControl } from "../common/CheckmarkControl"
+} from "@shared/ExtensionMessage"
+import { COMMAND_OUTPUT_STRING, COMMAND_REQ_APP_STRING } from "@shared/combineCommandSequences"
+import { useExtensionState } from "@/context/ExtensionStateContext"
+import { findMatchingResourceOrTemplate, getMcpServerDisplayName } from "@/utils/mcp"
+import { vscode } from "@/utils/vscode"
+import { CheckmarkControl } from "@/components/common/CheckmarkControl"
 import { CheckpointControls, CheckpointOverlay } from "../common/CheckpointControls"
 import CodeAccordian, { cleanPathPrefix } from "../common/CodeAccordian"
-import CodeBlock, { CODE_BLOCK_BG_COLOR } from "../common/CodeBlock"
-import MarkdownBlock from "../common/MarkdownBlock"
-import Thumbnails from "../common/Thumbnails"
-import McpResourceRow from "../mcp/McpResourceRow"
-import McpToolRow from "../mcp/McpToolRow"
-import McpResponseDisplay from "../mcp/McpResponseDisplay"
-import CreditLimitError from "./CreditLimitError"
-import { OptionsButtons } from "./OptionsButtons"
+import CodeBlock, { CODE_BLOCK_BG_COLOR } from "@/components/common/CodeBlock"
+import MarkdownBlock from "@/components/common/MarkdownBlock"
+import Thumbnails from "@/components/common/Thumbnails"
+import McpToolRow from "@/components/mcp/configuration/tabs/installed/server-row/McpToolRow"
+import McpResponseDisplay from "@/components/mcp/chat-display/McpResponseDisplay"
+import CreditLimitError from "@/components/chat/CreditLimitError"
+import { OptionsButtons } from "@/components/chat/OptionsButtons"
 import { highlightMentions } from "./TaskHeader"
-import SuccessButton from "../common/SuccessButton"
+import SuccessButton from "@/components/common/SuccessButton"
+import TaskFeedbackButtons from "@/components/chat/TaskFeedbackButtons"
+import NewTaskPreview from "./NewTaskPreview"
+import McpResourceRow from "@/components/mcp/configuration/tabs/installed/server-row/McpResourceRow"
 import { FormattedMessage } from "react-intl"
 
 const ChatRowContainer = styled.div`
@@ -88,27 +90,9 @@ const ChatRow = memo(
 		// This allows us to detect changes without causing re-renders
 		const prevHeightRef = useRef(0)
 
-		// NOTE: for tools that are interrupted and not responded to (approved or rejected) there won't be a checkpoint hash
-		let shouldShowCheckpoints =
-			message.lastCheckpointHash != null &&
-			(message.say === "tool" ||
-				message.ask === "tool" ||
-				message.say === "command" ||
-				message.ask === "command" ||
-				// message.say === "completion_result" ||
-				// message.ask === "completion_result" ||
-				message.say === "use_mcp_server" ||
-				message.ask === "use_mcp_server")
-
-		if (shouldShowCheckpoints && isLast) {
-			shouldShowCheckpoints =
-				lastModifiedMessage?.ask === "resume_completed_task" || lastModifiedMessage?.ask === "resume_task"
-		}
-
 		const [chatrow, { height }] = useSize(
 			<ChatRowContainer>
 				<ChatRowContent {...props} />
-				{shouldShowCheckpoints && <CheckpointOverlay messageTs={message.ts} />}
 			</ChatRowContainer>,
 		)
 
@@ -372,13 +356,20 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 	}, [message.ask, message.say, message.text])
 
 	if (tool) {
-		const toolIcon = (name: string) => (
+		const colorMap = {
+			red: "var(--vscode-errorForeground)",
+			yellow: "var(--vscode-editorWarning-foreground)",
+			green: "var(--vscode-charts-green)",
+		}
+		const toolIcon = (name: string, color?: string, rotation?: number, title?: string) => (
 			<span
 				className={`codicon codicon-${name}`}
 				style={{
-					color: "var(--vscode-foreground)",
+					color: color ? colorMap[color as keyof typeof colorMap] || color : "var(--vscode-foreground)",
 					marginBottom: "-1.5px",
-				}}></span>
+					transform: rotation ? `rotate(${rotation}deg)` : undefined,
+				}}
+				title={title}></span>
 		)
 
 		switch (tool.tool) {
@@ -387,6 +378,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("edit")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>AI Code 想要编辑这个文件:</span>
 						</div>
 						<CodeAccordian
@@ -403,6 +396,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("new-file")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>AI Code 想要创建一个新文件：</span>
 						</div>
 						<CodeAccordian
@@ -419,6 +414,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("file-code")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This file is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>
 								{/* {message.type === "ask" ? "" : "Cline read this file:"} */}
 								AI Code 想要读取这个文件：
@@ -477,6 +474,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("folder-opened")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>
 								{message.type === "ask" ? (
 									<FormattedMessage
@@ -505,6 +504,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("folder-opened")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>
 								{message.type === "ask" ? (
 									<FormattedMessage
@@ -533,6 +534,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("file-code")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>
 								{message.type === "ask" ? (
 									<FormattedMessage
@@ -560,6 +563,8 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 					<>
 						<div style={headerStyle}>
 							{toolIcon("search")}
+							{!tool.operationIsLocatedInWorkspace &&
+								toolIcon("sign-out", "yellow", -90, "This is outside of your workspace")}
 							<span style={{ fontWeight: "bold" }}>
 								AI Code 想要在此目录中搜索 <code>{tool.regex}</code>:
 							</span>
@@ -1039,6 +1044,21 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 							<CheckmarkControl messageTs={message.ts} isCheckpointCheckedOut={message.isCheckpointCheckedOut} />
 						</>
 					)
+				case "load_mcp_documentation":
+					return (
+						<div
+							style={{
+								display: "flex",
+								alignItems: "center",
+								color: "var(--vscode-foreground)",
+								opacity: 0.7,
+								fontSize: 12,
+								padding: "4px 0",
+							}}>
+							<i className="codicon codicon-book" style={{ marginRight: 6 }} />
+							Loading MCP documentation
+						</div>
+					)
 				case "completion_result":
 					const hasChanges = message.text?.endsWith(COMPLETION_RESULT_CHANGES_FLAG) ?? false
 					const text = hasChanges ? message.text?.slice(0, -COMPLETION_RESULT_CHANGES_FLAG.length) : message.text
@@ -1051,6 +1071,17 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 								}}>
 								{icon}
 								{title}
+								<TaskFeedbackButtons
+									messageTs={message.ts}
+									isFromHistory={
+										!isLast ||
+										lastModifiedMessage?.ask === "resume_completed_task" ||
+										lastModifiedMessage?.ask === "resume_task"
+									}
+									style={{
+										marginLeft: "auto",
+									}}
+								/>
 							</div>
 							<div
 								style={{
@@ -1196,6 +1227,17 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 									}}>
 									{icon}
 									{title}
+									<TaskFeedbackButtons
+										messageTs={message.ts}
+										isFromHistory={
+											!isLast ||
+											lastModifiedMessage?.ask === "resume_completed_task" ||
+											lastModifiedMessage?.ask === "resume_task"
+										}
+										style={{
+											marginLeft: "auto",
+										}}
+									/>
 								</div>
 								<div
 									style={{
@@ -1262,6 +1304,21 @@ export const ChatRowContent = ({ message, isExpanded, onToggleExpand, lastModifi
 									isActive={isLast && lastModifiedMessage?.ask === "followup"}
 								/>
 							</div>
+						</>
+					)
+				case "new_task":
+					return (
+						<>
+							<div style={headerStyle}>
+								<span
+									className="codicon codicon-new-file"
+									style={{
+										color: normalColor,
+										marginBottom: "-1.5px",
+									}}></span>
+								<span style={{ color: normalColor, fontWeight: "bold" }}>Cline wants to start a new task:</span>
+							</div>
+							<NewTaskPreview context={message.text || ""} />
 						</>
 					)
 				case "plan_mode_respond": {

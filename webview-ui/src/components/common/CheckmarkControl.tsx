@@ -183,9 +183,9 @@ export const CheckmarkControl = ({ messageTs, isCheckpointCheckedOut }: Checkmar
 											width: "100%",
 											marginBottom: "10px",
 										}}>
-										Restore Task Only
+										仅恢复任务
 									</VSCodeButton>
-									<p>Deletes messages after this point (does not affect workspace files)</p>
+									<p>删除此点之后的消息（不影响工作区文件）</p>
 								</RestoreOption>
 								<RestoreOption>
 									<VSCodeButton

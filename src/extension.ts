@@ -35,7 +35,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const sidebarWebview = new WebviewProvider(context, outputChannel)
 
-
 	vscode.commands.executeCommand("setContext", "aiCode.isDevMode", IS_DEV && IS_DEV === "true")
 	vscode.commands.executeCommand("setContext", "aiCode.isTestMode", IS_TEST && IS_TEST === "true")
 
@@ -107,7 +106,7 @@ export function activate(context: vscode.ExtensionContext) {
 			dark: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "robot_panel_dark.png"),
 		}
 		tabWebview.resolveWebviewView(panel)
-
+		//
 		// Lock the editor group so clicking on files doesn't open them over the panel
 		await setTimeoutPromise(100)
 		await vscode.commands.executeCommand("workbench.action.lockEditorGroup")

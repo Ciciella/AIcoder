@@ -22,15 +22,15 @@ const ConnectionStatusIndicator = ({
 			{isChecking ? (
 				<>
 					<Spinner />
-					<StatusText>Checking connection...</StatusText>
+					<StatusText>正在检查连接...</StatusText>
 				</>
 			) : isConnected === true ? (
 				<>
 					<CheckIcon className="codicon codicon-check" />
-					<StatusText style={{ color: "var(--vscode-terminal-ansiGreen)" }}>Connected</StatusText>
+					<StatusText style={{ color: "var(--vscode-terminal-ansiGreen)" }}>已连接</StatusText>
 				</>
 			) : isConnected === false ? (
-				<StatusText style={{ color: "var(--vscode-errorForeground)" }}>Not connected</StatusText>
+				<StatusText style={{ color: "var(--vscode-errorForeground)" }}>未连接</StatusText>
 			) : null}
 		</StatusContainer>
 	)
@@ -45,7 +45,7 @@ export const BrowserSettingsSection: React.FC = () => {
 	const [isBundled, setIsBundled] = useState(false)
 	const [detectedChromePath, setDetectedChromePath] = useState<string | null>(null)
 
-	// Listen for browser connection test results and relaunch results
+	// 监听浏览器连接测试结果和重启结果
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
 			const message = event.data
@@ -68,7 +68,7 @@ export const BrowserSettingsSection: React.FC = () => {
 		return () => window.removeEventListener("message", handleMessage)
 	}, [])
 
-	// Auto-clear relaunch result message after 15 seconds
+	// 15秒后自动清除重启结果消息
 	useEffect(() => {
 		if (relaunchResult) {
 			const timer = setTimeout(() => {
@@ -80,14 +80,14 @@ export const BrowserSettingsSection: React.FC = () => {
 		}
 	}, [relaunchResult])
 
-	// Request detected Chrome path on mount
+	// 在组件挂载时请求检测到的Chrome路径
 	useEffect(() => {
 		vscode.postMessage({
 			type: "getDetectedChromePath",
 		})
 	}, [])
 
-	// Debounced connection check function
+	// 防抖连接检查函数
 	const debouncedCheckConnection = useCallback(
 		debounce(() => {
 			if (browserSettings.remoteBrowserEnabled) {
@@ -102,7 +102,7 @@ export const BrowserSettingsSection: React.FC = () => {
 		[browserSettings.remoteBrowserEnabled, browserSettings.remoteBrowserHost],
 	)
 
-	// Check connection when component mounts or when remote settings change
+	// 当组件挂载或远程设置更改时检查连接
 	useEffect(() => {
 		if (browserSettings.remoteBrowserEnabled) {
 			debouncedCheckConnection()
@@ -159,7 +159,7 @@ export const BrowserSettingsSection: React.FC = () => {
 		})
 	}, [browserSettings.remoteBrowserHost])
 
-	// Setup continuous polling for connection status when remote browser is enabled
+	// 当远程浏览器启用时设置连续轮询连接状态
 	useEffect(() => {
 		// Only poll if remote browser mode is enabled
 		if (!browserSettings.remoteBrowserEnabled) {
@@ -198,10 +198,10 @@ export const BrowserSettingsSection: React.FC = () => {
 		<div
 			id="browser-settings-section"
 			style={{ marginBottom: 20, borderTop: "1px solid var(--vscode-panel-border)", paddingTop: 15 }}>
-			<h3 style={{ color: "var(--vscode-foreground)", margin: "0 0 10px 0", fontSize: "14px" }}>Browser Settings</h3>
+			<h3 style={{ color: "var(--vscode-foreground)", margin: "0 0 10px 0", fontSize: "14px" }}>浏览器设置</h3>
 			<div style={{ marginBottom: 15 }}>
 				<div style={{ marginBottom: 8 }}>
-					<label style={{ fontWeight: "500", display: "block", marginBottom: 5 }}>Viewport size</label>
+					<label style={{ fontWeight: "500", display: "block", marginBottom: 5 }}>视口大小</label>
 					<VSCodeDropdown
 						style={{ width: "100%" }}
 						value={
@@ -227,7 +227,7 @@ export const BrowserSettingsSection: React.FC = () => {
 						color: "var(--vscode-descriptionForeground)",
 						margin: 0,
 					}}>
-					Set the size of the browser viewport for screenshots and interactions.
+					设置浏览器视口大小用于截图和交互。
 				</p>
 			</div>
 
@@ -236,7 +236,7 @@ export const BrowserSettingsSection: React.FC = () => {
 					<VSCodeCheckbox
 						checked={browserSettings.remoteBrowserEnabled}
 						onChange={(e) => updateRemoteBrowserEnabled((e.target as HTMLInputElement).checked)}>
-						Use remote browser connection
+						使用远程浏览器连接
 					</VSCodeCheckbox>
 					<ConnectionStatusIndicator
 						isChecking={isCheckingConnection}
@@ -250,17 +250,16 @@ export const BrowserSettingsSection: React.FC = () => {
 						color: "var(--vscode-descriptionForeground)",
 						margin: "0 0 6px 0px",
 					}}>
-					Enable Cline to use your Chrome
-					{isBundled ? "(not detected on your machine)" : detectedChromePath ? ` (${detectedChromePath})` : ""}. This
-					requires starting Chrome in debug mode
+					启用 AI Code 以使用您的 Chrome
+					{isBundled ? "(在您的机器上未检测到)" : detectedChromePath ? ` (${detectedChromePath})` : ""}
+					。这需要在调试模式下启动 Chrome
 					{browserSettings.remoteBrowserEnabled ? (
 						<>
 							{" "}
-							manually (<code>--remote-debugging-port=9222</code>) or using the button below. Enter the host address
-							or leave it blank for automatic discovery.
+							手动 (<code>--remote-debugging-port=9222</code>) 或使用下面的按钮。输入主机地址或留空以进行自动发现。
 						</>
 					) : (
-						"."
+						"。"
 					)}
 				</p>
 
@@ -276,7 +275,7 @@ export const BrowserSettingsSection: React.FC = () => {
 						{shouldShowRelaunchButton && (
 							<div style={{ display: "flex", gap: "10px", marginBottom: 8, justifyContent: "center" }}>
 								<VSCodeButton style={{ flex: 1 }} disabled={debugMode} onClick={relaunchChromeDebugMode}>
-									{debugMode ? "Relaunching Browser..." : "Relaunch Browser with Debug Mode"}
+									{debugMode ? "正在重启浏览器..." : "以调试模式重启浏览器"}
 								</VSCodeButton>
 							</div>
 						)}

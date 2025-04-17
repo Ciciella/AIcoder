@@ -213,7 +213,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					</p>
 				</div>
 
-				<div className="mb-[5px]">
+				{/* <div className="mb-[5px]">
 					<VSCodeCheckbox
 						className="mb-[5px]"
 						checked={telemetrySetting === "enabled"}
@@ -223,8 +223,8 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 						}}>
 						允许匿名错误和使用情况报告
 					</VSCodeCheckbox>
-					{/* <p className="text-xs mt-[5px] text-[var(--vscode-descriptionForeground)]">
-						通过发送匿名使用数据和错误报告来帮助改进 AI Code。永远不会发送代码、提示或个人信息。查看我们的{" "}
+					<p className="text-xs mt-[5px] text-[var(--vscode-descriptionForeground)]">
+					通过发送匿名使用数据和错误报告来帮助改进 AI Code。永远不会发送代码、提示或个人信息。查看我们的{" "}
 						<VSCodeLink href="https://docs.cline.bot/more-info/telemetry" className="text-inherit">
 							遥测概述
 						</VSCodeLink>{" "}
@@ -234,7 +234,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 						</VSCodeLink>{" "}
 						for more details.
 					</p>
-				</div>
+				</div> */}
 
 				{/* Browser Settings Section */}
 				<BrowserSettingsSection />
@@ -244,7 +244,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 						onClick={() => vscode.postMessage({ type: "openExtensionSettings" })}
 						className="mt-0 mr-0 mb-4 ml-0">
 						<i className="codicon codicon-settings-gear" />
-						Advanced Settings
+						高级设置
 					</SettingsButton>
 				</div>
 
@@ -261,12 +261,12 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 				)}
 
 				<div className="text-center text-[var(--vscode-descriptionForeground)] text-xs leading-[1.2] px-0 py-0 pr-2 pb-[15px] mt-auto">
-					<p className="break-words m-0 p-0">
-						If you have any questions or feedback, feel free to open an issue at{" "}
+					{/* <p className="break-words m-0 p-0">
+						如果您有任何问题或反馈，请随时在{" "}
 						<VSCodeLink href="https://github.com/cline/cline" className="inline">
 							https://github.com/cline/cline
-						</VSCodeLink>{" "}
-						提出 issue
+						</VSCodeLink>
+						{" "}提交问题
 					</p> */}
 					<p className="italic mt-[10px] mb-0 p-0">v{version}</p>
 				</div>

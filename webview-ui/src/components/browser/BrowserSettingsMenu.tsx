@@ -165,9 +165,9 @@ export const BrowserSettingsMenu = () => {
 
 			{showInfoPopover && (
 				<InfoPopover ref={popoverRef}>
-					<h4 style={{ margin: "0 0 8px 0" }}>Browser Connection</h4>
+					<h4 style={{ margin: "0 0 8px 0" }}>浏览器连接</h4>
 					<InfoRow>
-						<InfoLabel>Status:</InfoLabel>
+						<InfoLabel>状态:</InfoLabel>
 						<InfoValue
 							style={{
 								color: connectionInfo.isConnected
@@ -179,13 +179,13 @@ export const BrowserSettingsMenu = () => {
 					</InfoRow>
 					{connectionInfo.isConnected && (
 						<InfoRow>
-							<InfoLabel>Type:</InfoLabel>
+							<InfoLabel>类型:</InfoLabel>
 							<InfoValue>{connectionInfo.isRemote ? "Remote" : "Local"}</InfoValue>
 						</InfoRow>
 					)}
 					{connectionInfo.isConnected && connectionInfo.isRemote && connectionInfo.host && (
 						<InfoRow>
-							<InfoLabel>Remote Host:</InfoLabel>
+							<InfoLabel>远程主机:</InfoLabel>
 							<InfoValue>{connectionInfo.host}</InfoValue>
 						</InfoRow>
 					)}

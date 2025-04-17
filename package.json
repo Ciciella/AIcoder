@@ -166,7 +166,7 @@
 				{
 					"command": "aiCode.settingsButtonClicked",
 					"group": "navigation@6",
-					"when": "view == ai-code-dev.SidebarProvider && false"
+					"when": "view == ai-code-dev.SidebarProvider"
 				}
 			],
 			"editor/title": [
@@ -193,7 +193,7 @@
 				{
 					"command": "aiCode.accountButtonClicked",
 					"group": "navigation@5",
-					"when": "activeWebviewPanelId == ai-code-dev.TabPanelProvider"
+					"when": "activeWebviewPanelId == ai-code-dev.TabPanelProvider && false"
 				},
 				{
 					"command": "aiCode.settingsButtonClicked",

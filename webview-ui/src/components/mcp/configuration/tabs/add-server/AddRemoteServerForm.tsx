@@ -10,7 +10,7 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 	const [error, setError] = useState("")
 	const [showConnectingMessage, setShowConnectingMessage] = useState(false)
 
-	// Store submitted values to check if the server was added
+	// 存储提交的值以检查服务器是否已添加
 	const submittedValues = useRef<{ name: string } | null>(null)
 
 	const handleMessage = useCallback(
@@ -24,7 +24,7 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 				message.addRemoteServerResult?.serverName === submittedValues.current.name
 			) {
 				if (message.addRemoteServerResult.success) {
-					// Handle success
+					// 处理成功
 					setIsSubmitting(false)
 					setServerName("")
 					setServerUrl("")
@@ -32,9 +32,9 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 					onServerAdded()
 					setShowConnectingMessage(false)
 				} else {
-					// Handle error
+					// 处理错误
 					setIsSubmitting(false)
-					setError(message.addRemoteServerResult.error || "Failed to add server")
+					setError(message.addRemoteServerResult.error || "添加服务器失败")
 					setShowConnectingMessage(false)
 				}
 			}
@@ -48,19 +48,19 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 		e.preventDefault()
 
 		if (!serverName.trim()) {
-			setError("Server name is required")
+			setError("服务器名称是必填项")
 			return
 		}
 
 		if (!serverUrl.trim()) {
-			setError("Server URL is required")
+			setError("服务器URL是必填项")
 			return
 		}
 
 		try {
 			new URL(serverUrl)
 		} catch (err) {
-			setError("Invalid URL format")
+			setError("URL格式无效")
 			return
 		}
 
@@ -80,9 +80,9 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 	return (
 		<div className="p-4 px-5">
 			<div className="text-[var(--vscode-foreground)] mb-2">
-				Add a remote MCP server by providing a name and its URL endpoint. Learn more{" "}
+				通过提供名称和URL端点添加远程MCP服务器。了解更多{" "}
 				<VSCodeLink href={LINKS.DOCUMENTATION.REMOTE_MCP_SERVER_DOCS} style={{ display: "inline" }}>
-					here.
+					点击这里
 				</VSCodeLink>
 			</div>
 
@@ -97,7 +97,7 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 						disabled={isSubmitting}
 						className="w-full"
 						placeholder="mcp-server">
-						Server Name
+						服务器名称
 					</VSCodeTextField>
 				</div>
 
@@ -111,7 +111,7 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 						disabled={isSubmitting}
 						placeholder="https://example.com/mcp-server"
 						className="w-full mr-4">
-						Server URL
+						服务器URL
 					</VSCodeTextField>
 				</div>
 
@@ -119,12 +119,12 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 
 				<div className="flex items-center mt-3 w-full">
 					<VSCodeButton type="submit" disabled={isSubmitting} className="w-full">
-						{isSubmitting ? "Adding..." : "Add Server"}
+						{isSubmitting ? "添加中..." : "添加服务器"}
 					</VSCodeButton>
 
 					{showConnectingMessage && (
 						<div className="ml-3 text-[var(--vscode-notificationsInfoIcon-foreground)] text-sm">
-							Connecting to server... This may take a few seconds.
+							正在连接服务器...这可能需要几秒钟。
 						</div>
 					)}
 				</div>
@@ -135,7 +135,7 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 					onClick={() => {
 						vscode.postMessage({ type: "openMcpSettings" })
 					}}>
-					Edit Configuration
+					编辑配置
 				</VSCodeButton>
 			</form>
 		</div>

@@ -39,33 +39,31 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 				<span className="codicon codicon-close"></span>
 			</VSCodeButton>
 			<h3 style={h3TitleStyle}>
-				🎉{"  "}New in v{minorVersion}
+				🎉{"  "}v{minorVersion}新功能
 			</h3>
 			<ul style={ulStyle}>
 				<li>
-					<b>Model Favorites:</b> You can now mark your favorite models when using Cline & OpenRouter providers for
-					quick access!
+					<b>模型收藏夹：</b> 现在您可以在使用OpenRouter提供商时标记您喜爱的模型，以便快速访问！
 				</li>
 				<li>
-					<b>Faster Diff Editing:</b> Improved animation performance for large files, plus a new indicator in chat
-					showing the number of edits Cline makes.
+					<b>更快的差异编辑：</b> 改进了大文件的动画性能，并在聊天中添加了新的指示器，显示AI Code所做的编辑数量。
 				</li>
 				<li>
-					<b>New Auto-Approve Options:</b> Turn off Cline's ability to read and edit files outside your workspace.
+					<b>新的自动批准选项：</b> 关闭AI Code读取和编辑工作区外文件的能力。
 				</li>
 			</ul>
-			<h4 style={{ margin: "5px 0 5px" }}>Previous Updates:</h4>
+			<h4 style={{ margin: "5px 0 5px" }}>以前的更新：</h4>
 
 			<ul style={ulStyle}>
 				<li>
-					<b>Browser Tool Upgrades:</b> Use your local Chrome browser for session-based browsing, enabling debugging and
-					productivity workflows tied to your actual browser state.
+					<b>浏览器工具升级：</b>{" "}
+					使用本地Chrome浏览器进行基于会话的浏览，实现与您实际浏览器状态相关联的调试和生产力工作流。
 				</li>
 				<li>
-					<b>Auto-Approve Commands:</b> New option to automatically approve <b>ALL</b> commands (use at your own risk!)
+					<b>自动批准命令：</b> 新选项可自动批准<b>所有</b>命令（使用风险自负！）
 				</li>
 				<li>
-					<b>Easily Toggle MCP's:</b> New popover in the chat area to easily enable/disable MCP servers.
+					<b>轻松切换MCP：</b> 聊天区域中的新弹出窗口，可轻松启用/禁用MCP服务器。
 				</li>
 			</ul>
 			{/*<ul style={{ margin: "0 0 8px", paddingLeft: "12px" }}>
@@ -116,7 +114,7 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 				</li>
 			</ul>*/}
 			<div style={hrStyle} />
-			<p style={linkContainerStyle}>
+			{/* <p style={linkContainerStyle}>
 				Join us on{" "}
 				<VSCodeLink style={linkStyle} href="https://x.com/cline">
 					X,
@@ -129,7 +127,7 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 					r/cline
 				</VSCodeLink>
 				for more updates!
-			</p>
+			</p> */}
 		</div>
 	)
 }

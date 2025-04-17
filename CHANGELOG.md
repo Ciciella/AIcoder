@@ -1,111 +1,94 @@
 # 更新日志
 
-## [3.8.5]
-
-- 修复添加到 AI Code 和 快速修复
-
-<img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E5%BF%AB%E6%8D%B7%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81.png" alt="添加到 AI Code" width="400" align="left">
-
-<img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E6%8F%90%E7%A4%BA%E4%BF%AE%E5%A4%8D%E9%80%89%E9%A1%B9.png" alt="快速修复" width="400" align="left">
-
 ## [3.12.3]
 
--   Add copy button to MermaidBlock component (Thanks @cacosub7!)
--   Add the ability to fetch from global cline rules files
--   Add icon to indicate when a file outside of the users workspace is edited
-
-## [3.12.2]
-
--   Add gpt-4.1
-
-## [3.12.1]
-
--   Use visual checkpoint indicator to make it clear when checkpoints are created
--   Big shoutout to @samuel871211 for numerous code quality improvements, refactoring contributions, and webview performance improvements!
--   Use improved context manager
+-   为 MermaidBlock 组件添加复制按钮（感谢 @cacosub7！）
+-   添加从全局 AI Code 规则文件获取的功能
+-   添加图标以指示用户工作区外的文件何时被编辑
+-   添加 gpt-4.1
+-   使用可视化检查点指示器，使创建检查点时更加清晰
+-   非常感谢 @samuel871211 的众多代码质量改进、重构贡献和 webview 性能提升！
+-   使用改进的上下文管理器
 
 ## [3.12.0]
 
--   Add favorite toggles for models when using the Cline & OpenRouter providers
--   Add auto-approve options for edits/reads outside of the workspace
--   Improve diff editing animation for large files
--   Add indicator showing number of diff edits when Cline edits a file
--   Add streaming support and reasoning effort option to xAI's Grok 3 Mini
--   Add settings button to MCP popover to easily modify installed servers
--   Fix bug where browser tool actions would show unparsed results in the chat view
--   Fix issue with new checkpoints popover hiding too quickly
--   Fix duplicate checkpoints bug
--   Improve Ollama provider with retry mechanism, timeout handling, and improved error handling (thanks suvarchal!)
+-   为使用 AI Code 和 OpenRouter 提供商时添加模型收藏切换功能
+-   添加工作区外编辑/读取的自动批准选项
+-   改进大文件的差异编辑动画
+-   添加指示器显示 AI Code 编辑文件时的差异编辑数量
+-   为 xAI 的 Grok 3 Mini 添加流式支持和推理努力选项
+-   在 MCP 弹出窗口中添加设置按钮，以便轻松修改已安装的服务器
+-   修复浏览器工具操作在聊天视图中显示未解析结果的错误
+-   修复新检查点弹出窗口隐藏过快的问题
+-   修复重复检查点错误
+-   改进 Ollama 提供商，增加重试机制、超时处理和改进的错误处理（感谢 suvarchal！）
 
 ## [3.11.0]
 
--   Redesign checkpoint UI to declutter chat view by using a subtle indicator line that expands to a popover on hover, with a new date indicator for when it was created
--   Add support for xAI's provider's Grok 3 models
--   Add more robust error tracking for users opted in to telemetry (thank you for helping us make Cline better!)
-
-## [3.10.1]
-
--   Add CMD+' keyboard shortcut to add selected text to Cline
--   Cline now auto focuses the text field when using 'Add to Cline' shortcut
--   Add new 'Create New Task' tool to let Cline start a new task autonomously!
--   Fix Mermaid diagram issues
--   Fix Gemini provider cost calculation to take new tiered pricing structure into account
+-   重新设计检查点 UI，通过使用一个微妙的指示线来整理聊天视图，该指示线在悬停时展开为弹出窗口，并带有新的日期指示器显示创建时间
+-   添加对 xAI 提供商的 Grok 3 模型的支持
+-   为选择加入遥测的用户添加更强大的错误跟踪（感谢您帮助我们改进 AI Code！）
+-   添加 CMD+' 键盘快捷键将选定文本添加到 AI Code
+-   使用"添加到 AI Code"快捷键时，AI Code 现在会自动聚焦文本字段
+-   添加新的"创建新任务"工具，让 AI Code 自主启动新任务！
+-   修复 Mermaid 图表问题
+-   修复 Gemini 提供商成本计算，考虑新的分层定价结构
 
 ## [3.10.0]
 
--   Add setting to let browser tool use local Chrome via remote debugging, enabling session-based browsing. Replaces sessionless Chromium, unlocking debugging and productivity workflows tied to your real browser state.
--   Add new auto-approve option to approve _ALL_ commands (use at your own risk!)
--   Add modal in the chat area to more easily enable or disable MCP servers
--   Add drag and drop of file/folders into cline chat (Thanks eljapi!)
--   Add prompt caching for LiteLLM + Claude (Thanks sammcj!)
--   Add Improved context management
--   Fix MCP auto approve toggle issues being out of sync with settings
-
-## [3.9.2]
-
--   Add recommended models for Cline provider
--   Add ability to detect when user edits files manually so Cline knows to re-read, leading to reduced diff edit errors
--   Add improvements to file mention searching for faster searching
--   Add scoring logic to file mentions to sort and exlcude results based on relevance
--   Add Support for Bytedance Doubao (Thanks Tunixer!)
--   Fix to prevent duplicate BOM (Thanks bamps53!)
-
-## [3.9.1]
-
--   Add Gemini 2.5 Pro Preview 03-25 to Google Provider
+-   添加设置，让浏览器工具通过远程调试使用本地 Chrome，启用基于会话的浏览。替代无会话的 Chromium，解锁与您真实浏览器状态相关的调试和生产力工作流。
+-   添加新的自动批准选项，批准所有命令（使用风险自负！）
+-   在聊天区域添加模态框，更轻松地启用或禁用 MCP 服务器
+-   添加文件/文件夹拖放到 AI Code 聊天功能（感谢 eljapi！）
+-   为 LiteLLM + Claude 添加提示缓存（感谢 sammcj！）
+-   添加改进的上下文管理
+-   修复 MCP 自动批准切换与设置不同步的问题
+-   为 AI Code 提供商添加推荐模型
+-   添加检测用户手动编辑文件的功能，使 AI Code 知道何时重新读取，减少差异编辑错误
+-   添加对文件提及搜索的改进，实现更快的搜索
+-   添加评分逻辑到文件提及，根据相关性排序和排除结果
+-   添加对字节跳动 Doubao 的支持（感谢 Tunixer！）
+-   修复防止重复 BOM 的问题（感谢 bamps53！）
+-   在 Google 提供商中添加 Gemini 2.5 Pro Preview 03-25
 
 ## [3.9.0]
 
--   Add Enable extended thinking for LiteLLM provider (Thanks @jorgegarciarey!)
--   Add a tab for configuring local MCP Servers
--   Fix issue with DeepSeek API provider token counting + context management
--   Fix issues with checkpoints hanging under certain conditions
-
-## [3.8.6]
-
--   Add UI for adding remote servers
--   Add Mentions Feature Guide and update related documentation
--   Fix bug where menu would open in sidebar and open tab
--   Fix issue with Cline accounts not showing user info in popout tabs
--   Fix bug where menu buttons wouldn't open view in sidebar
+-   为 LiteLLM 提供商添加扩展思考功能（感谢 @jorgegarciarey！）
+-   添加配置本地 MCP 服务器的标签
+-   修复 DeepSeek API 提供商令牌计数 + 上下文管理的问题
+-   修复在某些条件下检查点挂起的问题
+-   添加添加远程服务器的 UI
+-   添加提及功能指南并更新相关文档
+-   修复菜单在侧边栏和打开的标签中打开的错误
+-   修复 AI Code 账户在弹出标签中不显示用户信息的问题
+-   修复菜单按钮不在侧边栏打开视图的错误
+-   添加对使用 SSE 的远程 MCP 服务器的支持
+-   在 Vertex AI 中添加 gemini-2.5-pro-exp-03-25（感谢 @arri-cc！）
+-   在弹出视图中添加历史记录、mcp 和新任务按钮的访问
+-   添加任务反馈遥测（任务完成时的点赞/点踩）
+-   添加远程服务器的禁用切换
+-   移动 MCP 重启和删除按钮，并添加自动批准所有的切换
+-   更新 Requestly 的模型选择用户体验（感谢 @arafatkatze！）
+-   为运行命令时的 gemini 添加 html 内容转义
+-   改进搜索和替换编辑失败行为
 
 ## [3.8.5]
 
--   Add support for remote MCP Servers using SSE
--   Add gemini-2.5-pro-exp-03-25 to Vertex AI (thanks @arri-cc!)
--   Add access to history, mcp, and new task buttons in popout view
--   Add task feedback telemetry (thumbs up/down on task completion)
--   Add toggle disabled for remote servers
--   Move the MCP Restart and Delete buttons and add an auto-approve all toggle
--   Update Requestly UX for model selection (thanks @arafatkatze!)
--   Add escape for html content for gemini when running commands
--   Improve search and replace edit failure behaviors
+-   修复添加到 AI Code 和 快速修复
+
+<p>
+    <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E5%BF%AB%E6%8D%B7%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81.png" alt="添加到 AI Code" width="400" align="left">
+</p>
+
+<p>
+    <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/changeLog/%E6%8F%90%E7%A4%BA%E4%BF%AE%E5%A4%8D%E9%80%89%E9%A1%B9.png" alt="快速修复" width="400" align="left">
+</p>
 
 ## [3.8.4]
 
 -   添加 Sambanova Deepseek-V3-0324
 -   为 LiteLLM 提供商添加成本计算支持
--   修复 Cline 在没有响应参数的情况下使用 plan_mode_response 的错误
+-   修复 AI Code 在没有响应参数的情况下使用 plan_mode_response 的错误
 
 ## [3.8.3]
 
@@ -124,15 +107,15 @@
 
 ## [3.8.0]
 
--   添加“添加到 Cline”选项，当你在文件或终端中右键单击时，可以更轻松地将上下文添加到当前任务
--   添加“使用 Cline 修复”代码操作 - 当你在编辑器中看到灯泡图标时，现在可以选择“使用 Cline 修复”来发送代码和相关错误以供 Cline 修复。（光标用户也可以使用“快速修复（CMD + .）”菜单查看此选项）
--   添加账户视图以显示 Cline 账户用户的账单和使用历史。你现在可以在扩展中跟踪使用的积分和交易历史！
--   添加“排序下属提供商路由”设置到 Cline/OpenRouter，允许你按吞吐量、价格、延迟或默认（价格和正常运行时间的组合）对提供商进行排序
+-   添加“添加到 AI Code”选项，当你在文件或终端中右键单击时，可以更轻松地将上下文添加到当前任务
+-   添加“使用 AI Code 修复”代码操作 - 当你在编辑器中看到灯泡图标时，现在可以选择“使用 AI Code 修复”来发送代码和相关错误以供 AI Code 修复。（光标用户也可以使用“快速修复（CMD + .）”菜单查看此选项）
+-   添加账户视图以显示 AI Code 账户用户的账单和使用历史。你现在可以在扩展中跟踪使用的积分和交易历史！
+-   添加“排序下属提供商路由”设置到 AI Code/OpenRouter，允许你按吞吐量、价格、延迟或默认（价格和正常运行时间的组合）对提供商进行排序
 -   改进丰富的 MCP 显示，支持动态图像加载和 GIF
--   添加“文档”菜单项以便轻松访问 Cline 的文档
+-   添加“文档”菜单项以便轻松访问 AI Code 的文档
 -   添加 OpenRouter 的新 usage_details 功能，以便更可靠的成本报告
--   在历史视图中“删除所有任务”按钮旁显示 Cline 占用的总空间
--   修复 OpenRouter/Cline 账户的“上下文窗口超出”错误（即将提供更多支持）
+-   在历史视图中“删除所有任务”按钮旁显示 AI Code 占用的总空间
+-   修复 OpenRouter/AI Code 账户的“上下文窗口超出”错误（即将提供更多支持）
 -   修复 OpenRouter 模型 ID 被设置为无效值的错误
 -   添加按钮以删除处于故障状态的 MCP 服务器
 
@@ -142,9 +125,9 @@
 
 ## [3.7.0]
 
--   Cline 现在在提问或展示计划时显示可选择的选项，省去了你输入响应的麻烦！
+-   AI Code 现在在提问或展示计划时显示可选择的选项，省去了你输入响应的麻烦！
 -   添加对 `.clinerules/` 目录的支持，以便一次加载多个文件（感谢 @ryo-ma！）
--   防止 Cline 将极大的文件读入上下文，以免超出上下文窗口
+-   防止 AI Code 将极大的文件读入上下文，以免超出上下文窗口
 -   改进检查点加载性能，并为不适合检查点的大型项目显示警告
 -   添加 SambaNova API 提供商（感谢 @saad-noodleseed！）
 -   为 AWS Bedrock 配置文件添加 VPC 端点选项（感谢 @minorunara！）
@@ -166,11 +149,11 @@
 
 ## [3.6.0]
 
--   添加 Cline API 作为提供商选项，允许新用户注册并免费开始使用 Cline
+-   添加 AI Code API 作为提供商选项，允许新用户注册并免费开始使用 AI Code
 -   通过每任务分支策略优化检查点，减少所需存储和首次任务加载时间
 -   修复计划/执行切换键盘快捷键在 Windows 上不起作用的问题（感谢 @yt3trees！）
 -   为 GCP Vertex 添加新的 Gemini 模型（感谢 @shohei-ihaya！）和 Claude 模型 AskSage（感谢 @swhite24！）
--   改进 OpenRouter/Cline 错误报告
+-   改进 OpenRouter/AI Code 错误报告
 
 ## [3.5.1]
 
@@ -296,12 +279,11 @@
 -   修复在创建检查点时 LFS 文件未被忽略的问题
 
 ## [3.1.0]
-
--   Added checkpoints: Snapshots of workspace are automatically created whenever Cline uses a tool
--   Compare changes: Hover over any tool use to see a diff between the snapshot and current workspace state
--   Restore options: Choose to restore just the task state, just the workspace files, or both
--   New 'See new changes' button appears after task completion, providing an overview of all workspace changes
--   Task header now shows disk space usage with a delete button to help manage snapshot storage
+-   添加检查点：每当 AI Code 使用工具时，会自动创建工作区快照
+-   比较更改：将鼠标悬停在任何工具使用上，可以查看快照和当前工作区状态之间的差异
+-   恢复选项：可以选择仅恢复任务状态、仅恢复工作区文件或两者都恢复
+-   任务完成后会出现新的"查看新更改"按钮，提供所有工作区更改的概览
+-   任务标题现在显示磁盘空间使用情况，并带有删除按钮以帮助管理快照存储
 
 ## [3.0.12]
 

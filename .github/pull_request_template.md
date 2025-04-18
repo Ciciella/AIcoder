@@ -1,36 +1,36 @@
-### Description
+### 描述
 
-<!-- Describe your changes in detail. What problem does this PR solve? -->
+<!-- 详细描述你的变更内容。这个PR解决了什么问题？ -->
 
-### Test Procedure
+### 测试步骤
 
-<!-- How did you test this? Are you confident that it will not introduce bugs? If so, why? -->
+<!-- 你是如何测试的？你确信这不会引入bug吗？如果是，为什么？ -->
 
-### Type of Change
+### 变更类型
 
-<!-- Put an 'x' in all boxes that apply -->
+<!-- 在适用的框框中打'x' -->
 
--   [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
--   [ ] ✨ New feature (non-breaking change which adds functionality)
--   [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
--   [ ] ♻️ Refactor Changes
--   [ ] 💅 Cosmetic Changes
--   [ ] 📚 Documentation update
--   [ ] 🏃 Workflow Changes
+-   [ ] 🐛 错误修复（非破坏性变更，修复问题）
+-   [ ] ✨ 新功能（非破坏性变更，增加功能）
+-   [ ] 💥 破坏性变更（修复或功能会导致现有功能无法按预期工作）
+-   [ ] ♻️ 重构变更
+-   [ ] 💅 样式变更
+-   [ ] 📚 文档更新
+-   [ ] 🏃 工作流变更
 
-### Pre-flight Checklist
+### 提交前检查清单
 
-<!-- Put an 'x' in all boxes that apply -->
+<!-- 在适用的框框中打'x' -->
 
--   [ ] Changes are limited to a single feature, bugfix or chore (split larger changes into separate PRs)
--   [ ] Tests are passing (`npm test`) and code is formatted and linted (`npm run format && npm run lint`)
--   [ ] I have created a changeset using `npm run changeset` (required for user-facing changes)
--   [ ] I have reviewed [contributor guidelines](https://github.com/cline/cline/blob/main/CONTRIBUTING.md)
+-   [ ] 变更仅限于单个功能、错误修复或杂项（将大型变更拆分为多个PR）
+-   [ ] 测试通过（`npm test`）且代码已格式化并lint（`npm run format && npm run lint`）
+-   [ ] 我已使用`npm run changeset`创建变更集（面向用户的变更需要）
+-   [ ] 我已阅读[贡献者指南](https://github.com/Ciciella/AI-Code/blob/main/CONTRIBUTING.md)
 
-### Screenshots
+### 截图
 
-<!-- For UI changes, add screenshots here -->
+<!-- 对于UI变更，在此处添加截图 -->
 
-### Additional Notes
+### 附加说明
 
-<!-- Add any additional notes for reviewers -->
+<!-- 为评审者添加任何额外说明 -->

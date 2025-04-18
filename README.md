@@ -1,5 +1,7 @@
 # AI Code 代码编程助手 🤖
 
+<br />
+
 <p align="center">
   <img src="https://gitee.com/nulifendou99/ai-code/raw/master/assets/docs/shouye.jpg" width="100%" />
 </p>
@@ -35,17 +37,16 @@
 2. 配置你的 API 密钥（支持多种 API 提供商）
 3. 开始使用中文与 AI 助手交互，完成编程任务
 
-> **🚀 推荐模型**：DeepSeek-R1-Distill-Qwen-14B，推理速度快，中文响应质量高
 
 ### API提供商
 国产模型和openAI兼容的api key 均可使用
 
-<img width="340" src="https://gitee.com/nulifendou99/ai-code/raw/master/assets/docs/shiyongjieshao.png">
+<img width="240" src="https://gitee.com/nulifendou99/ai-code/raw/master/assets/docs/shiyongjieshao.png">
 
 
 ### 使用任何API和模型
 
-AI code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azure和GCP Vertex等API提供商。你还可以配置任何兼容OpenAI的API，或通过Ollama使用本地模型。如果你使用OpenRouter，扩展会获取他们的最新模型列表，让你在新模型可用时立即使用。
+AI Code支持OpenRouter、Anthropic、OpenAI、Google Gemini、AWS Bedrock、Azure和GCP Vertex等API提供商。你还可以配置任何兼容OpenAI的API，或通过Ollama使用本地模型。如果你使用OpenRouter，扩展会获取他们的最新模型列表，让你在新模型可用时立即使用。
 
 扩展还会跟踪整个任务循环和单个请求的总令牌和API使用成本，让你在每一步都了解支出。
 
@@ -58,7 +59,7 @@ B站: <a href="https://space.bilibili.com/102578527?spm_id_from=333.1007.0.0">�
 ### 社区讨论：
 
 <div align="center">
-<img width="400" src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/004.png">
+<img width="300" src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/004.png">
 </div>
 
 
@@ -67,19 +68,9 @@ B站: <a href="https://space.bilibili.com/102578527?spm_id_from=333.1007.0.0">�
 感谢您对 AI Code 的支持！如果您觉得这个项目对您有帮助，欢迎赞赏支持我们继续改进。
 
 <div align="center">
-  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/003.png" width="400" />
+  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/003.png" width="300" />
 </div>
 
-<table>
-<tr>
-<td align="center">
-  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/001.png" width="400" />
-</td>
-<td align="center">
-  <img src="https://gitee.com/nulifendou99/ai-code-v2/raw/master/assets/docs/002.png" width="400" />
-</td>
-</tr>
-</table>
 
 您的每一份支持都是我们前进的动力，我们会继续努力提供更好的服务！
 

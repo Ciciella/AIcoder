@@ -279,7 +279,7 @@
 						"Traditional Chinese - 繁體中文",
 						"Turkish - Türkçe"
 					],
-					"default": "English",
+					"default": "Simplified Chinese - 简体中文",
 					"description": "AI Code 应该使用的交流语言。"
 				},
 				"aiCode.mcpMarketplace.enabled": {

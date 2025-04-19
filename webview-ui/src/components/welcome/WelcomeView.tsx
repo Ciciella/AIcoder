@@ -41,13 +41,13 @@ const WelcomeView = memo(() => {
 					<i>（当然需要你的许可）</i>。我甚至可以使用 MCP 创建新工具来扩展自己的能力。
 				</p>
 
-				<p className="text-[var(--vscode-descriptionForeground)]">
+				{/* <p className="text-[var(--vscode-descriptionForeground)]">
 					注册一个免费账号开始使用，或者使用你自己的 API 密钥来访问 Claude 3.7 Sonnet 等模型。
 				</p>
 
 				<VSCodeButton appearance="primary" onClick={handleLogin} className="w-full mt-1">
 					免费开始使用
-				</VSCodeButton>
+				</VSCodeButton> */}
 
 				{!showApiOptions && (
 					<VSCodeButton

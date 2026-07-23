@@ -1,16 +1,211 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="92px" height="96px" viewBox="0 0 92 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Group Copy 2</title>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon-copy" transform="translate(-34, -40)" fill="#24292F">
-            <g id="Group-Copy-2" transform="translate(34, 40.5)">
-                <g id="Group-3-Copy-4" transform="translate(0, 0)">
-                    <path d="M65.4492701,16.3 C76.3374701,16.3 85.1635558,25.16479 85.1635558,36.1 L85.1635558,42.7 L90.9027661,54.1647464 C91.4694141,55.2966923 91.4668177,56.6300535 90.8957658,57.7597839 L85.1635558,69.1 L85.1635558,75.7 C85.1635558,86.63554 76.3374701,95.5 65.4492701,95.5 L26.0206986,95.5 C15.1328272,95.5 6.30641291,86.63554 6.30641291,75.7 L6.30641291,69.1 L0.448507752,57.7954874 C-0.14693501,56.6464093 -0.149634367,55.2802504 0.441262896,54.1288283 L6.30641291,42.7 L6.30641291,36.1 C6.30641291,25.16479 15.1328272,16.3 26.0206986,16.3 L65.4492701,16.3 Z M62.9301895,22 L29.189529,22 C19.8723267,22 12.3191987,29.5552188 12.3191987,38.875 L12.3191987,44.5 L7.44288578,53.9634655 C6.84794449,55.1180686 6.85066096,56.4896598 7.45017099,57.6418974 L12.3191987,67 L12.3191987,72.625 C12.3191987,81.9450625 19.8723267,89.5 29.189529,89.5 L62.9301895,89.5 C72.2476729,89.5 79.8005198,81.9450625 79.8005198,72.625 L79.8005198,67 L84.5682187,57.6061395 C85.1432011,56.473244 85.1458141,55.1345713 84.5752587,53.9994398 L79.8005198,44.5 L79.8005198,38.875 C79.8005198,29.5552188 72.2476729,22 62.9301895,22 Z" id="Combined-Shape" fill-rule="nonzero"></path>
-                    <circle id="Oval" cx="45.7349843" cy="11" r="11"></circle>
-                </g>
-                <rect id="Rectangle-Copy" stroke="#24292F" stroke-width="8" x="31" y="44.5" width="5" height="22" rx="2.5"></rect>
-                <rect id="Rectangle-Copy-2" stroke="#24292F" stroke-width="8" x="55" y="44.5" width="5" height="22" rx="2.5"></rect>
-            </g>
-        </g>
-    </g>
+<svg
+	data-v-0dd9719b=""
+	version="1.0"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="92px"
+	height="96px"
+	viewBox="0 0 92 96"
+	preserveAspectRatio="xMidYMid meet"
+	color-interpolation-filters="sRGB">
+	<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+		<g id="icon-copy" transform="translate(0, 0)" fill="#24292F">
+			<g data-v-0dd9719b="" class="iconlettersvg-g iconlettersvg" transform="translate(4, 5) scale(1.3)">
+				<g mask="url(#f1a4a6ce-1362-41db-abe3-1364da1a3416)">
+					<g class="tp-name" transform="translate(0,0)">
+						<g transform="scale(1)">
+							<g transform="translate(0, 0)">
+								<g class="name-imagesvg">
+									<g>
+										<rect
+											fill="#00c9ff"
+											fill-opacity="0"
+											stroke-width="2"
+											x="0"
+											y="0"
+											width="50"
+											height="50"
+											class="image-rect"></rect>
+										<svg
+											x="0"
+											y="0"
+											width="50"
+											height="50"
+											filtersec="colorsb5026852208"
+											class="image-svg-svg primary"
+											style="overflow: visible">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468 468">
+												<path
+													d="M468 468h-26.82a2.28 2.28 0 0 0-.25-1.08L237 56.6a2.44 2.44 0 0 0-2.17-1.35 2.44 2.44 0 0 0-2.18 1.35L27.07 466.91a2.49 2.49 0 0 0-.26 1.09H0L234 0zM348.67 292.24L277 148.11l-42.23-85-199.9 399 131.83-71.39zM163.38 398.13L34.37 468H436l-85.16-171.39z"
+													fill="#fa991a"
+													opacity=".7"></path>
+												<path
+													d="M348.67 292.24l-181.94 98.54L277 148.11zm2.17 4.37L163.38 398.13 131.62 468H436z"
+													fill="#f9d611"
+													opacity=".7"></path>
+											</svg>
+										</svg>
+										<!---->
+									</g>
+								</g>
+							</g>
+							<g transform="translate(50, 0)">
+								<g class="name-imagesvg">
+									<g>
+										<rect
+											fill="#00c9ff"
+											fill-opacity="0"
+											stroke-width="2"
+											x="0"
+											y="0"
+											width="12.5"
+											height="50"
+											class="image-rect"></rect>
+										<svg
+											x="0"
+											y="0"
+											width="12.5"
+											height="50"
+											filtersec="colorsb4106355808"
+											class="image-svg-svg primary"
+											style="overflow: visible">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 468">
+												<path
+													d="M0 0v468h117V0zm31.69 438.75a2.44 2.44 0 0 1-4.88 0V29.25a2.44 2.44 0 0 1 4.88 0z"
+													fill="#6228f1"
+													opacity=".7"></path>
+											</svg>
+										</svg>
+										<!---->
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+					<rect
+						v-gra="id"
+						width="74.5"
+						height="62"
+						transform="translate(-6, -6)"
+						style="pointer-events: none"
+						fill="url(#e23678c1-3d33-4354-965e-dbc007c1c407)"></rect>
+				</g>
+				<g
+					data-gra="path-slogan"
+					fill-rule=""
+					class="tp-slogan"
+					fill="url(#8685a66c-a1f0-41b8-a911-d45d9da88249)"
+					transform="translate(14.540000915527344,56)">
+					<!---->
+					<!---->
+					<g transform="scale(1, 1)">
+						<g transform="scale(1)">
+							<path
+								d="M8.06-6.05L8.06-6.05L6.94-6.05Q6.52-7.78 4.55-7.83L4.55-7.83Q1.83-7.69 1.73-4.36L1.73-4.36Q1.73-0.80 4.59-0.80L4.59-0.80Q6.56-0.84 7.03-3.19L7.03-3.19L8.16-3.19Q7.64 0.05 4.36 0.14L4.36 0.14Q0.61 0 0.52-4.31L0.52-4.31Q0.70-8.63 4.55-8.81L4.55-8.81Q7.59-8.72 8.06-6.05ZM16.31-4.27L16.31-4.27Q16.13-7.64 13.31-7.83L13.31-7.83Q10.45-7.69 10.31-4.27L10.31-4.27Q10.45-0.94 13.31-0.80L13.31-0.80Q16.13-0.98 16.31-4.27ZM17.48-4.27L17.48-4.27Q17.20 0 13.31 0.14L13.31 0.14Q9.38 0 9.09-4.27L9.09-4.27Q9.33-8.72 13.31-8.81L13.31-8.81Q17.20-8.67 17.48-4.27ZM22.36 0L18.89 0L18.89-8.58L22.41-8.58Q25.88-8.39 26.02-4.41L26.02-4.41Q25.83-0.09 22.36 0L22.36 0ZM22.22-7.64L20.06-7.64L20.06-0.98L22.31-0.98Q24.75-1.13 24.84-4.31L24.84-4.31Q24.80-7.55 22.22-7.64L22.22-7.64ZM28.78-1.03L33.94-1.03L33.94 0L27.61 0L27.61-8.58L33.84-8.58L33.84-7.59L28.78-7.59L28.78-4.92L33.47-4.92L33.47-3.89L28.78-3.89L28.78-1.03Z"
+								transform="translate(-0.515625, 8.8125)"></path>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+	<defs v-gra="od">
+		<linearGradient x1="0" y1="1" x2="0" y2="0" id="8685a66c-a1f0-41b8-a911-d45d9da88249">
+			<stop offset="0%" stop-color="#00c9ff"></stop>
+			<stop offset="100%" stop-color="#92fe9d"></stop>
+		</linearGradient>
+		<filter id="42443b3f1de60f6b6fd3b6a9844b4764" filterUnits="objectBoundingBox">
+			<feColorMatrix
+				type="matrix"
+				values="0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 1 0"></feColorMatrix>
+		</filter>
+		<filter id="7cab2573-13cc-4f28-8e01-08e206b6c40b" filterUnits="userSpaceOnUse">
+			<feColorMatrix
+				type="matrix"
+				values="0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 1 0"></feColorMatrix>
+		</filter>
+		<linearGradient x1="0" y1="1" x2="0" y2="0" id="e23678c1-3d33-4354-965e-dbc007c1c407">
+			<stop offset="0%" stop-color="#00c9ff"></stop>
+			<stop offset="100%" stop-color="#92fe9d"></stop>
+		</linearGradient>
+		<filter id="42443b3f1de60f6b6fd3b6a9844b4764" filterUnits="objectBoundingBox">
+			<feColorMatrix
+				type="matrix"
+				values="0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 0 0.99609375  0 0 0 1 0"></feColorMatrix>
+		</filter>
+	</defs>
+	<mask v-gra="im" id="f1a4a6ce-1362-41db-abe3-1364da1a3416">
+		<g filter="url(#7cab2573-13cc-4f28-8e01-08e206b6c40b)">
+			<g class="tp-name" transform="translate(0,0)">
+				<g transform="scale(1)">
+					<g transform="translate(0, 0)">
+						<g class="name-imagesvg">
+							<g>
+								<rect
+									fill="#00c9ff"
+									fill-opacity="0"
+									stroke-width="2"
+									x="0"
+									y="0"
+									width="50"
+									height="50"
+									class="image-rect"></rect>
+								<svg
+									x="0"
+									y="0"
+									width="50"
+									height="50"
+									filtersec="colorsb5026852208"
+									class="image-svg-svg primary"
+									style="overflow: visible">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468 468">
+										<path
+											d="M468 468h-26.82a2.28 2.28 0 0 0-.25-1.08L237 56.6a2.44 2.44 0 0 0-2.17-1.35 2.44 2.44 0 0 0-2.18 1.35L27.07 466.91a2.49 2.49 0 0 0-.26 1.09H0L234 0zM348.67 292.24L277 148.11l-42.23-85-199.9 399 131.83-71.39zM163.38 398.13L34.37 468H436l-85.16-171.39z"
+											fill="#fa991a"
+											opacity=".7"></path>
+										<path
+											d="M348.67 292.24l-181.94 98.54L277 148.11zm2.17 4.37L163.38 398.13 131.62 468H436z"
+											fill="#f9d611"
+											opacity=".7"></path>
+									</svg>
+								</svg>
+								<!---->
+							</g>
+						</g>
+					</g>
+					<g transform="translate(50, 0)">
+						<g class="name-imagesvg">
+							<g>
+								<rect
+									fill="#00c9ff"
+									fill-opacity="0"
+									stroke-width="2"
+									x="0"
+									y="0"
+									width="12.5"
+									height="50"
+									class="image-rect"></rect>
+								<svg
+									x="0"
+									y="0"
+									width="12.5"
+									height="50"
+									filtersec="colorsb4106355808"
+									class="image-svg-svg primary"
+									style="overflow: visible">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 468">
+										<path
+											d="M0 0v468h117V0zm31.69 438.75a2.44 2.44 0 0 1-4.88 0V29.25a2.44 2.44 0 0 1 4.88 0z"
+											fill="#6228f1"
+											opacity=".7"></path>
+									</svg>
+								</svg>
+								<!---->
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</mask>
 </svg>

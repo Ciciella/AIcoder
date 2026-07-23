@@ -114,7 +114,7 @@ describe("ErrorRow", () => {
 			<ErrorRow errorType="clineignore_error" message={clineignoreMessage} />,
 		);
 
-		expect(screen.getByText(/Cline tried to access/)).toBeInTheDocument();
+		expect(screen.getByText(/AI Code tried to access/)).toBeInTheDocument();
 		expect(screen.getByText("/path/to/file.txt")).toBeInTheDocument();
 	});
 

@@ -110,7 +110,7 @@ export const WhatsNewModal: React.FC<WhatsNewModalProps> = ({ open, onClose, ver
 
 						{/* GitHub Star CTA */}
 						<p className="text-sm text-center" style={{ color: "var(--vscode-descriptionForeground)" }}>
-							Please support Cline by{" "}
+							Please support AI Code by{" "}
 							<a
 								href="https://github.com/cline/cline"
 								rel="noopener noreferrer"

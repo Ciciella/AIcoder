@@ -2854,12 +2854,12 @@ export class Task {
 				showSystemNotification({
 					subtitle: "Error",
 					message:
-						"Cline is having trouble. Would you like to continue the task?",
+						"AI Code is having trouble. Would you like to continue the task?",
 				});
 			}
 			const { response, text, images, files } = await this.ask(
 				"mistake_limit_reached",
-				`Cline hit repeated tool call failures. Try guiding it with a new prompt.`,
+				`AI Code hit repeated tool call failures. Try guiding it with a new prompt.`,
 			);
 			if (response === "messageResponse") {
 				// Display the user's message in the chat UI

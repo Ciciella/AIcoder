@@ -23,7 +23,7 @@ describe("Cline Extension", () => {
 		const packageJSON = JSON.parse(await readFile(packagePath, "utf8"))
 		const id = packageJSON.publisher + "." + packageJSON.name
 		await vscode.extensions.getExtension(id)?.activate()
-		await vscode.commands.executeCommand("cline.plusButtonClicked")
+		await vscode.commands.executeCommand("aiCode.plusButtonClicked")
 	})
 
 	// New test to verify xvfb and webview functionality

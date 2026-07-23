@@ -325,7 +325,7 @@ async function handleCommentReply(
 The user is asking followup questions about code change explanations you provided.
 Respond helpfully to the user's question about the code.
 Use markdown formatting where appropriate.
-If the user asks you to make changes, fix something, or do any work that requires modifying code, let them know they can click the "Add to Cline Chat" button (the arrow icon in the top-right of the comment box) to send this conversation to the main Cline agent, which can then make the requested changes.
+If the user asks you to make changes, fix something, or do any work that requires modifying code, let them know they can click the "Add to AI Code Chat" button (the arrow icon in the top-right of the comment box) to send this conversation to the main AI Code agent, which can then make the requested changes.
 `
 
 	const userMessage = `## Context

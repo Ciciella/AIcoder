@@ -1,7 +1,6 @@
-# Beyond Autocomplete: True Agentic Planning
+# 超越自动补全：真正的代理式规划
 
-**AI Code analyzes your request, explores your code, and presents a clear plan.**
+**AI Code 会分析你的请求，探索你的代码，并给出清晰的计划。**
 
-Watch AI Code break down complex tasks, ask clarifying questions, and outline its approach. Understand the 'why' before any code is written, ensuring changes align with your architecture and intent.
+观看 AI Code 如何拆解复杂任务、提出澄清问题并概述其方案。在编写任何代码之前理解"为什么"，确保更改符合你的架构和意图。
 
-![AI Code planning demonstration](https://storage.googleapis.com/cline_public_images/docs/assets/cline-plan-hifi-1_compress.webp)

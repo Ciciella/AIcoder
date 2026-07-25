@@ -1,7 +1,6 @@
-# No Black Box: Full Visibility & Control
+# 没有黑盒：完全可见性与控制
 
-**AI Code operates with complete transparency, showing you every file read and every proposed diff.**
+**AI Code 以完全透明的方式运作，向你展示每次文件读取和每个提议的差异。**
 
-Understand exactly what AI Code is doing and why—no obfuscation. Review all actions and approve changes before they're made. AI Code uses checkpoints, allowing you to easily revert if needed, maintaining full control over your codebase. With BYO-key, you also have clear cost transparency.
+准确了解 AI Code 在做什么以及为什么——没有任何隐藏。审查所有操作，并在更改发生之前予以批准。AI Code 使用检查点，让你可以在需要时轻松回滚，始终保持对代码库的完全控制。通过自带密钥 (BYO-key)，你还可以获得清晰的成本透明度。
 
-![AI Code Transparency Demo](https://storage.googleapis.com/cline_public_images/docs/assets/clines-transparency-hifi-5_compress.webp)

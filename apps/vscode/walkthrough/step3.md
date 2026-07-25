@@ -1,7 +1,5 @@
-# Always Use the Best Models
+# 始终使用最佳模型
 
-**Connect your keys for Anthropic (Claude), Google (Gemini), OpenAI (GPT), and other leading LLMs.**
+**连接你的 Anthropic (Claude)、Google (Gemini)、OpenAI (GPT) 等领先大语言模型的密钥。**
 
-AI Code puts you at the forefront of AI. Bring your own API keys for leading models like Anthropic (Claude), Google (Gemini), and OpenAI (GPT). Always leverage the most powerful State-of-the-Art (SOTA) capabilities, ensuring you control both cost and cutting-edge performance.
-
-![AI Code Models Demo](https://storage.googleapis.com/cline_public_images/docs/assets/clines-models-hifi-3_compress.webp)
+AI Code 让你站在 AI 的最前沿。自带 API 密钥即可使用 Anthropic (Claude)、Google (Gemini) 和 OpenAI (GPT) 等领先模型。始终利用最强大的前沿 (SOTA) 能力，确保你同时掌控成本和 cutting-edge 性能。

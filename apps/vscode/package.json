@@ -67,45 +67,45 @@
 		"walkthroughs": [
 			{
 				"id": "AICodeWalkthrough",
-				"title": "Meet AI Code, your new coding partner",
-				"description": "AI Code codes like a developer because it thinks like one. Here are 5 ways to put it to work:",
+				"title": "认识 AI Code，你的新编程搭档",
+				"description": "AI Code 像开发者一样编码，因为它像开发者一样思考。以下是 5 种使用方式：",
 				"steps": [
 					{
 						"id": "welcome",
-						"title": "Start with a Goal, Not Just a Prompt",
-						"description": "Tell AI Code what you want to achieve. It plans, asks, and then codes, like a true partner.",
+						"title": "从一个目标开始，而不仅是一个提示",
+						"description": "告诉 AI Code 你想要实现什么。它会规划、提问，然后编码，就像真正的搭档一样。",
 						"media": {
 							"markdown": "walkthrough/step1.md"
 						}
 					},
 					{
 						"id": "learn",
-						"title": "Let AI Code Learn Your Codebase",
-						"description": "Point AI Code to your project. It builds understanding to make smart, context-aware changes.",
+						"title": "让 AI Code 了解你的代码库",
+						"description": "将 AI Code 指向你的项目。它会建立理解，做出智能的、基于上下文的修改。",
 						"media": {
 							"markdown": "walkthrough/step2.md"
 						}
 					},
 					{
 						"id": "advanced-features",
-						"title": "Always Use the Best AI Models",
-						"description": "AI Code empowers you with State-of-the-Art AI, connecting to top models (Anthropic, Gemini, OpenAI & more).",
+						"title": "始终使用最佳 AI 模型",
+						"description": "AI Code 为你提供最先进的 AI 能力，连接顶级模型（Anthropic、Gemini、OpenAI 等）。",
 						"media": {
 							"markdown": "walkthrough/step3.md"
 						}
 					},
 					{
 						"id": "mcp",
-						"title": "Extend with Powerful Tools (MCP)",
-						"description": "Connect to databases, APIs, or discover new capabilities in the MCP Marketplace.",
+						"title": "使用强大工具扩展 (MCP)",
+						"description": "连接数据库、API，或在 MCP 市场中发现新功能。",
 						"media": {
 							"markdown": "walkthrough/step4.md"
 						}
 					},
 					{
 						"id": "getting-started",
-						"title": "You're Always in Control",
-						"description": "Review AI Code's plans and diffs. Approve changes before they happen. No surprises.",
+						"title": "你始终掌控全局",
+						"description": "审查 AI Code 的计划和差异。在更改发生前予以批准。没有意外。",
 						"media": {
 							"markdown": "walkthrough/step5.md"
 						},

@@ -1,7 +1,5 @@
-# Deep Codebase Intelligence
+# 深度代码库智能
 
-**AI Code starts with broad context and explores deeply where needed.**
+**AI Code 从广泛的上下文开始，并在需要时深入探索。**
 
-AI Code is designed with inherent codebase intelligence. It doesn't operate in a vacuum, but starts with a structural understanding of your project. Before making changes, it performs targeted agentic exploration to gain any additional specific context required, ensuring its actions are always well-informed and aligned with your architecture.
-
-![AI Code Deep Codebase Intelligence Demo](https://storage.googleapis.com/cline_public_images/docs/assets/cline-reading-codebase-hifi-2_compress.webp)
+AI Code 天生具备代码库智能。它不是在真空中运作，而是从对你项目的结构性理解开始。在进行更改之前，它会执行有针对性的代理式探索，以获取所需的任何额外特定上下文，确保其操作始终信息充分并与你的架构保持一致。

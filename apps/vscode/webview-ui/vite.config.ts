@@ -1,10 +1,12 @@
 /// <reference types="vitest/config" />
 
 import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
-import { resolve } from "path";
 import { defineConfig, loadEnv, type Plugin, type ViteDevServer } from "vite";
+
+import { zhcnTranslate } from "./vite-plugins/zh-cn-translate";
 
 // Custom plugin to write the server port to a file
 const writePortToFile = (): Plugin => {
@@ -52,7 +54,12 @@ export default defineConfig(({ mode }) => {
 		optimizeDeps: {
 			force: true, // Forces re-optimization
 		},
-		plugins: [react(), tailwindcss(), writePortToFile()],
+		plugins: [
+			zhcnTranslate({ enabled: env.CLINE_ZH_CN === "true" }),
+			react(),
+			tailwindcss(),
+			writePortToFile(),
+		],
 		test: {
 			environment: "jsdom",
 			globals: true,

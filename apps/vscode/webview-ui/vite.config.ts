@@ -140,6 +140,9 @@ export default defineConfig(({ mode }) => {
 			"process.env.IS_DEV": JSON.stringify(env.IS_DEV),
 			"process.env.IS_TEST": JSON.stringify(env.IS_TEST),
 			"process.env.CI": JSON.stringify(env.CI),
+			"process.env.CLINE_HIDE_ACCOUNT": JSON.stringify(
+				env.CLINE_HIDE_ACCOUNT,
+			),
 			// PostHog environment variables
 			"process.env.TELEMETRY_SERVICE_API_KEY": JSON.stringify(
 				env.TELEMETRY_SERVICE_API_KEY,

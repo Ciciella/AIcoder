@@ -17,11 +17,14 @@ export function getConfiguredProviders(
 	const configured: ApiProvider[] = []
 
 	if (!apiConfiguration) {
-		return ["cline"] // Cline is always available
+		// Cline is always available, unless hidden
+		return process.env.CLINE_HIDE_ACCOUNT === "true" ? ["deepseek"] : ["cline"]
 	}
 
-	// Cline - always available (uses account-based auth)
-	configured.push("cline")
+	// Cline - always available (uses account-based auth), unless hidden
+	if (process.env.CLINE_HIDE_ACCOUNT !== "true") {
+		configured.push("cline")
+	}
 
 	// Anthropic - requires API key
 	if (apiConfiguration.apiKey) {

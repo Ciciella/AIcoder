@@ -205,11 +205,19 @@ export function normalizeApiConfiguration(
 	const configuredProvider =
 		(currentMode === "plan"
 			? apiConfiguration?.planModeApiProvider
-			: apiConfiguration?.actModeApiProvider) || "anthropic";
-	const provider =
+			: apiConfiguration?.actModeApiProvider) ||
+		(process.env.CLINE_HIDE_ACCOUNT === "true" ? "deepseek" : "anthropic");
+	let provider =
 		configuredProvider === "cline-pass" && options.isClinePassEnabled === false
 			? "cline"
 			: configuredProvider;
+	// Redirect Cline providers to deepseek when hidden
+	if (
+		process.env.CLINE_HIDE_ACCOUNT === "true" &&
+		(provider === "cline" || provider === "cline-pass")
+	) {
+		provider = "deepseek";
+	}
 
 	const modelId =
 		currentMode === "plan"

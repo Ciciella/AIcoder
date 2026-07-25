@@ -147,6 +147,13 @@ const ApiOptions = ({
 			providers = providers.filter((option) => option.value !== "vscode-lm")
 		}
 
+		// Hide Cline account-related providers (Cline Usage-Billing, ClinePass)
+		if (process.env.CLINE_HIDE_ACCOUNT === "true") {
+			providers = providers.filter(
+				(option) => option.value !== "cline" && option.value !== "cline-pass",
+			)
+		}
+
 		// Filter by remote config if remoteConfiguredProviders is set
 		const remoteProviders: string[] = remoteConfigSettings?.remoteConfiguredProviders || []
 		if (remoteProviders.length > 0) {

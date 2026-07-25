@@ -503,24 +503,34 @@ const ClineRulesToggleModal: React.FC = () => {
 							{currentView === "rules" ? (
 								<p>
 									Rules allow you to provide AI Code with system-level guidance. Think of them as a persistent way
-									to include context and preferences for your projects or globally for every conversation.{" "}
-									<VSCodeLink
-										className="text-xs"
-										href="https://docs.cline.bot/features/cline-rules"
-										style={{ display: "inline", fontSize: "inherit" }}>
-										Docs
-									</VSCodeLink>
+									to include context and preferences for your projects or globally for every conversation.
+									{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
+										<>
+											{" "}
+											<VSCodeLink
+												className="text-xs"
+												href="https://docs.cline.bot/features/cline-rules"
+												style={{ display: "inline", fontSize: "inherit" }}>
+												Docs
+											</VSCodeLink>
+										</>
+									)}
 								</p>
 							) : currentView === "workflows" ? (
 								<p>
 									Workflows allow you to define a series of steps to guide AI Code through a repetitive set of
 									tasks, such as deploying a service or submitting a PR. To invoke a workflow, type{" "}
-									<span className="text-foreground font-bold">/workflow-name</span> in the chat.{" "}
-									<VSCodeLink
-										className="text-xs inline"
-										href="https://docs.cline.bot/features/slash-commands/workflows">
-										Docs
-									</VSCodeLink>
+									<span className="text-foreground font-bold">/workflow-name</span> in the chat.
+									{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
+										<>
+											{" "}
+											<VSCodeLink
+												className="text-xs inline"
+												href="https://docs.cline.bot/features/slash-commands/workflows">
+												Docs
+											</VSCodeLink>
+										</>
+									)}
 								</p>
 							) : currentView === "skills" ? (
 								<p>
@@ -686,13 +696,18 @@ const ClineRulesToggleModal: React.FC = () => {
 									<p>
 										{isWindows
 											? "On Windows, hooks execute whenever the hook file exists."
-											: "Toggle to enable/disable (chmod +x/-x)."}{" "}
-										<VSCodeLink
-											className="text-xs"
-											href="https://docs.cline.bot/features/hooks"
-											style={{ display: "inline", fontSize: "inherit" }}>
-											Docs
-										</VSCodeLink>
+											: "Toggle to enable/disable (chmod +x/-x)."}
+										{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
+											<>
+												{" "}
+												<VSCodeLink
+													className="text-xs"
+													href="https://docs.cline.bot/features/hooks"
+													style={{ display: "inline", fontSize: "inherit" }}>
+													Docs
+												</VSCodeLink>
+											</>
+										)}
 									</p>
 								</div>
 								{/* Hooks Tab */}

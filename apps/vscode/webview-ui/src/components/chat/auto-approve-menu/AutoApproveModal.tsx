@@ -72,15 +72,20 @@ const AutoApproveModal: React.FC<AutoApproveModalProps> = ({ isVisible, setIsVis
 					maxHeight: "60vh",
 				}}>
 				<div className="mb-2.5 text-muted-foreground text-xs cursor-pointer" onClick={() => setIsVisible(false)}>
-					Let AI Code take these actions without asking for approval.{" "}
-					<a
-						className="text-link hover:text-link-hover"
-						href="https://docs.cline.bot/features/auto-approve#auto-approve"
-						rel="noopener"
-						style={{ fontSize: "inherit" }}
-						target="_blank">
-						Docs
-					</a>
+					Let AI Code take these actions without asking for approval.
+					{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
+						<>
+							{" "}
+							<a
+								className="text-link hover:text-link-hover"
+								href="https://docs.cline.bot/features/auto-approve#auto-approve"
+								rel="noopener"
+								style={{ fontSize: "inherit" }}
+								target="_blank">
+								Docs
+							</a>
+						</>
+					)}
 				</div>
 
 				<div

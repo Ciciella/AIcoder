@@ -66,10 +66,15 @@ const AddRemoteServerForm = ({ onServerAdded }: { onServerAdded: () => void }) =
 	return (
 		<div className="p-4 px-5">
 			<div className="text-(--vscode-foreground) mb-2">
-				Add a remote MCP server by providing a name and its URL endpoint. Learn more{" "}
-				<VSCodeLink href={LINKS.DOCUMENTATION.REMOTE_MCP_SERVER_DOCS} style={{ display: "inline" }}>
-					here.
-				</VSCodeLink>
+				Add a remote MCP server by providing a name and its URL endpoint.
+				{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
+					<>
+						{" "}Learn more{" "}
+						<VSCodeLink href={LINKS.DOCUMENTATION.REMOTE_MCP_SERVER_DOCS} style={{ display: "inline" }}>
+							here.
+						</VSCodeLink>
+					</>
+				)}
 			</div>
 
 			<form onSubmit={handleSubmit}>

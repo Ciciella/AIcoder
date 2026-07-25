@@ -18,33 +18,37 @@ const AboutSection = ({ version, renderSectionHeader }: AboutSectionProps) => {
 						execute terminal commands (after you grant permission).
 					</p>
 
-					<h3 className="text-md font-semibold">Community & Support</h3>
-					<p>
-						<VSCodeLink href="https://x.com/cline">X</VSCodeLink>
-						{" • "}
-						<VSCodeLink href="https://discord.gg/cline">Discord</VSCodeLink>
-						{" • "}
-						<VSCodeLink href="https://www.reddit.com/r/cline/"> r/cline</VSCodeLink>
-					</p>
+					{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
+						<>
+							<h3 className="text-md font-semibold">Community & Support</h3>
+							<p>
+								<VSCodeLink href="https://x.com/cline">X</VSCodeLink>
+								{" • "}
+								<VSCodeLink href="https://discord.gg/cline">Discord</VSCodeLink>
+								{" • "}
+								<VSCodeLink href="https://www.reddit.com/r/cline/"> r/cline</VSCodeLink>
+							</p>
 
-					<h3 className="text-md font-semibold">Development</h3>
-					<p>
-						<VSCodeLink href="https://github.com/Ciciella/AI-Code">GitHub</VSCodeLink>
-						{" • "}
-						<VSCodeLink href="https://github.com/Ciciella/AI-Code/issues"> Issues</VSCodeLink>
-						{" • "}
-						<VSCodeLink href="https://github.com/Ciciella/AI-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop">
-							{" "}
-							Feature Requests
-						</VSCodeLink>
-					</p>
+							<h3 className="text-md font-semibold">Development</h3>
+							<p>
+								<VSCodeLink href="https://github.com/Ciciella/AI-Code">GitHub</VSCodeLink>
+								{" • "}
+								<VSCodeLink href="https://github.com/Ciciella/AI-Code/issues"> Issues</VSCodeLink>
+								{" • "}
+								<VSCodeLink href="https://github.com/Ciciella/AI-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop">
+									{" "}
+									Feature Requests
+								</VSCodeLink>
+							</p>
 
-					<h3 className="text-md font-semibold">Resources</h3>
-					<p>
-						<VSCodeLink href="https://docs.cline.bot/">Documentation</VSCodeLink>
-						{" • "}
-						<VSCodeLink href="https://cline.bot/">https://cline.bot</VSCodeLink>
-					</p>
+							<h3 className="text-md font-semibold">Resources</h3>
+							<p>
+								<VSCodeLink href="https://docs.cline.bot/">Documentation</VSCodeLink>
+								{" • "}
+								<VSCodeLink href="https://cline.bot/">https://cline.bot</VSCodeLink>
+							</p>
+						</>
+					)}
 				</div>
 			</Section>
 		</div>

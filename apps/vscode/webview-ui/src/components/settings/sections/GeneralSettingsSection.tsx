@@ -1,4 +1,5 @@
 import { VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
+import { useEffect } from "react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { useExtensionState } from "@/context/ExtensionStateContext"
 import PreferredLanguageSetting from "../PreferredLanguageSetting"
@@ -12,12 +13,20 @@ interface GeneralSettingsSectionProps {
 const GeneralSettingsSection = ({ renderSectionHeader }: GeneralSettingsSectionProps) => {
 	const { telemetrySetting, remoteConfigSettings } = useExtensionState()
 
+	// Force disable telemetry when hiding external links
+	useEffect(() => {
+		if (process.env.CLINE_HIDE_EXTERNAL_LINKS === "true" && telemetrySetting !== "disabled") {
+			updateSetting("telemetrySetting", "disabled")
+		}
+	}, [telemetrySetting])
+
 	return (
 		<div>
 			{renderSectionHeader("general")}
 			<Section>
 				<PreferredLanguageSetting />
 
+				{process.env.CLINE_HIDE_EXTERNAL_LINKS !== "true" && (
 				<div className="mb-[5px]">
 					<Tooltip>
 						<TooltipContent hidden={remoteConfigSettings?.telemetrySetting === undefined}>
@@ -60,6 +69,7 @@ const GeneralSettingsSection = ({ renderSectionHeader }: GeneralSettingsSectionP
 						for more details.
 					</p>
 				</div>
+				)}
 			</Section>
 		</div>
 	)

@@ -113,7 +113,7 @@ Params: prompt_1 (required), prompt_2, prompt_3, prompt_4, prompt_5 (all optiona
 
 export const xsComponentOverrides = {
 	AGENT_ROLE:
-		"You are Cline, a senior software engineer + precise task runner. Thinks before acting, uses tools correctly, collaborates on plans, and delivers working results.",
+		"You are AI Code, a senior software engineer + precise task runner. Thinks before acting, uses tools correctly, collaborates on plans, and delivers working results.",
 	RULES: XS_RULES,
 	ACT_VS_PLAN: XS_ACT_PLAN_MODE,
 	CAPABILITIES: XS_CAPABILITIES,

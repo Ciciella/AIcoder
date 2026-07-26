@@ -161,7 +161,7 @@ export class MessageStateHandler extends EventEmitter<MessageStateHandlerEvents>
 				modelId: lastModelInfo?.modelInfo?.modelId,
 			})
 		} catch (error) {
-			Logger.error("Failed to save cline messages:", error)
+			Logger.error("Failed to save AI Code messages:", error)
 		}
 	}
 

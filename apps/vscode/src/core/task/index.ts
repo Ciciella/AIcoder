@@ -803,7 +803,7 @@ export class Task {
 			type !== "resume_task" &&
 			type !== "resume_completed_task"
 		) {
-			throw new Error("Cline instance aborted");
+			throw new Error("AI Code instance aborted");
 		}
 		let askTs: number;
 		if (partial !== undefined) {
@@ -936,7 +936,7 @@ export class Task {
 			{ interval: 100 },
 		);
 		if (shouldWakeOnAbort && this.taskState.abort) {
-			throw new Error("Cline instance aborted");
+			throw new Error("AI Code instance aborted");
 		}
 		if (this.taskState.lastMessageTs !== askTs) {
 			throw new Error("Current ask promise was ignored"); // could happen if we send multiple asks in a row i.e. with command_output. It's important that when we know an ask could fail, it is handled gracefully
@@ -979,7 +979,7 @@ export class Task {
 			type !== "hook_status" &&
 			type !== "hook_output_stream"
 		) {
-			throw new Error("Cline instance aborted");
+			throw new Error("AI Code instance aborted");
 		}
 
 		const providerInfo = this.getCurrentProviderInfo();
@@ -2629,7 +2629,7 @@ export class Task {
 
 	async presentAssistantMessage() {
 		if (this.taskState.abort) {
-			throw new Error("Cline instance aborted");
+			throw new Error("AI Code instance aborted");
 		}
 
 		// If we're locked, mark pending and return
@@ -3688,7 +3688,7 @@ export class Task {
 
 			// need to call here in case the stream was aborted
 			if (this.taskState.abort) {
-				throw new Error("Cline instance aborted");
+				throw new Error("AI Code instance aborted");
 			}
 
 			// Stored the assistant API response immediately after the stream finishes in the same turn
@@ -3847,7 +3847,7 @@ export class Task {
 				});
 
 				const baseErrorMessage =
-					"Invalid API Response: The provider returned an empty or unparsable response. This is a provider-side issue where the model failed to generate valid output or returned tool calls that Cline cannot process. Retrying the request may help resolve this issue.";
+					"Invalid API Response: The provider returned an empty or unparsable response. This is a provider-side issue where the model failed to generate valid output or returned tool calls that AI Code cannot process. Retrying the request may help resolve this issue.";
 				const errorText = reqId
 					? `${baseErrorMessage} (Request ID: ${reqId})`
 					: baseErrorMessage;

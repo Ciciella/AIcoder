@@ -51,7 +51,7 @@ export const VSCODE_ONLY_COMMANDS: SlashCommand[] = [
 export const CLI_ONLY_COMMANDS: SlashCommand[] = [
 	{
 		name: "help",
-		description: "Learn how to use Cline CLI",
+		description: "Learn how to use AI Code CLI",
 		section: "default",
 		cliCompatible: true,
 	},

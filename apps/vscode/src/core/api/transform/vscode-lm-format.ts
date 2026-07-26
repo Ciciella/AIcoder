@@ -24,7 +24,7 @@ export function asObjectSafe(value: any): object {
 
 		return {};
 	} catch (error) {
-		Logger.warn("Cline <Language Model API>: Failed to parse object:", error);
+		Logger.warn("AI Code <Language Model API>: Failed to parse object:", error);
 		return {};
 	}
 }
@@ -182,7 +182,7 @@ export function convertToAnthropicMessage(
 	const anthropicRole = convertToAnthropicRole(vsCodeLmMessage.role);
 	if (anthropicRole !== "assistant") {
 		throw new Error(
-			"Cline <Language Model API>: Only assistant messages are supported.",
+			"AI Code <Language Model API>: Only assistant messages are supported.",
 		);
 	}
 

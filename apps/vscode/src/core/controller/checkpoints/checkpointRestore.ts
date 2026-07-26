@@ -15,7 +15,7 @@ export async function checkpointRestore(controller: Controller, request: Checkpo
 		await pWaitFor(() => controller.task?.taskState.isInitialized === true, {
 			timeout: 3_000,
 		}).catch((error) => {
-			Logger.log("Failed to init new Cline instance to restore checkpoint", error)
+			Logger.log("Failed to init new AI Code instance to restore checkpoint", error)
 			HostProvider.window.showMessage({
 				type: ShowMessageType.ERROR,
 				message: "Failed to restore checkpoint",

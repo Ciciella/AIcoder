@@ -25,6 +25,7 @@ eslint-rules/**
 .github/**
 .husky/**
 .env
+**/.env
 
 # sdk (separate monorepo with its own build/release pipeline)
 sdk/**

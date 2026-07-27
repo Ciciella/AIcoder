@@ -2,7 +2,7 @@
 	"name": "claude-dev-china",
 	"displayName": "AI Code: Cline, Chat, Deepseek, 中文版",
 	"description": "在您的IDE中自动编码代理，能够在您的许可下创建/编辑文件、执行命令等等。支持deepseek模型",
-	"version": "4.0.10",
+	"version": "4.0.11",
 	"icon": "assets/icons/icon.png",
 	"engines": {
 		"vscode": "^1.84.0"
@@ -187,7 +187,7 @@
 				"command": "aiCode.generateGitCommitMessage",
 				"title": "使用 AI Code 生成提交信息",
 				"category": "AI Code",
-				"icon": "$(ai-code-icon)"
+				"icon": "assets/icons/icon.svg"
 			},
 			{
 				"command": "aiCode.abortGitCommitMessage",

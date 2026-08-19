@@ -1,3 +1,5 @@
+
+
 <p align="center">
   <img src="assets/icons/icon.png" width="80" alt="Cline" />
 </p>
@@ -50,6 +52,8 @@ for CI/CD and scripting.
 ```
 npm i -g cline
 ```
+
+Requires Node.js 22 or later.
 
 <a href="./apps/cli/README.md">Learn more</a>
 <br><br>
